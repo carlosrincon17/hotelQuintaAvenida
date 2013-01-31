@@ -11,6 +11,9 @@ import java.util.ArrayList;
  *
  * @author jorge
  */
+
+// ESTO ES UN PRUBA QUE SE VA A VER EN LA WEB :d
+
 public class Articulo_DAO {
     public static boolean create(Articulo_DTO art){
         String sql = "INSERT INTO articulo (id_articulo, nombre, precio,cantidad) VALUES (NULL, '"+art.getNombre()+"', '"+art.getPrecio()+"','"+art.getCantidad()+"')";
