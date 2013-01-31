@@ -2,7 +2,7 @@
     *.class
 
     #netbeans ignore personal stuff
-    nbproject/
+    nbproject/private/
 
     ## generic files to ignore
     *~
