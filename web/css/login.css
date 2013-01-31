@@ -1,0 +1,277 @@
+
+html, body{
+    
+    height: 100%;
+}
+body{
+	font-family: Arial, "MS Trebuchet", sans-serif;
+	font-size: 11px;
+}
+
+select{
+    font-size: 11px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border: solid 1px #858585;
+    
+}
+
+input[type="text"], input[type="password"] {
+    
+        height: 15px;
+        font-size: 11px;
+        
+}
+
+input[type="submit"], input[type="button"]{
+        
+        font-family: Arial, "MS Trebuchet", sans-serif;
+        font-size: 11px;
+        background: #858585;
+        color: white;
+        border: solid 1px #858585;
+        font-weight: bold;
+        -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+}
+input[type="submit"]:hover, input[type="button"]:hover{
+        
+        font-family: Arial, "MS Trebuchet", sans-serif;
+        font-size: 11px;
+        background: white;
+        color: #858585;
+}
+
+
+label{
+        float:left;
+        width: 141px;
+        text-align: left;
+        display:block;
+}
+
+#todo{
+	width:900px;
+	margin: 0 auto;
+        margin-top: 35px;
+	/**height:100%;*/
+        display: block;
+	}
+
+.bloqueA table, .bloqueB table, .bloqueC table{
+        margin: 0 auto;
+        text-align: left;
+}
+
+th, td{
+    width: 90px;
+    text-align: center;
+}
+
+.linea{
+    float:left; 
+    width: 100%; 
+    height: 15px; 
+    display:block;
+    background-color: #CECECE;
+}
+        
+.cabecera
+	{
+	width:100%;
+	height:100px;
+	/**padding-top:5px;*/
+	float:left;
+        background-image: url(../imagen/baner.png);
+        background-repeat: no-repeat;
+        /**border-bottom: solid 10px #858585;*/
+	}
+
+.principal{
+	width:100%;    
+}
+
+.registro{
+    
+    width: 798px;
+    margin: 50px;
+    padding-top: 0;
+    background-color: #DDD;
+    display: block;
+    height: 400px;
+    text-align: center;
+    float:left;
+    border: 1px solid #858585;
+}
+/**
+.menu{
+	display: block;
+	text-align:center;
+	
+	margin:0;
+	padding:0;
+	float:left;
+	}
+*/
+
+.contenido{
+
+	background-color: #DDD;
+	width:728px;
+        /**height: 100%;*/
+	margin:0;
+	float: left;
+}
+
+.bloqueA, .bloqueB, .bloqueC
+{
+	width:100%;
+	float: left;
+	display: block;
+	text-align: center;
+}
+
+.bloqueB, bloqueC{
+    
+    	margin:10px 10px 10px 10px;
+}
+
+.bloqueA{
+    
+    margin: 0 10px 0 10px;
+}
+
+.separador{
+    
+    width:100%;
+    height: 25px;
+    background-color: #858585;
+    /**font-size: 10px;*/
+    cursor: default;
+    color: #FFF;
+    font-weight: bold;
+    line-height: 25px;
+    text-align: center;
+}
+
+.bloqueA .separador{
+    
+    margin-left: -10px;
+}
+
+/**
+
+.menu ul{
+	
+	list-style-type:none;
+	position:relative;
+	margin:0;
+	padding:0;
+	}
+
+.menu ul li
+	{
+        background-color: #ddd;
+	margin:0;
+	padding:0;
+	height:20px;
+	width:174px;
+	line-height:20px;
+	font-family:Arial, Helvetica, sans-serif;
+	}
+
+.menu ul li a{
+	display: block;
+	text-decoration: none;
+	color: #000;
+	position: relative;
+	font-weight:bold;
+	height:20px;
+}
+
+.menu ul li a:hover{
+	font-size: 11px;
+	color:#FFF;
+	text-decoration:none;
+	position:relative;
+	}
+
+.menu ul li:hover{
+        background-color: #858585;
+	position: relative;
+	}
+*/
+        
+.cabecera img{
+            
+        width: 288px;
+        height: 100%;
+        float: left; 
+        display:block;
+      }
+
+      .bloqueB .separador{
+          
+          margin-left: -10px;
+      }
+      /*
+      table tr:nth-child(odd){
+          background: white;
+      }
+      
+      table tr:nth-child(even){
+          background: #DDD;
+      }
+      */
+      table th{
+          background: #4e4e4e;
+      }
+      
+      table{
+          border: solid 1px #858585;
+      }
+      img{
+          height: 10px;
+      }
+ 
+      .bloqueC label{
+          text-align: right;
+          width: 160px;
+      }
+      .bloqueC input[type="text"]{
+          width: 160px;
+          border: 0;
+      }
+      
+      .bloqueC span{
+          color:red;
+      }
+      
+      .formulario{
+          
+          border: 0px;
+      }
+      
+      .formulario td{
+          
+          text-align: left;
+          width: 100px;
+          font-weight: 500px;
+      }
+      
+.formulario input[type="text"], .formulario input[type="password"] {
+    
+        width: 150px;
+        
+}
+      
+    /**Este Bloque personaliza el menu del usuario*/
+    #menu { float: left; width:170px; padding: 0; border-bottom: solid #858585 1px; }
+    #menu div { text-align: center; padding-right: 10px; border-top: solid #858585 1px; background: #DDD; }
+    #menu a { padding-left: 5px; padding-right: 5px; text-decoration: none; color: #4e4e4e; font-weight: 700; display: block; width: 160px; font-size: 15px; }
+    #menu a:hover { background: #b0b0b0; color:#FFF;}
+    #menu ul { margin: 0; padding: 0; font-size: 0.9em; background: #EEE; overflow: hidden; height: 0; }
+    #menu li { list-style: none; font-size: 0.8em; padding: 0; }
+    #menu li a { padding-left: 20px; width: 170px; font-size: 13px}
+    #menu li a:hover { color: #FFF; background: #858585; }
+          

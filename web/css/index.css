@@ -1,0 +1,71 @@
+body{
+	font-family: Verdana;
+	font-size:18px;
+}
+
+#login{
+	color: #000;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border: 10px outset #cccccc;
+	position:absolute;
+	top:50%;
+    border    
+	height: 300px;
+	width: 600px;
+	line-height:0px;
+        display: block;
+        background-color: yellow;
+
+}
+
+#login img{
+        width: 100%;
+        overflow:hidden;
+        height: 82px;
+        float: left;
+}
+
+.data{
+    
+	
+        font-size: 18x;
+        width: 100%;
+        float: left;
+        display: block;
+        margin: 20px;
+}
+
+input[type="submit"]
+{
+	background-color:#6A6B15;
+	text-align: center;
+	color: #FFF;
+}
+
+input[type="submit"]:hover
+{
+	color:#6A6B15;
+	text-align: center;
+	background-color: #FFF;
+}
+
+input[type="text"], input[type="submit"], input[type="password"]
+{
+	font-family: Arial, "MS Trebuchet", sans-serif;
+	font-size: 10px;
+}
+
+input[type="text"], input[type="password"]
+{
+	width:140px;
+}
+
+.data a{
+    text-decoration: none;
+}
+
+.data a:hover{
+    text-decoration: none;
+    font-weight:bold;
+}
