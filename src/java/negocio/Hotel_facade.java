@@ -12,7 +12,7 @@ import java.util.Iterator;
 import util.BaseDeDatos;
 
 
-// ola k as? probando git o que ase?  slfkjasfñlksjfñaslkfjas
+// ola k as? probando git o que ase?  slfkjasfñlksjfñaslkfjas - > daniel
 // masteer marteeessss
 // retroceder nunca, rendirse jamas ... version git !!
 
