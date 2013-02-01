@@ -14,6 +14,7 @@ import util.BaseDeDatos;
 
 // ola k as? probando git o que ase?  slfkjasfñlksjfñaslkfjas
 // masteer marteeessss
+// retroceder nunca, rendirse jamas ... version git !!
 
 /**
  *
