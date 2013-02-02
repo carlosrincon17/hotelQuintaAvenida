@@ -17,7 +17,7 @@ import util.BaseDeDatos;
 // retroceder nunca, rendirse jamas ... version git !! 
 // probando mi rama de git otra vez !!!!! muajajajajajajajajaja
 // hago lo que quiero aqui !!!!
-// leccion de git con pacho
+// leccion de git con pacho dia sabado
 
 /**
  *
