@@ -12,7 +12,7 @@ import java.util.Iterator;
 import util.BaseDeDatos;
 
 
-// ola k as? probando git o que ase?  slfkjasfñlksjfñaslkfjas - > daniel
+// ola k as? probando git o que ase?  slfkjasfñlksjfñaslkfjas - > daniel desde la rama parallela local
 // masteer marteeessss
 // retroceder nunca, rendirse jamas ... version git !! 
 // probando mi rama de git otra vez !!!!! muajajajajajajajajaja
