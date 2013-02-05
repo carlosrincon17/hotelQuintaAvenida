@@ -1,4 +1,4 @@
-<%--
+  <%--
     Document   : registro.jsp
     Created on : 05-ago-2012, 13:50:28
     Author     : CONNORS
