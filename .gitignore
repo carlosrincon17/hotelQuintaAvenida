@@ -1,9 +1,12 @@
+<<<<<<< HEAD
     #java specific
     *.class
 
     #netbeans ignore personal stuff
     nbproject/private/
-    nbproject/project.properties	
+    nbproject/project.properties
+    build/
+    dist/	
 
     ## generic files to ignore
     *~
