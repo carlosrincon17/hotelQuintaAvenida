@@ -15,7 +15,9 @@
             <source-roots>
                 <root id="src.dir" name="Source Packages"/>
             </source-roots>
-            <test-roots/>
+            <test-roots>
+                <root id="test.test.dir" name="Paquete de pruebas"/>
+            </test-roots>
         </data>
     </configuration>
 </project>

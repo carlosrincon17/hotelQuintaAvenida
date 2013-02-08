@@ -4,11 +4,11 @@
  */
 package dao;
 import dto.ArticuloMinibar_DTO;
-import java.sql.ResultSet;
-import util.BaseDeDatos;
 import dto.Articulo_DTO;
 import dto.Minibar_DTO;
+import java.sql.ResultSet;
 import java.util.ArrayList;
+import util.BaseDeDatos;
 /**
  *
  * @author jorge
@@ -16,7 +16,10 @@ import java.util.ArrayList;
 public class Articulo_minibar_DAO {
 
     public static boolean registrar(Minibar_DTO mn, Articulo_DTO ar, int cantidad) {
-        String sql = "INSERT INTO articulo_minibar (id_articulo_minibar, id_articulo, id_minibar, cantidad) VALUES (NULL, '"+ar.getId()+"', '"+mn.getId()+"','"+cantidad+"');";
+        //String sql = "INSERT INTO articulo_minibar (id_articulo_minibar, id_articulo, id_minibar, cantidad) VALUES (NULL, '"+ar.getId()+"', '"+mn.getId()+"','"+cantidad+"');";
+        String sql = "INSERT INTO articulo_minibar VALUES (?, ?, ?,?)";
+        Object [] param = new Object[4];
+        param[0] = 
         return BaseDeDatos.ejecutarActualizacionSQL(sql);
     }
     public static ArrayList<ArticuloMinibar_DTO> getArticulosDeMinibar(Minibar_DTO mn ) {
