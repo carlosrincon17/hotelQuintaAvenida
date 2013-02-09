@@ -1,5 +1,4 @@
-  <%@page import="java.util.ArrayList"%>
-<%--
+  <%--
     Document   : registro.jsp
     Created on : 05-ago-2012, 13:50:28
     Author     : CONNORS
@@ -20,8 +19,6 @@
         String rol = (String)sesion.getAttribute("rol");
         String id = (String)sesion.getAttribute("id");
         String msj = fachada.getMenuRolXModulos(rol);
-        ArrayList<String[]> md = fachada.getMenuRolXModulos2(rol);
-        sesion.setAttribute("modulos",md);
         sesion.setAttribute("htmlmenu", msj);
 %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -30,41 +27,106 @@
         <script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script> 
         <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
         
+        <%--<script type="text/javascript">
+            var menu1 = new Desplegable(<%= "'"+msj+"'" %>);
+        </script>--%>
         </head>
-     <body >
+     <body <%--onload="menu1.escribeacordeon('menu',22,5)"--%> >
        
             <div class="container" >
             <div class="page-header">
                 <h1>Hotel Quinta Avenida<small> aqui deberia ir un mensaje</small></h1>
             </div>
             
-                <%
-                ArrayList<String[]> menubt = (ArrayList<String[]>)sesion.getAttribute("modulos");
-                String supermenu = "";
-                
-                supermenu+="<ul class= 'nav nav-pills'>";
-                    supermenu+="<li class='active'>";
-                        supermenu+="<a href='#'>Home</a>";
-                    supermenu+= "</li>";
-                    for(String[] modulo : menubt){
-                        supermenu+="<li class='dropdown'>";
-                            supermenu+="<a class='dropdown-toggle' id='menu"+modulo[0]+"' role='button' data-toggle='dropdown' data-target='#' href='#'>";
-                                supermenu+=modulo[0];
-                                supermenu+="<b class='caret'></b>";
-                            supermenu+="</a>";
-                        supermenu+="<ul class='dropdown-menu' role='menu' aria-labelledby='menu"+modulo[0]+"'>";
-                        for(int i = 1; i<modulo.length;i++){
-                            String[] sp = modulo[i].split("--");
-                            supermenu+="<li><a href='"+sp[1]+"'>"+sp[0]+"</a></li>";
-                        }
-                        supermenu+= "</ul>";
-                        supermenu+= "</li>";
-                    }
-                    
-                supermenu+= "</ul>";
-                %>
-                <%=supermenu%>
-                
+                <ul class=" nav nav-pills">
+                    <li class="active">
+                        <a href="#">Home</a>
+                    </li>
+                     <li class="dropdown">
+                         <a class="dropdown-toggle" id="menuRoles" role="button" data-toggle="dropdown" data-target="#" href="#">
+                             Roles
+                             <b class="caret"></b>
+                         </a>
+                         <ul class="dropdown-menu" role="menu" aria-labelledby="menuRoles">
+                             <!-- links -->
+                             <li><a href="#">Registrar</a></li>
+                             <li><a href="#">Editar</a></li>
+                             <li><a href="#">Eliminar</a></li>
+                         </ul>
+                     </li>
+                    <li class="dropdown">
+                         <a class="dropdown-toggle" id="menuPrivilegios" role="button" data-toggle="dropdown" data-target="#" href="#">
+                             Privilegios
+                             <b class="caret"></b>
+                         </a>
+                         <ul class="dropdown-menu" role="menu" aria-labelledby="menuPrivilegios">
+                             <!-- links -->
+                             <li><a href="#">Registrar</a></li>
+                             <li><a href="#">Editar</a></li>
+                             <li><a href="#">Eliminar</a></li>
+                         </ul>
+                     </li>
+                    <li class="dropdown">
+                         <a class="dropdown-toggle" id="menuClientes" role="button" data-toggle="dropdown" data-target="#" href="#">
+                             Clientes
+                             <b class="caret"></b>
+                         </a>
+                         <ul class="dropdown-menu" role="menu" aria-labelledby="menuClientes">
+                             <!-- links -->
+                             <li><a href="#">Registrar</a></li>
+                             <li><a href="#">Editar</a></li>
+                             <li><a href="#">Eliminar</a></li>
+                         </ul>
+                     </li>
+                    <li class="dropdown">
+                         <a class="dropdown-toggle" id="menuHabitaciones" role="button" data-toggle="dropdown" data-target="#" href="#">
+                             Habitaciones
+                             <b class="caret"></b>
+                         </a>
+                         <ul class="dropdown-menu" role="menu" aria-labelledby="menuHabitaciones">
+                             <!-- links -->
+                             <li><a href="#">Registrar</a></li>
+                             <li><a href="#">Editar</a></li>
+                             <li><a href="#">Eliminar</a></li>
+                         </ul>
+                     </li>
+                    <li class="dropdown">
+                         <a class="dropdown-toggle" id="menuReservas" role="button" data-toggle="dropdown" data-target="#" href="#">
+                             Reservas
+                             <b class="caret"></b>
+                         </a>
+                         <ul class="dropdown-menu" role="menu" aria-labelledby="menuReservas">
+                             <!-- links -->
+                             <li><a href="#">Registrar</a></li>
+                             <li><a href="#">Editar</a></li>
+                             <li><a href="#">Eliminar</a></li>
+                         </ul>
+                     </li>
+                    <li class="dropdown">
+                         <a class="dropdown-toggle" id="menuServicios" role="button" data-toggle="dropdown" data-target="#" href="#">
+                             Servicios
+                             <b class="caret"></b>
+                         </a>
+                         <ul class="dropdown-menu" role="menu" aria-labelledby="menuServicios">
+                             <!-- links -->
+                             <li><a href="#">Registrar</a></li>
+                             <li><a href="#">Editar</a></li>
+                             <li><a href="#">Eliminar</a></li>
+                         </ul>
+                     </li>
+                    <li class="dropdown">
+                         <a class="dropdown-toggle" id="menuInformes" role="button" data-toggle="dropdown" data-target="#" href="#">
+                             Informes
+                             <b class="caret"></b>
+                         </a>
+                         <ul class="dropdown-menu" role="menu" aria-labelledby="menuInformes">
+                             <!-- links -->
+                             <li><a href="#">Opcion</a></li>
+                             <li><a href="#">Opcion</a></li>
+                             <li><a href="#">Opcion</a></li>
+                         </ul>
+                     </li>
+                </ul>
             <div class="container" >
                 <h1>Esto es una plantilla de prueba</h1>
                 <h2>asi que no jodan!</h2>
