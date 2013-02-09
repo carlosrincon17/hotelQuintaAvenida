@@ -15,19 +15,23 @@ import util.BaseDeDatos;
  */
 public class Cliente_DAO {
     
-    public static boolean editar(Cliente_DTO cliente){
     
-        String sql ="UPDATE cliente SET nombre_empresa='"+cliente.getEmpresa()+"' WHERE id_cliente='"+cliente.getDocumento()+"'";
-
-        return BaseDeDatos.ejecutarActualizacionSQL(sql);
+    public static boolean editar(Cliente_DTO cliente) throws Exception{
+        String sql = "UPDATE cliente SET nombre_empresa= ? WHERE id_cliente = ?";
+        Object [] param = new Object[2];
+        param[0] = cliente.getEmpresa();
+        param[1] = cliente.getDocumento();
+        return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, param);
     }
     
-    public static ArrayList<Cliente_DTO> getAll(){
-        ArrayList<Cliente_DTO> lista = new ArrayList<Cliente_DTO>();
+    
+    public static ArrayList<Cliente_DTO> getAll() throws Exception {
+        
+        ArrayList<Cliente_DTO> lista = new ArrayList<>();
         String sql = "SELECT * FROM cliente inner join persona ON cliente.id_cliente = persona.cedula";
-        ResultSet rs = BaseDeDatos.ejecutarSQL(sql);
-        try {
-             while(rs.next()){
+        ResultSet rs = BaseDeDatos.getInstance().ejecutarSQL(sql, null);
+        
+        while (rs.next()) {
             Cliente_DTO nuevo = new Cliente_DTO();
             nuevo.setEmpresa(rs.getString(2));
             nuevo.setDocumento(rs.getString(3));
@@ -38,33 +42,34 @@ public class Cliente_DAO {
             nuevo.setTelefono(rs.getString(8));
             nuevo.setFechaNacimiento(rs.getDate(9));
             lista.add(nuevo);
-            
         }
-        } catch (Exception e) {
-        }
-        
         return lista;
     }
     
-    public static boolean create(Cliente_DTO cliente) {
         
-        String sql = "INSERT INTO cliente VALUES ('"+cliente.getDocumento()+"','"+cliente.getEmpresa()+"')";
+    public static boolean create(Cliente_DTO cliente) throws Exception{
+        
+        String sql = "INSERT INTO cliente VALUES (?, ?)";
+        Object[] p = new Object[2];
+        p[0] = cliente.getDocumento();
+        p[1] = cliente.getEmpresa();
+        
         if(Persona_DAO.create(cliente))
-            return BaseDeDatos.ejecutarActualizacionSQL(sql);
-        
+            return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p);
         return false;
     }
     
-    public static Cliente_DTO cargarCliente(Cliente_DTO cliente){
+    
+    public static Cliente_DTO cargarCliente(Cliente_DTO cliente) throws Exception{
         Persona_DAO.read(cliente);
-        if(cliente==null) return null;
+        if(cliente == null) 
+            return null;
         return cliente;
     }
     
-    public static Cliente_DTO read(String id){
-
-        return Persona_DAO.read(new Cliente_DTO(id));
     
+    public static Cliente_DTO read(String id) throws Exception{
+        return Persona_DAO.read(new Cliente_DTO(id));
     }
     
 }

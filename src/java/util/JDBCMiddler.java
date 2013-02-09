@@ -325,9 +325,15 @@ public class JDBCMiddler {
      * @param parametros Object[] arreglo con los valores de los parametros
      */
     protected void cargarParametros(PreparedStatement sql, Object[] parametros) throws Exception{
-
+        /*
+         Hay que tener en cuenta cuando se envié dentro del arreglo de 
+         parametros un valor null, la pregunta es si en algún momento se quiere
+         que un campo de una tabla sea null.... 
+         */
         String clase;
         for (int i = 1; i <= parametros.length; i++) {
+            
+            
             clase = parametros[i - 1].getClass().getName();   // nombre de la clase
             switch (clase) {
                 case "java.lang.String":

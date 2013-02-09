@@ -15,26 +15,32 @@ import util.BaseDeDatos;
  */
 public class Articulo_minibar_DAO {
 
-    public static boolean registrar(Minibar_DTO mn, Articulo_DTO ar, int cantidad) {
-        //String sql = "INSERT INTO articulo_minibar (id_articulo_minibar, id_articulo, id_minibar, cantidad) VALUES (NULL, '"+ar.getId()+"', '"+mn.getId()+"','"+cantidad+"');";
-        String sql = "INSERT INTO articulo_minibar VALUES (?, ?, ?,?)";
-        Object [] param = new Object[4];
-        param[0] = 
-        return BaseDeDatos.ejecutarActualizacionSQL(sql);
+    public static boolean registrar(Minibar_DTO mn, Articulo_DTO ar, int cantidad) throws Exception{
+    
+        String sql = "INSERT INTO articulo_minibar (id_articulo, id_minibar, cantidad) VALUES (?, ?,?)";
+        Object [] param = new Object[3];
+        param[0] = ar.getId();
+        param[1] = mn.getId();
+        param[2] = cantidad;
+        return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, param);
     }
-    public static ArrayList<ArticuloMinibar_DTO> getArticulosDeMinibar(Minibar_DTO mn ) {
-        ArrayList<ArticuloMinibar_DTO> lista = new ArrayList<ArticuloMinibar_DTO>();
-        String sql ="select articulo.nombre,articulo.precio,articulo_minibar.cantidad from articulo_minibar inner join articulo on articulo_minibar.id_articulo=articulo.id_articulo where id_minibar='"+mn.getId()+"'";
-        ResultSet rs = BaseDeDatos.ejecutarSQL(sql);
-        try {
-            while(rs.next()){
-                Articulo_DTO art = new Articulo_DTO();
-                art.setNombre(rs.getString(1));
-                art.setPrecio(rs.getFloat(2));
-                ArticuloMinibar_DTO nuevo = new ArticuloMinibar_DTO(art, rs.getInt(3));
-                lista.add(nuevo);
-            }
-        } catch (Exception e) {
+    
+    public static ArrayList<ArticuloMinibar_DTO> getArticulosDeMinibar(Minibar_DTO mn) throws Exception {
+        ArrayList<ArticuloMinibar_DTO> lista = new ArrayList<>();
+        String sql = "SELECT articulo.nombre, articulo.precio, articulo_minibar.cantidad "
+                + "FROM articulo_minibar inner join articulo on "
+                + "articulo_minibar.id_articulo = articulo.id_articulo where id_minibar = ?";
+
+        Object[] param = new Object[1];
+        param[0] = mn.getId();
+        ResultSet rs = BaseDeDatos.getInstance().ejecutarSQL(sql, param);
+
+        while (rs.next()) {
+            Articulo_DTO art = new Articulo_DTO();
+            art.setNombre(rs.getString(1));
+            art.setPrecio(rs.getFloat(2));
+            ArticuloMinibar_DTO nuevo = new ArticuloMinibar_DTO(art, rs.getInt(3));
+            lista.add(nuevo);
         }
         return lista;
     }

@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import util.BaseDeDatos;
 
 /**
  *
@@ -44,20 +45,17 @@ public class Articulo_DAOTest {
     @Test
     public void testCreate() {
         System.out.println("create");
-        Articulo_DTO art = new Articulo_DTO("cama", 2500, 6);
+        Articulo_DTO art = new Articulo_DTO("computadores", 2500, 6);
         boolean expResult = true;
-       
-        try {
 
+        try {
+            BaseDeDatos.getInstance().conectar();
             boolean result = Articulo_DAO.create(art);
             assertEquals(expResult, result);
-            
+
         } catch (Exception ex) {
-            System.err.println("Error conectando " +ex.getMessage()+ " en " +ex.getLocalizedMessage());
-           // System.err.println("error al crear artículo -> "+ e.getMessage());
+            System.err.println("Error ->" + ex.getMessage());
         }
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -66,11 +64,14 @@ public class Articulo_DAOTest {
     @Test
     public void testGetAll() throws Exception {
         System.out.println("getAll");
-        int expResult = 7;
-        ArrayList result = Articulo_DAO.getAll();
-        assertEquals(expResult, result.size());
-        // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
+        int expResult = 11;
+        try {
+            BaseDeDatos.getInstance().conectar();
+            ArrayList result = Articulo_DAO.getAll();
+            assertEquals(expResult, result.size());
+        } catch (Exception e) {
+            System.err.println("Error " + e.getMessage());
+        }
     }
 
     /**
@@ -79,13 +80,17 @@ public class Articulo_DAOTest {
     @Test
     public void testUpdate() throws Exception {
         System.out.println("update");
-        Articulo_DTO art = null;
-        int nuevo = 0;
-        boolean expResult = false;
-        boolean result = Articulo_DAO.update(art, nuevo);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Articulo_DTO art = new Articulo_DTO("computadores", 2500, 6);;
+        int nuevo = 1986;
+        boolean expResult = true;
+        try {
+            BaseDeDatos.getInstance().conectar();
+            boolean result = Articulo_DAO.update(art, nuevo);
+            assertEquals(expResult, result);
+        } catch (Exception e) {
+            System.err.println("Error " + e.getMessage());
+        }
+        
     }
 
     /**
@@ -95,10 +100,14 @@ public class Articulo_DAOTest {
     public void testGetCantidadArticulo() throws Exception {
         System.out.println("getCantidadArticulo");
         Articulo_DTO art = new Articulo_DTO("papas", 1200, 19);
-        int expResult = 0;
-        int result = Articulo_DAO.getCantidadArticulo(art);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
+        int expResult = 19;
+        try {
+            BaseDeDatos.getInstance().conectar();
+            int result = Articulo_DAO.getCantidadArticulo(art);
+            assertEquals(expResult, result);
+        } catch (Exception e) {
+            System.err.println("Error " + e.getMessage());
+
+        }
     }
 }

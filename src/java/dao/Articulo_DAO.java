@@ -15,15 +15,14 @@ import util.BaseDeDatos;
 public class Articulo_DAO {
     
     public static boolean create(Articulo_DTO art) throws Exception{
-        String sql = "INSERT INTO articulo VALUES (?, ?, ?, ?)";
-        //String sql = "INSERT INTO articulo (id_articulo, nombre, precio,cantidad) VALUES (NULL, '"+art.getNombre()+"', '"+art.getPrecio()+"','"+art.getCantidad()+"')";
-        Object param [] = new Object[4];
-        param[0] = art.getId();
-        param[1] = art.getNombre();
-        param[2] = art.getPrecio();
-        param[3] = art.getCantidad();
-        return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, null);
+        String sql = "INSERT INTO articulo (nombre, precio,cantidad) VALUES (?, ?, ?)";
+        Object param [] = new Object[3];
+        param[0] = art.getNombre();
+        param[1] = art.getPrecio();
+        param[2] = art.getCantidad();
+        return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, param);
     }
+    
     
     public static ArrayList<Articulo_DTO> getAll() throws Exception {
        
@@ -41,6 +40,7 @@ public class Articulo_DAO {
         return l;
     }
     
+    
     public static boolean update(Articulo_DTO art, int nuevo) throws Exception{    
         String sql = "UPDATE articulo SET cantidad = ? WHERE id_articulo = ?";
         Object [] param = new Object[2];
@@ -48,6 +48,7 @@ public class Articulo_DAO {
         param[1] = art.getId();
         return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, param);
     }
+    
     
     public static int getCantidadArticulo(Articulo_DTO art) throws Exception{
         
