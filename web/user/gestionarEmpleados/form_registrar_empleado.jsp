@@ -4,6 +4,7 @@
     Author     : jorge
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session='true'%>
 <!DOCTYPE html>
@@ -19,76 +20,115 @@
         }
         String rol = (String)sesion.getAttribute("rol");
         String id = (String)sesion.getAttribute("id");
-        String msj = (String)sesion.getAttribute("htmlmenu");
 %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="../../css/login.css" type="text/css">
+        
         <title>Registro de Empleados - Hotel Quinta Avenida</title>
-        <script type="text/javascript" src="../../js/menu.js"></script>
-        <script type="text/javascript">
-            var menu1 = new Desplegable(<%= "'"+msj+"'" %>);
-        </script>
+        <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" type="text/css">
+        <script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script> 
+        <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
     </head>
-    <body onload="menu1.escribeacordeon('menu',22,5);">  
-        <div id="todo">  
-        <div class="cabecera">  
-        </div>
-        <div class ="´principal">
-            <div class="menu" id="menu"> 
-                
+    <body >  
+        <div class="container" >
+            <div class="page-header">
+                <h1>Hotel Quinta Avenida<small> aqui deberia ir un mensaje</small></h1>
             </div>
             
-            <div class="contenido">
-                <div class="bloqueA">
-                    <div class="separador">Datos del nuevo Empleado</div><br>
-                    <form action="registrar_empleado.jsp">
-                        <table class="formulario">
-                            <tr>
-                                <td><p>Nombre:</p></td>
-                                <td><input type="text" name="nombre" value="" required/></td>
-                            </tr>
-                            <tr>
-                                <td><p>Apellidos:</td>
-                                <td><input type="text" name="apellido" value="" required/></td>
-                            </tr>
-                            <tr>
-                                <td><p>Cedula:</p></td>
-                                <td><input type="text" name="cedula" value="" required/></td>
-                            </tr>
-                            <tr>
-                                <td><p>Fecha de Nto. (aaaa-mm-dd):</td>
-                                <td><input type="text" name="fecha_nto" value="" required/></td>
-                            </tr>
-                            <tr>
-                                <td><p><p>No. Seguridad Social:</td>
-                                <td><input type="text" name="numero_ss" value="" required/></td>
-                            </tr>
-                            <tr>
-                                <td><p>Direccion:</td>
-                                <td><input type="text" name="direccion" value="" required/></td>
-                            </tr>
-                            <tr>
-                                <td><p>Telefono:</td>
-                                <td><input type="text" name="telefono" value="" required/></td>
-                            </tr>
-                            <tr>
-                                <td><p>Correo:</td>
-                                <td><input type="text" name="correo" value="" required/></td>
-                            </tr>
-                            <tr>
-                                <td><p>Rol:</td>
-                                <td><select name="funcion">
+                <%
+                ArrayList<String[]> menubt = (ArrayList<String[]>)sesion.getAttribute("modulos");
+                String supermenu = "";
+                
+                supermenu+="<ul class= 'nav nav-pills'>";
+                    supermenu+="<li class='active'>";
+                        supermenu+="<a href='#'>Home</a>";
+                    supermenu+= "</li>";
+                    for(String[] modulo : menubt){
+                        supermenu+="<li class='dropdown'>";
+                            supermenu+="<a class='dropdown-toggle' id='menu"+modulo[0]+"' role='button' data-toggle='dropdown' data-target='#' href='#'>";
+                                supermenu+=modulo[0];
+                                supermenu+="<b class='caret'></b>";
+                            supermenu+="</a>";
+                        supermenu+="<ul class='dropdown-menu' role='menu' aria-labelledby='menu"+modulo[0]+"'>";
+                        for(int i = 1; i<modulo.length;i++){
+                            String[] sp = modulo[i].split("--");
+                            supermenu+="<li><a href='"+sp[1]+"'>"+sp[0]+"</a></li>";
+                        }
+                        supermenu+= "</ul>";
+                        supermenu+= "</li>";
+                    }
+                    
+                supermenu+= "</ul>";
+                %>
+                <%=supermenu%>
+                
+            <div class="container" >
+               <form class="form-horizontal" action="registrar_empleado.jsp" name="registro" >
+                   <fieldset>
+                           <legend>Registrar Empleado</legend>
+                   
+                               <div class="control-group">
+                                   <label class="control-label" for ="inputCedula">Cédula o NIT: </label>
+                               <div class="controls">
+                                <input type="text" id="inputCedula" name="cedula" required>
+                                </div></div>
+                        
+                                <div class="control-group">
+                                    <label class="control-label" for="inputNombre">Nombres: </label>
+                                <div class="controls">
+                                <input type="text" id="inputNombre" name="nombre"  required>
+                                </div></div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="inputApellido">Apellidos: </label>
+                                <div class="controls">
+                                <input type="text" id="inputApellido" name="apellido" required>
+                                </div></div>
+                            
+                               <div class="control-group">
+                                    <label class="control-label" for="inputFechaNto">Fecha de Nto. (aaaa-mm-dd):</label>
+                                <div class="controls">
+                                <input type="text" id= "inputFechaNto" name="fechaNto" required>
+                                </div></div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="inputCorreo">E-mail: </label>
+                                <div class="controls">
+                                <input type="text" id="inputCorreo" name="correo" required>
+                                </div></div>
+                            
+                                <div class="control-group">
+                                    <label class="control-label" for="inputDireccion">Dirección: </label>
+                                <div class="controls">
+                                <input type="text" id="inputDireccion" name="direccion" required>
+                                </div></div>
+                            
+                                <div class="control-group">
+                                    <label class="control-label" for="inputTelefono">Teléfono: </label>
+                                <div class="controls">
+                                <input type="text" id="inputTelefono" name="telefono" required>
+                                </div></div>
+                                                    
+                                <div class="control-group">
+                                    <label class="control-label" for="inputNumero_ss">No. Seguridad Social: </label>
+                                <div class="controls">
+                                <input type="text" id="inputNumero_ss" name="numero_ss" required>
+                                </div></div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="inputRol">Rol: </label>
+                                <div class="controls">
+                                <select name="funcion" id="inputRol">
                                     <%= fachada.getFuncionListaHTML() %>
                                     </select>
-                                </td>
-                            </tr>
-                            </table>
-                                    <p><input type="submit" value="Registrar Empleado" /></p>
-                        
-                    </form>
-                </div>
+                                </div></div>
+
+                            
+                            <div class="form-actions">
+                            <button type="submit" class="btn" >Registrar</button>
+                            </div>
+                    </fieldset>
+                </form>
             </div>
         </div>
-       </div>
     </body>
 </html>
