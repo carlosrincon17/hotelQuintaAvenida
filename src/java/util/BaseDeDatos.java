@@ -93,9 +93,9 @@ public class BaseDeDatos {
      */
     public ResultSet ejecutarSQL(String consultaSQL, Object[] param) throws Exception {
         if (param == null) {
-            return (jdbc.ejecutarSQL(consultaSQL));
+            return jdbc.ejecutarSQL(consultaSQL);
         }
-        return (jdbc.ejecutarSQL(consultaSQL, param));
+        return jdbc.ejecutarSQL(consultaSQL, param);
     }
 
     

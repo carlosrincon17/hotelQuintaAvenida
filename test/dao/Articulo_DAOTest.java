@@ -66,11 +66,11 @@ public class Articulo_DAOTest {
     @Test
     public void testGetAll() throws Exception {
         System.out.println("getAll");
-        ArrayList expResult = null;
+        int expResult = 7;
         ArrayList result = Articulo_DAO.getAll();
-        assertEquals(expResult, result);
+        assertEquals(expResult, result.size());
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       // fail("The test case is a prototype.");
     }
 
     /**
@@ -94,11 +94,11 @@ public class Articulo_DAOTest {
     @Test
     public void testGetCantidadArticulo() throws Exception {
         System.out.println("getCantidadArticulo");
-        Articulo_DTO art = null;
+        Articulo_DTO art = new Articulo_DTO("papas", 1200, 19);
         int expResult = 0;
         int result = Articulo_DAO.getCantidadArticulo(art);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       // fail("The test case is a prototype.");
     }
 }

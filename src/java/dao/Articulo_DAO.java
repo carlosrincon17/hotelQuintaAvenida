@@ -15,13 +15,13 @@ import util.BaseDeDatos;
 public class Articulo_DAO {
     
     public static boolean create(Articulo_DTO art) throws Exception{
-        //String sql = "INSERT INTO articulo VALUES (?, ?, ?, ?)";
-        String sql = "INSERT INTO articulo (id_articulo, nombre, precio,cantidad) VALUES (NULL, '"+art.getNombre()+"', '"+art.getPrecio()+"','"+art.getCantidad()+"')";
-       /* Object param [] = new Object[4];
+        String sql = "INSERT INTO articulo VALUES (?, ?, ?, ?)";
+        //String sql = "INSERT INTO articulo (id_articulo, nombre, precio,cantidad) VALUES (NULL, '"+art.getNombre()+"', '"+art.getPrecio()+"','"+art.getCantidad()+"')";
+        Object param [] = new Object[4];
         param[0] = art.getId();
         param[1] = art.getNombre();
         param[2] = art.getPrecio();
-        param[3] = art.getCantidad();*/
+        param[3] = art.getCantidad();
         return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, null);
     }
     
