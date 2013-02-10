@@ -26,6 +26,7 @@ import util.BaseDeDatos;
 public class Hotel_facade {
 
     
+    
     //atributos
     
     //constructores
@@ -117,6 +118,27 @@ public class Hotel_facade {
         }
         
         return msj;
+    }
+    public ArrayList<String[]> getMenuRolXModulos2(String rol){
+    
+        ArrayList<String[]> md = new ArrayList();
+        ArrayList<Modulo_DTO> modulos = Modulo_negocio.getMenuRolXModulos(Integer.parseInt(rol));
+ 
+        int i = 0;
+        for(Modulo_DTO modulo: modulos){
+            String[] mdl = new String[modulo.getComportamientos().size()+1];
+            mdl[i++] = modulo.getNombre();
+            if(!modulo.getComportamientos().isEmpty()){
+            for(Privilegio_DTO  priv : modulo.getComportamientos()){
+                mdl[i] = ""+priv.getNombre() + "--"+priv.getEnlace();
+            i++;
+            }
+            }
+            i=0;
+            md.add(mdl);
+        }
+        
+        return md;
     }
 
     public String crearRol(String[] privilegios, String nombre, String descripcion){
@@ -283,6 +305,36 @@ public class Hotel_facade {
         return msj;
     }
     
+    public String getListaHabitaciones2(){
+        ArrayList<Habitacion_DTO> lista = Habitacion_negocio.listar();
+        String msj= "";
+        
+        msj+="<table class='table table-hover'>";
+            msj+="<thead>";
+                msj+="<tr>";
+                    msj+="<th>Habitacion</th>";
+                    msj+="<th>Tipo</th>";
+                    msj+="<th>Precio</th>";
+                    msj+="<th>Estado</th>";
+                    msj+="<th>Opciones</th>";
+                msj+="</tr>";
+            msj+="</thead>";
+            msj+="<tbody>";
+            for(Habitacion_DTO x: lista){
+            msj+="<tr>";
+                    msj+="<td>"+x.getNumero()+"</td>";
+                    msj+="<td>"+x.getTipo()+"</td>";
+                    msj+="<td>"+x.getPrecio()+"</td>";
+                    msj+="<td>"+Habitacion_negocio.getEstado(x.getNumero())+"</td>";
+                    msj+="<td><a href='#' onclick='cambiarHabitacion(this)' name='form_editar_habitacion.jsp?habitacion="+x.getNumero()+"&tipo="+x.getTipo()+"&estado="+x.getEstado()+"' title='Cambiar Tipo'><i class='icon-pencil'></i></a>"
+                    +"&nbsp;&nbsp;&nbsp;<a href='#' onclick='cambiarHabitacion(this)' name='form_cambiar_estado_habitacion.jsp?habitacion="+x.getNumero()+"' title='Cambiar Estado'><i class='icon-edit'></i></a></td>";
+                msj+="</tr>";
+            }
+            msj+="</tbody>";
+        msj+="</table><br>";
+        return msj;
+    }
+   
     
     /**
      * 
@@ -690,6 +742,49 @@ public class Hotel_facade {
         msj+="</table><br><br>";
         return msj;
     }
+    
+    public String getListaEmpleados2(){
+        ArrayList<Empleado_DTO> lista = Empleado_negocio.listar();
+        String msj="";
+        msj+="<table  class='table table-hover'>";
+            msj+="<thead>";
+                msj+="<tr>";
+                    msj+="<th>Nombre</th>";
+                    msj+="<th>Apellidos</th>";
+                    msj+="<th>Funcion</th>";
+                    msj+="<th>Telefono</th>";
+                    msj+="<th>Correo</th>";
+                    msj+="<th>Estado</th>";
+                    msj+="<th>Opciones</th>";
+                msj+="</tr>";
+            msj+="</thead>";
+            msj+="<tbody>";
+            for(Empleado_DTO x: lista){
+            msj+="<tr>";
+                    msj+="<td>"+x.getNombre()+"</td>";
+                    msj+="<td>"+x.getApellido()+"</td>";
+                    msj+="<td>"+x.getFuncion()+"</td>";
+                    msj+="<td>"+x.getTelefono()+"</td>";
+                    msj+="<td>"+x.getCorreo()+"</td>";
+                    if(x.getEstado())
+                    msj+="<td>Activo</td>";
+                    else
+                    msj+="<td>Inactivo</td>";
+                    msj+="<td><a href='form_editar_empleado.jsp?cedula="+x.getDocumento()+"&nombre="+x.getNombre()+"&apellidos="+x.getApellido()
+                            + "&funcion="+x.getFuncion()+"&telefono="+x.getTelefono()+"&correo="+x.getCorreo()+"&direccion="+x.getDireccion()+"&seguro="+x.getNumeroSS()
+                            + "' title='Editar Datos'><i class='icon-edit'></i></a>&nbsp;&nbsp;&nbsp;";
+                            if(x.getEstado())
+                            msj+= "<a title='Deshabilitar Empleado' href='#' onclick='cambiarEstado(this)' name='cambiarEstado.jsp?cedula="+x.getDocumento()+"&estado="+x.getEstado()+"' ><i class='icon-remove'></i></a></td>";
+                            else
+                            msj+= "<a title='Habilitar Empleado' href='#' onclick='cambiarEstado(this)' name='cambiarEstado.jsp?cedula="+x.getDocumento()+"&estado="+x.getEstado()+"' ><i class='icon-ok'></i></a></td>";
+                msj+="</tr>";
+            }
+            msj+="</tbody>";
+        msj+="</table>";
+        return msj;
+    }
+    
+    
     public String habilitarEmpleado(String cedula){
         if(Empleado_negocio.habilitar(cedula))
             return "Se ha habilitado el usuario satisfactoriamente";

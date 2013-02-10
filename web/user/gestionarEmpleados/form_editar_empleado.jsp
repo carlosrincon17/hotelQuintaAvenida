@@ -4,6 +4,7 @@
     Author     : CONNORS
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session='true'%>
 <!DOCTYPE html>
@@ -22,14 +23,13 @@
 %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lista de Empleados - Hotel Quinta Avenida</title>
-        <link rel="stylesheet" href="../../css/login.css" type="text/css">
+        <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" type="text/css">
+        <script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script> 
+        <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../js/ajax.js" ></script>
-        <script type="text/javascript" src="../../js/menu.js"></script>
-        <script type="text/javascript">
-            var menu1 = new Desplegable(<%= "'"+msj+"'" %>);
-        </script>
+
     </head>
-    <body onload="menu1.escribeacordeon('menu',22,5);">
+    <body >
 <%
         String cedula = request.getParameter("cedula");
         String nombre = request.getParameter("nombre");
@@ -40,62 +40,102 @@
         String direccion = request.getParameter("direccion");
         String seguro = request.getParameter("seguro");  
 %>
-        <div id="todo">  
-        <div class="cabecera">
-            <h1>Hotel Quinta Avenida</h1>
-        </div>
-        <div class ="´principal">
-            <div class="menu" id="menu"> 
+                <div class="container" >
+            <div class="page-header">
+                <h1>Hotel Quinta Avenida<small> aqui deberia ir un mensaje</small></h1>
+            </div>
+            
+                <%
+                ArrayList<String[]> menubt = (ArrayList<String[]>)sesion.getAttribute("modulos");
+                String supermenu = "";
                 
-            </div>
-            <div class="contenido">
-                <div class="bloqueA">
-                    <div class="separador">Editar Empleado</div><br>
-                        <form name="editaempleado" action="editar_empleado.jsp">
-                            <table class="formulario">
-                                <tr>
-                                    <td><p>Cédula: </p></td>
-                                    <td><input type="text" name="cedula" value="<%= cedula %>" readonly  title="Este campo no se puede modificar"/></td>
-                                </tr>
-                                <tr>
-                                    <td><p>Nombres: </p></td>
-                                    <td><input type="text" name="nombre" value="<%= nombre %>"  readonly title="Este campo no se puede modificar"/></td>
-                                </tr>
-                                <tr>
-                                    <td><p>Apellidos: </p></td>
-                                    <td><input type="text" name="apellidos" value="<%= apellidos %>"  readonly title="Este campo no se puede modificar"/></td>
-                                </tr>
-                                <tr>
-                                    <td><p>Función :</p></td>
-                                    <td><select name="funcion">
-                                            <%= fachada.getFuncionListaHTML(funcion) %>
-                                        </select></td>
-                                </tr>
-                                <tr>
-                                    <td><p>Teléfono: </p></td>
-                                    <td><input type="text" name="telefono" value="<%= telefono %>" required /></td>
-                                </tr>
-                                <tr>
-                                    <td><p>Correo: </p></td>
-                                    <td><input type="text" name="correo" value="<%= correo %>"  required/></td>
-                                </tr>
-                                <tr>
-                                    <td><p>Dirección: </p></td>
-                                    <td><input type="text" name="direccion" value="<%= direccion %>" required /></td>
-                                </tr>
-                                <tr>
-                                    <td><p>ID Seguro: </td>
-                                    <td><input type="text" name="seguro" value="<%= seguro %>" required /></td>
-                                </tr>
-                            </table>
-                           <input type="submit" value="Actualizar Datos">
-                        </form>
-                </div>    
-                <div class="bloqueB" id="bloqueB">
+                supermenu+="<ul class= 'nav nav-pills'>";
+                    supermenu+="<li class='active'>";
+                        supermenu+="<a href='#'>Home</a>";
+                    supermenu+= "</li>";
+                    for(String[] modulo : menubt){
+                        supermenu+="<li class='dropdown'>";
+                            supermenu+="<a class='dropdown-toggle' id='menu"+modulo[0]+"' role='button' data-toggle='dropdown' data-target='#' href='#'>";
+                                supermenu+=modulo[0];
+                                supermenu+="<b class='caret'></b>";
+                            supermenu+="</a>";
+                        supermenu+="<ul class='dropdown-menu' role='menu' aria-labelledby='menu"+modulo[0]+"'>";
+                        for(int i = 1; i<modulo.length;i++){
+                            String[] sp = modulo[i].split("--");
+                            supermenu+="<li><a href='"+sp[1]+"'>"+sp[0]+"</a></li>";
+                        }
+                        supermenu+= "</ul>";
+                        supermenu+= "</li>";
+                    }
                     
-                </div>
+                supermenu+= "</ul>";
+                %>
+                <%=supermenu%>
+                
+            <div class="container" >
+               <form class="form-horizontal" name="editaempleado" action="editar_empleado.jsp">
+                   <fieldset>
+                           <legend>Editar Empleado</legend>
+                   
+                               <div class="control-group">
+                                   <label class="control-label" for ="inputCedula">Cédula o NIT: </label>
+                               <div class="controls">
+                                   <input type="text" id="inputCedula" name="cedula"  value="<%= cedula %>" required>
+                                </div></div>
+                        
+                                <div class="control-group">
+                                    <label class="control-label" for="inputNombre">Nombres: </label>
+                                <div class="controls">
+                                <input type="text" id="inputNombre" name="nombre"  value="<%= nombre %>"required>
+                                </div></div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="inputApellido">Apellidos: </label>
+                                <div class="controls">
+                                <input type="text" id="inputApellido" name="apellido" value="<%= apellidos %>" required>
+                                </div></div>
+                            
+
+                                <div class="control-group">
+                                    <label class="control-label" for="inputCorreo">E-mail: </label>
+                                <div class="controls">
+                                <input type="text" id="inputCorreo" name="correo" value="<%= correo %>" required>
+                                </div></div>
+                            
+                                <div class="control-group">
+                                    <label class="control-label" for="inputDireccion">Dirección: </label>
+                                <div class="controls">
+                                <input type="text" id="inputDireccion" name="direccion" value="<%= direccion %>" required>
+                                </div></div>
+                            
+                                <div class="control-group">
+                                    <label class="control-label" for="inputTelefono">Teléfono: </label>
+                                <div class="controls">
+                                <input type="text" id="inputTelefono" name="telefono" value="<%= telefono %>" required>
+                                </div></div>
+                                                    
+                                <div class="control-group">
+                                    <label class="control-label" for="inputNumero_ss">No. Seguridad Social: </label>
+                                <div class="controls">
+                                <input type="text" id="inputNumero_ss" name="numero_ss" value="<%= seguro %>" required>
+                                </div></div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="inputRol">Rol: </label>
+                                <div class="controls">
+                                <select name="funcion" id="inputRol">
+                                    <%= fachada.getFuncionListaHTML() %>
+                                    </select>
+                                </div></div>
+                             
+
+                            
+                            <div class="form-actions">
+                            <button type="submit" class="btn" >Guardar cambios</button>
+                            </div>
+                    </fieldset>
+                </form>
             </div>
         </div>
-       </div>
     </body>
 </html>
