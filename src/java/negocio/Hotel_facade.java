@@ -29,14 +29,14 @@ public class Hotel_facade {
 
     
     
-    //atributos
-    
     //constructores
     public Hotel_facade() {
-        if(!BaseDeDatos.getInstance().hayConexion()) try {
-            BaseDeDatos.getInstance().conectar();
+        try {
+            if (!BaseDeDatos.getInstance().hayConexion()) {
+                BaseDeDatos.getInstance().conectar();
+            }
         } catch (Exception ex) {
-            Logger.getLogger(Hotel_facade.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(Hotel_facade.class.getName()).log(Level.SEVERE, null, ex);
             System.err.println("no se pudo conectar");
         }
     }
