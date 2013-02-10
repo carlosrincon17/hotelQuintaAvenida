@@ -18,9 +18,9 @@ public class BaseDeDatos {
     private static BaseDeDatos INSTANCE = new BaseDeDatos();
     
     private String bd = "ufps_10";
-    private String login = "root";
-    private String password = "123456";
-    private String url = "jdbc:mysql://localhost/"+bd+"?useServerPrepStmts=true";
+    private String login = "ufps_41";
+    private String password = "ufps_ab";
+    private String url = "jdbc:mysql://sandbox2.ufps.edu.co/"+bd+"?useServerPrepStmts=true";
     private String controlador = "com.mysql.jdbc.Driver";
     private JDBCMiddler jdbc;
 
