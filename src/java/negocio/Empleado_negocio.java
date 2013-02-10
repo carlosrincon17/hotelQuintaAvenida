@@ -64,6 +64,7 @@ public class Empleado_negocio {
         }
     }
 
+    
     public static boolean deshabilitar(String cedula) {
         try {
             return Empleado_DAO.disable(new Empleado_DTO(cedula));
