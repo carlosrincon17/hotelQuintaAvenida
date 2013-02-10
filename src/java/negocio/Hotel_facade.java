@@ -9,6 +9,8 @@ import dto.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import util.BaseDeDatos;
 
 
@@ -29,7 +31,12 @@ public class Hotel_facade {
     
     //constructores
     public Hotel_facade() {
-        if(!BaseDeDatos.hayConexion()) BaseDeDatos.conectar();
+        if(!BaseDeDatos.getInstance().hayConexion()) try {
+            BaseDeDatos.getInstance().conectar();
+        } catch (Exception ex) {
+            Logger.getLogger(Hotel_facade.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("no se pudo conectar");
+        }
     }
     
     //metodos getter setter
@@ -45,7 +52,12 @@ public class Hotel_facade {
      * si el usuario no existe retorna -1
      */    
     public int validarUsuario(String id, String pass){
-        return Usuario_DAO.validar(id, pass);
+        try {
+            return Usuario_DAO.validar(id, pass);
+        } catch (Exception ex) {
+            Logger.getLogger(Hotel_facade.class.getName()).log(Level.SEVERE, null, ex);
+            return -1;
+        }
     }
     
     /**

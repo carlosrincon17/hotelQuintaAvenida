@@ -7,6 +7,8 @@ package negocio;
 import dao.Privilegio_DAO;
 import dto.Privilegio_DTO;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,9 +24,12 @@ public class Privilegio_negocio {
     
     
     public static ArrayList<Privilegio_DTO> readAll(){
-    
-    return Privilegio_DAO.readAll();
-    
+        try {
+            return Privilegio_DAO.readAll();
+        } catch (Exception ex) {
+            Logger.getLogger(Privilegio_negocio.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
     
 }
