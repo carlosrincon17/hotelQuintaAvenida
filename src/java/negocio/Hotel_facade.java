@@ -742,11 +742,11 @@ public class Hotel_facade {
                     msj+="<td>Inactivo</td>";
                     msj+="<td><a href='form_editar_empleado.jsp?cedula="+x.getDocumento()+"&nombre="+x.getNombre()+"&apellidos="+x.getApellido()
                             + "&funcion="+x.getFuncion()+"&telefono="+x.getTelefono()+"&correo="+x.getCorreo()+"&direccion="+x.getDireccion()+"&seguro="+x.getNumeroSS()
-                            + "' title='Editar Datos'><img src='../../imagen/edit.png' alt='Editar Datos' /></a>&nbsp;&nbsp;&nbsp;";
+                            + "' title='Editar Datos'><i class='icon-edit'></i></a>&nbsp;&nbsp;&nbsp;";
                             if(x.getEstado())
-                            msj+= "<a title='Deshabilitar Empleado' href='#' onclick='cambiarEstado(this)' name='cambiarEstado.jsp?cedula="+x.getDocumento()+"&estado="+x.getEstado()+"' ><img src='../../imagen/disable.png' alt='Editar Datos' /></a></td>";
+                            msj+= "<a title='Deshabilitar Empleado' href='#' onclick='cambiarEstado(this)' name='cambiarEstado.jsp?cedula="+x.getDocumento()+"&estado="+x.getEstado()+"' ><i class='icon-remove'></i></a></td>";
                             else
-                            msj+= "<a title='Habilitar Empleado' href='#' onclick='cambiarEstado(this)' name='cambiarEstado.jsp?cedula="+x.getDocumento()+"&estado="+x.getEstado()+"' ><img src='../../imagen/enable.gif' alt='Editar Datos' /></a></td>";
+                            msj+= "<a title='Habilitar Empleado' href='#' onclick='cambiarEstado(this)' name='cambiarEstado.jsp?cedula="+x.getDocumento()+"&estado="+x.getEstado()+"' ><i class='icon-ok'></i></a></td>";
                 msj+="</tr>";
             }
             msj+="</tbody>";
