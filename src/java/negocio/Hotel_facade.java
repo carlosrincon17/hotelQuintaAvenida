@@ -305,6 +305,36 @@ public class Hotel_facade {
         return msj;
     }
     
+    public String getListaHabitaciones2(){
+        ArrayList<Habitacion_DTO> lista = Habitacion_negocio.listar();
+        String msj= "";
+        
+        msj+="<table class='table table-hover'>";
+            msj+="<thead>";
+                msj+="<tr>";
+                    msj+="<th>Habitacion</th>";
+                    msj+="<th>Tipo</th>";
+                    msj+="<th>Precio</th>";
+                    msj+="<th>Estado</th>";
+                    msj+="<th>Opciones</th>";
+                msj+="</tr>";
+            msj+="</thead>";
+            msj+="<tbody>";
+            for(Habitacion_DTO x: lista){
+            msj+="<tr>";
+                    msj+="<td>"+x.getNumero()+"</td>";
+                    msj+="<td>"+x.getTipo()+"</td>";
+                    msj+="<td>"+x.getPrecio()+"</td>";
+                    msj+="<td>"+Habitacion_negocio.getEstado(x.getNumero())+"</td>";
+                    msj+="<td><a href='#' onclick='cambiarHabitacion(this)' name='form_editar_habitacion.jsp?habitacion="+x.getNumero()+"&tipo="+x.getTipo()+"&estado="+x.getEstado()+"' title='Cambiar Tipo'><i class='icon-pencil'></i></a>"
+                    +"&nbsp;&nbsp;&nbsp;<a href='#' onclick='cambiarHabitacion(this)' name='form_cambiar_estado_habitacion.jsp?habitacion="+x.getNumero()+"' title='Cambiar Estado'><i class='icon-edit'></i></a></td>";
+                msj+="</tr>";
+            }
+            msj+="</tbody>";
+        msj+="</table><br>";
+        return msj;
+    }
+   
     
     /**
      * 
