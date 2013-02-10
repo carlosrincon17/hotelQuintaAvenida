@@ -22,47 +22,65 @@ public class Usuario_DAO {
      * Si el usuario existe retorna el id de su rol
      * sino retorna -1
      */
-    public static int validar(String id, String password){
+    public static int validar(String id, String password) throws Exception {
 
-        String sql = "SELECT id_rol FROM usuario WHERE id_usuario = '" +id+ "' AND password = '"+password+"'";
-        
-        ResultSet rs = BaseDeDatos.ejecutarSQL(sql);
+        String sql = "SELECT id_rol FROM usuario WHERE id_usuario = ? AND password = ?";
+        Object[] p = new Object[2];
+        p[0] = id;
+        p[1] = password;
+
+        ResultSet rs = BaseDeDatos.getInstance().ejecutarSQL(sql, p);
         int rol = -1;
-        try{ 
-            if(rs.next())
+        if (rs.next()) {
             rol = rs.getInt(1);
-            
-        }catch(Exception ex){
-            rol = -1;
         }
-        
         return rol;
     }
-    static boolean create(Empleado_DTO persona) {
+    
+    
+    public static boolean create(Empleado_DTO persona) throws Exception{
         
         int id_rol = Rol_DAO.getIdRol(new Rol_DTO(persona.getFuncion()));
         System.out.println(id_rol);
-        String sql = "insert into usuario values('"+persona.getDocumento()+"',"+id_rol+",'hotel"+persona.getDocumento()+"')";
-        
-        return BaseDeDatos.ejecutarActualizacionSQL(sql);
+       // String sql = "insert into usuario values('"+persona.getDocumento()+"',"+id_rol+",'hotel"+persona.getDocumento()+"')";
+        String sql = "insert into usuario values(?,?,?)";
+        Object[] p = new Object[3];
+        p[0] = persona.getDocumento();
+        p[1] = id_rol;
+        p[2] = "hotel" +persona.getDocumento();
+        return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p);
     }
     
-    public static boolean enable(Empleado_DTO empleado){
+    
+    public static boolean enable(Empleado_DTO empleado) throws Exception{
+        
         int id_rol = Funcion_empleado_DAO.getFuncionByCedula(empleado.getDocumento());
-        String sql = "insert into usuario values('"+empleado.getDocumento()+"',"+id_rol+",'hotel"+empleado.getDocumento()+"')";
-        return BaseDeDatos.ejecutarActualizacionSQL(sql);
+        String sql = "insert into usuario values(?,?,?)";
+        Object[] p = new Object[3];
+        p[0] = empleado.getDocumento();
+        p[1] = id_rol;
+        p[2] = "hotel" +empleado.getDocumento(); 
+        return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p);
     }
 
-    static boolean create(Cliente_DTO persona) {
+    
+    public static boolean create(Cliente_DTO persona) throws Exception{
+        
         int id_rol = Rol_DAO.getIdRol(new Rol_DTO("cliente"));
         System.out.println("ssss "+id_rol);
-        String sql = "INSERT INTO usuario VALUES('"+persona.getDocumento()+"',"+id_rol+",'hotel"+persona.getDocumento()+"')";
-        
-        return BaseDeDatos.ejecutarActualizacionSQL(sql);
+        String sql = "INSERT INTO usuario VALUES(?,?,?)";
+        Object[] p = new Object[3];
+        p[0] = persona.getDocumento();
+        p[1] = id_rol;
+        p[2] = "hotel" +persona.getDocumento();
+        return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p);
     }
 
-    public static boolean deshabilitar(Empleado_DTO empleado) {
-        String sql = "delete from usuario where id_usuario="+empleado.getDocumento()+"";
-        return BaseDeDatos.ejecutarActualizacionSQL(sql);
+    
+    public static boolean deshabilitar(Empleado_DTO empleado) throws Exception{
+        String sql = "delete from usuario where id_usuario = ?";
+        Object[] p = new Object[1];
+        p[0] = empleado.getDocumento();
+        return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p);
     }   
 }
