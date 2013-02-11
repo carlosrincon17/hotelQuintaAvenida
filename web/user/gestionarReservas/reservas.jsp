@@ -3,6 +3,7 @@
     Created on : 05-ago-2012, 12:24:33
     Author     : Carlos
 --%>
+<%@page import="java.util.ArrayList"%>
 <%@page session='true'%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,37 +24,69 @@
         String estado = request.getParameter("estado");
         String msj = (String)sesion.getAttribute("htmlmenu");          
 %>    
-    <link rel="stylesheet" href="../../css/login.css" type="text/css">
+    
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         <script type="text/javascript" src="../../js/menu.js"></script>
-        <script type="text/javascript">
-            var menu1 = new Desplegable(<%= "'"+msj+"'" %>);
-        </script>
+    <script type='text/javascript' src='../../js/calendar.js'> </script>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" type="text/css">
+        <script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script> 
+        <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>   
     </head>
-    <body onload="menu1.escribeacordeon('menu',22,5);">
-    
-
-<div id="todo">  
-        <div class="cabecera">
-          
-        </div>
-        <div class ="´principal">
-            <div class="menu" id="menu"> 
-                
+    <body>
+<div class="container" >
+            <div class="page-header">
+                <h1>Hotel Quinta Avenida<small> aqui deberia ir un mensaje</small></h1>
             </div>
-            <div class="contenido">
-                <div class="bloqueA">
-                    <div class="separador">Nueva Reserva de Salón</div>
-                        <p><script type='text/javascript' src='../../js/calendar.js'> </script>
-    
-    <form action="guardarReservas.jsp" name="reservas">   
-    <p>Cliente:
-        <input type="text" value="" name="cliente"/> 
-    </p>
-    <p>Fecha de reserva<input readonly="readonly" id="text" type="text" name="fecha"/>
-        <img src="../../imagen/calendar.png" onclick="scwShow(scwID('text'),event);"/></p>
-    <p>Seleccione el salon: <%=fachada.cargarListaSalones()%>
-    <p>Hora de reserva<select name="hora">
+            
+                <%
+                ArrayList<String[]> menubt = (ArrayList<String[]>)sesion.getAttribute("modulos");
+                String supermenu = "";
+                
+                supermenu+="<ul class= 'nav nav-pills'>";
+                    supermenu+="<li class='active'>";
+                        supermenu+="<a href='#'>Home</a>";  
+                    supermenu+= "</li>";
+                    for(String[] modulo : menubt){
+                        supermenu+="<li class='dropdown'>";
+                            supermenu+="<a class='dropdown-toggle' id='menu"+modulo[0]+"' role='button' data-toggle='dropdown' data-target='#' href='#'>";
+                                supermenu+=modulo[0];
+                                supermenu+="<b class='caret'></b>";
+                            supermenu+="</a>";
+                        supermenu+="<ul class='dropdown-menu' role='menu' aria-labelledby='menu"+modulo[0]+"'>";
+                        for(int i = 1; i<modulo.length;i++){
+                            String[] sp = modulo[i].split("--");
+                            supermenu+="<li><a href='"+sp[1]+"'>"+sp[0]+"</a></li>";
+                        }
+                        supermenu+= "</ul>";
+                        supermenu+= "</li>";
+                    }
+                    
+                supermenu+= "</ul>";
+                %>
+                <%=supermenu%>
+                
+            <div class="container" >
+               <form class="form-horizontal" action="guardarReservas.jsp" name="reservas">
+                   <fieldset>
+                           <legend>Consultar reservas</legend>
+                   
+                               <div class="control-group">
+                                   <label class="control-label" for ="cliente">Cliente: </label>
+                               <div class="controls">
+                                <input type="text" name="cliente" id="cliente" value=""  />
+                                </div></div>
+
+                                <div class="control-group">
+                                   <label class="control-label" for ="cliente">Fecha de reserva: </label>
+                               <div class="controls">
+                                <input readonly="readonly" id="text" type="text" name="fecha"/>
+        <img src="../../imagen/calendar.png" onclick="scwShow(scwID('text'),event);"/>
+                                </div></div>
+                                
+
+                                <div class="control-group">
+                                   <label class="control-label" for ="cliente">Fecha de reserva: </label>
+                               <div class="controls">
+                                <select name="hora">
         <option value="6"> 6 a.m </option>
         <option value="7"> 7 a.m </option>
         <option value="8"> 8 a.m </option>
@@ -70,9 +103,14 @@
         <option value="19"> 7 p.m </option>
         <option value="20"> 8 p.m </option>
            
-    </select></p>
-    <p>Duracion<select name="duracion">
-        <option value="1">1 hora</option>
+    </select>
+                                </div></div>
+                            
+                            <div class="control-group">
+                                   <label class="control-label" for ="cliente">Fecha de reserva: </label>
+                               <div class="controls">
+                                <select name="hora">
+      <option value="1">1 hora</option>
         <option value="2">2 horas</option>
         <option value="3">3 horas</option>
         <option value="4">4 horas</option>
@@ -84,17 +122,23 @@
         <option value="10">10 horas</option>
         <option value="11">11 horas</option>
         <option value="12">12 horas</option>
-    </select></p>    
-    <p>Abono <input type="text" value="" name="abono" required/></p>
-    
-    <p>Descripcion <input type="text" value="" name="descripcion" required/></p>
-    <p> <input type="submit" value="Guardar" name="button"/></p>
-    </form>
-                    
+    </select>
+                                </div></div>
+                            
+
+                            <div class="control-group">
+                                   <label class="control-label" for ="descripcion">Descripcion: </label>
+                               <div class="controls">
+                                <input type="text" name="descripcion" id="descripcion" value=""  />
+                                </div></div>
+                            <div class="form-actions">
+                            <button type="submit" class="btn" >Registrar</button>
+                            </div>
+                    </fieldset>
+                </form>
+
             </div>
         </div>
-       </div>
-</div>
     </body>
 </html>
 
