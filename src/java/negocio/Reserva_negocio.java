@@ -6,6 +6,8 @@ package negocio;
 
 import dao.Reserva_DAO;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,12 +16,23 @@ import java.util.Date;
 public class Reserva_negocio {
 
     public static int guardarReserva(String fechaReserva, Date fechaActual, String idCliente) {
-        return Reserva_DAO.guardarReserva(fechaReserva, fechaActual, idCliente);
+        try {
+            return Reserva_DAO.guardarReserva(fechaReserva, fechaActual, idCliente);
+        } catch (Exception ex) {
+            Logger.getLogger(Reserva_negocio.class.getName()).log(Level.SEVERE, null, ex);
+            return -1;
+        }
     }
     
+    
     public static String cancelarReserva(String idReserva) {
-        if(Reserva_DAO.cancelarReserva(idReserva))
-            return "La Reserva fue Cancelada";
-        else return "Error al Cancerla Reserva";
+        try {
+            if(Reserva_DAO.cancelarReserva(idReserva))
+                return "La Reserva fue Cancelada";
+            else return "Error al Cancerla Reserva";
+        } catch (Exception ex) {
+            Logger.getLogger(Reserva_negocio.class.getName()).log(Level.SEVERE, null, ex);
+            return "";
+        }
     }
 }

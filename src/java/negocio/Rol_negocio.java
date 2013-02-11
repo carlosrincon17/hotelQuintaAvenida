@@ -9,6 +9,8 @@ import dao.Rol_DAO;
 import dto.Privilegio_DTO;
 import dto.Rol_DTO;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -44,56 +46,82 @@ public class Rol_negocio {
 
         
     }
-    public static boolean actualizarRol(String nombre, String[] privilegios, String descripcion){
-        
-        rol = new Rol_DTO(nombre,descripcion);
-        
-        ArrayList<Privilegio_DTO> myPrivilegios = new ArrayList<Privilegio_DTO>();
-       
-        for( String p : privilegios){
-        
+    
+    
+    public static boolean actualizarRol(String nombre, String[] privilegios, String descripcion) {
+
+        rol = new Rol_DTO(nombre, descripcion);
+        ArrayList<Privilegio_DTO> myPrivilegios = new ArrayList<>();
+        for (String p : privilegios) {
             Privilegio_DTO nuevo = new Privilegio_DTO(p);
             myPrivilegios.add(nuevo);
         }
-        
+
         rol.setPrivilegios(myPrivilegios);
+        try {
             return Rol_DAO.actualizarRol(rol);
+        } catch (Exception ex) {
+            Logger.getLogger(Rol_negocio.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
     }
     
-    public static boolean crearRol(String nombre, String[] privilegios, String descripcion){
+    
+    public static boolean crearRol(String nombre, String[] privilegios, String descripcion) {
         rol = new Rol_DTO(nombre, descripcion);
         ArrayList<Privilegio_DTO> myPrivilegios = new ArrayList<Privilegio_DTO>();
-       
-        for( String p : privilegios){
-        
+
+        for (String p : privilegios) {
+
             Privilegio_DTO nuevo = new Privilegio_DTO(p);
             myPrivilegios.add(nuevo);
         }
-        
+
         rol.setPrivilegios(myPrivilegios);
-        return Rol_DAO.crearRol(rol);
+        try {
+            return Rol_DAO.crearRol(rol);
+        } catch (Exception ex) {
+            Logger.getLogger(Rol_negocio.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
     }
+
     
     /**
      * Obtiene los privilegios de un rol de acuerdo al id del rol
      * @return Un ArrayList de Privilegio_DTO con los privilegios del rol
      */
     public ArrayList<Privilegio_DTO> getPrivilegios(){
-    
-    return Privilegio_DAO.getPrivilegiosRol(rol);
+        try {
+            return Privilegio_DAO.getPrivilegiosRol(rol);
+        } catch (Exception ex) {
+            Logger.getLogger(Rol_negocio.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     
     }
+    
     
     /**
      * Metodo que devuelve todos los privilegios del sistema
      * @return Un ArrayList de Privilegio_DTO con todos los privilegios del sistema
      */
     public static ArrayList<Rol_DTO> readAll(){
-    
-        return Rol_DAO.readAll();
+        try {
+            return Rol_DAO.readAll();
+        } catch (Exception ex) {
+            Logger.getLogger(Rol_negocio.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
-    public Rol_DTO getDatos(){
     
-        return Rol_DAO.getDatosRol(rol.getNombre());
+    
+    public Rol_DTO getDatos() {
+        try {
+            return Rol_DAO.getDatosRol(rol.getNombre());
+        } catch (Exception ex) {
+            Logger.getLogger(Rol_negocio.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 }

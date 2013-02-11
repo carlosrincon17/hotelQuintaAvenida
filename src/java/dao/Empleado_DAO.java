@@ -17,29 +17,34 @@ public class Empleado_DAO {
 
     
 
-    public static boolean create(Empleado_DTO empleado) {
-        
+    public static boolean create(Empleado_DTO empleado) throws Exception {
+
         int id_funcion = Funcion_empleado_DAO.getIdPorNombre(empleado.getFuncion());
-        String sql = "INSERT INTO empleado VALUES ('"+empleado.getDocumento()+"','"+empleado.getNumeroSS()+"',"+id_funcion+", 1)";
-        if(Persona_DAO.create(empleado))
-            return BaseDeDatos.ejecutarActualizacionSQL(sql);
-        
+        String sql = "INSERT INTO empleado VALUES (?,?,?,?)";
+        Object[] p = new Object[4];
+        p[0] = empleado.getDocumento();
+        p[1] = empleado.getNumeroSS();
+        p[2] = id_funcion;
+        p[3] = 1;
+
+        if (Persona_DAO.create(empleado)) {
+            return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p);
+        }
         return false;
     }
+    
     
     /**
      * Metodo que Obtiene todos los Empleados de la base de datos
      * @return  Una Lista de Empleado_DTO
      */
-    public static ArrayList<Empleado_DTO> getAll(){
-        
-        ArrayList<Empleado_DTO> lista = new ArrayList<Empleado_DTO>();
+    public static ArrayList<Empleado_DTO> getAll() throws Exception {
+
+        ArrayList<Empleado_DTO> lista = new ArrayList<>();
         String sql = "SELECT * FROM empleado INNER JOIN persona ON empleado.id_empleado = persona.cedula INNER JOIN funcion_empleado ON empleado.id_funcion = funcion_empleado.id_funcion";
-        ResultSet rs = BaseDeDatos.ejecutarSQL(sql);
-        
-        try {
-             while(rs.next()){
-                 
+        ResultSet rs = BaseDeDatos.getInstance().ejecutarSQL(sql, null);
+
+        while (rs.next()) {
             Empleado_DTO nuevo = new Empleado_DTO();
             nuevo.setDocumento(rs.getString(1));
             nuevo.setNumeroSS(rs.getString(2));
@@ -53,43 +58,44 @@ public class Empleado_DAO {
             nuevo.setFechaInscripcion(rs.getString(12));
             nuevo.setFuncion(rs.getString(14));
             lista.add(nuevo);
-            
         }
-            } catch (Exception e) {
-                e.printStackTrace();
-        }
-        System.err.println("hay  "+lista.size());
+        System.err.println("hay  " + lista.size());
         return lista;
     }
-    public static boolean disable(Empleado_DTO  empleado){
     
-        String sql = "UPDATE empleado SET estado=0 WHERE id_empleado='"+empleado.getDocumento()+"'";
-        if(Usuario_DAO.deshabilitar(empleado))
-        return BaseDeDatos.ejecutarActualizacionSQL(sql);
-        
-        else
-            return false;
+    
+    public static boolean disable(Empleado_DTO empleado) throws Exception {
+
+        String sql = "UPDATE empleado SET estado = 0 WHERE id_empleado = ?";
+        Object[] p = new Object[1];
+        p[0] = empleado.getDocumento();
+        if (Usuario_DAO.deshabilitar(empleado)) 
+            return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p); 
+        return false;
     }
     
-    public static boolean enable(Empleado_DTO empleado){
-        
-        String sql = "UPDATE empleado SET estado=1 WHERE id_empleado='"+empleado.getDocumento()+"'";
-        if(Usuario_DAO.enable(empleado))
-        return BaseDeDatos.ejecutarActualizacionSQL(sql);
-        
-        else
-            return false;
-        }
     
-    public static boolean update(Empleado_DTO empleado){
-    
-        String sql = "UPDATE empleado SET NumeroSS='"+empleado.getNumeroSS()+"', id_funcion="+empleado.getFuncion()
-                +" WHERE id_empleado='"+empleado.getDocumento()+"'";  
-        
-        if(Persona_DAO.update(empleado))
-            return BaseDeDatos.ejecutarActualizacionSQL(sql);
-        
+    public static boolean enable(Empleado_DTO empleado) throws Exception{
+
+        String sql = "UPDATE empleado SET estado = 1 WHERE id_empleado = ?";
+        Object[] p = new Object[1];
+        p[0] = empleado.getDocumento();
+        if (Usuario_DAO.enable(empleado)) 
+            return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p);
         return false;
-        }
+    }
+    
+    
+    public static boolean update(Empleado_DTO empleado) throws Exception{
+    
+        String sql = "UPDATE empleado SET NumeroSS = ?, id_funcion = ? WHERE id_empleado = ?";
+        Object[] p = new Object[3];
+        p[0] = empleado.getNumeroSS();
+        p[1] = empleado.getFuncion();
+        p[2] = empleado.getDocumento();
+        if(Persona_DAO.update(empleado))
+            return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p);    
+        return false;
+    }
     
 }
