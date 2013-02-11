@@ -566,11 +566,11 @@ public class Hotel_facade {
     public String getListaHabitacionesOption(){
        ArrayList<Habitacion_DTO>  lista= Habitacion_negocio.listar();
        String msj="";
-       msj+="<select name='habitacion'>";
+       
        for(Habitacion_DTO habitacion :lista){
            msj+="<option value='"+habitacion.getNumero()+"'>"+habitacion.getNumero()+"</option>";
        }
-       return msj+="</select>";
+       return msj;
        
     }
     
