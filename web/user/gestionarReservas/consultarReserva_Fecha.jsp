@@ -20,18 +20,16 @@
         }
         String rol = (String)sesion.getAttribute("rol");
         String id = (String)sesion.getAttribute("id");
-        String msj = (String)sesion.getAttribute("htmlmenu"); 
         String fecha= hallarFecha(request.getParameter("fecha"));
         
         %>
         <script type="text/javascript" src="../js/ajax.js" ></script>  
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="../../css/login.css" type="text/css">
+        <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" type="text/css">
+        <script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script> 
+        <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>   
         <title>JSP Page</title>
-        <script type="text/javascript" src="../../js/menu.js"></script>
-        <script type="text/javascript">
-            var menu1 = new Desplegable(<%= "'"+msj+"'" %>);
-        </script>
+        
     </head>
     <body onload="menu1.escribeacordeon('menu',22,5);">
         <%!
