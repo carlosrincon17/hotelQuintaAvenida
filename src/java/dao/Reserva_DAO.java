@@ -18,73 +18,79 @@ import util.BaseDeDatos;
  */
 public class Reserva_DAO {
 
-    public static int guardarReserva(String fechaReserva, Date fechaActual, String idCliente) {
-        
+    public static int guardarReserva(String fechaReserva, Date fechaActual, String idCliente) throws Exception {
+
+        /*
+         este metodo me parece que tiene mal la consulta comentariada
+         
+         */
         java.util.Calendar algo;
-        
-        
-        String fecha1= fechaReserva;
-        Date hoy=new Date();
-        String fecha2= (hoy.getYear()+1900)+"-"+(hoy.getMonth()+1)+"-"+Calendar.DAY_OF_MONTH;
-        System.out.print(fecha1+"\n");
-        System.out.print(fecha2+"\n");
-        String sql = "INSERT INTO reserva (fecha_reserva, fecha_solicitud, id_cliente, estado)"+
-               "VALUES ('"+fecha1+"','"+fecha2+"',"+"'"+idCliente+"','Espera')";
-        
-       if(BaseDeDatos.ejecutarActualizacionSQL(sql)) {
-           
-           return getUltimo();
-       
-       }
-        return -1;
-    }
+        String fecha1 = fechaReserva;
+        Date hoy = new Date();
+        String fecha2 = (hoy.getYear() + 1900) + "-" + (hoy.getMonth() + 1) + "-" + Calendar.DAY_OF_MONTH;
+        System.out.print(fecha1 + "\n");
+        System.out.print(fecha2 + "\n");
+        //String sql = "INSERT INTO reserva (fecha_reserva, fecha_solicitud, id_cliente, estado)"+
+        //       "VALUES ('"+fecha1+"','"+fecha2+"',"+"'"+idCliente+"','Espera')";
+        String sql = "INSERT INTO reserva (fecha_reserva, fecha_solicitud, id_cliente, activa) VALUES (?,?,?,'1')";
+        Object[] p = new Object[3];
+        p[0] = fecha1;
+        p[1] = fecha2;
+        p[2] = idCliente;
 
-    private static int getUltimo() {
-        String sql="SELECT MAX(id_reserva) from reserva";
-        ResultSet rs= BaseDeDatos.ejecutarSQL(sql);
-        try{
-            if(rs.next())
-                return rs.getInt(1);                
-        }
-        catch(Exception e){
-            return -1;
-        
+        if (BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p)) {
+            return getUltimo();
         }
         return -1;
     }
 
-    public static ArrayList<Integer> getIds(String fecha) {
-        String sql="Select id_reserva from reserva where fecha_reserva='"+fecha+"'";
-        ResultSet rs= BaseDeDatos.ejecutarSQL(sql);
-        ArrayList<Integer> reservas=new ArrayList<Integer>();
-        try{
-            while (rs.next()) reservas.add(rs.getInt(1));
-            
+    
+    private static int getUltimo() throws Exception{
+
+        String sql = "SELECT MAX(id_reserva) from reserva";
+        ResultSet rs = BaseDeDatos.getInstance().ejecutarSQL(sql, null);
+        if (rs.next()) {
+            return rs.getInt(1);
         }
-        catch (Exception e){
-            
+        return -1;
+    }
+    
+
+    public static ArrayList<Integer> getIds(String fecha) throws Exception {
+
+        String sql = "Select id_reserva from reserva where fecha_reserva = ?";
+        Object[] p = new Object[1];
+        p[0] = fecha;
+        ResultSet rs = BaseDeDatos.getInstance().ejecutarSQL(sql, p);
+        ArrayList<Integer> reservas = new ArrayList<>();
+
+        while (rs.next()) {
+            reservas.add(rs.getInt(1));
         }
         return reservas;
     }
 
-    static void cargarReserva(ReservaHabitacion_DTO reserva) {
-        String sql="Select * from reserva where id_reserva="+reserva.getId()+"";
-        ResultSet rs= BaseDeDatos.ejecutarSQL(sql);
-        try{
-            if(rs.next()){
-                reserva.setFechaSolicitud(rs.getDate(3));
-                reserva.setFechareserva(rs.getDate(4));
-                reserva.setEstado(rs.getBoolean(5));
-            }
-        }
-        catch(Exception e){
-        
+    
+    public static void cargarReserva(ReservaHabitacion_DTO reserva) throws Exception {
+
+        String sql = "Select * from reserva where id_reserva = ?";
+        Object[] p = new Object[1];
+        p[0] = reserva.getId();
+        ResultSet rs = BaseDeDatos.getInstance().ejecutarSQL(sql, p);
+
+        if (rs.next()) {
+            reserva.setFechaSolicitud(rs.getDate(3));
+            reserva.setFechareserva(rs.getDate(4));
+            reserva.setEstado(rs.getBoolean(5));
         }
     }
 
-    public static boolean cancelarReserva(String idReserva) {
-        String sql= "Update reserva set estado='Cancelada' where id_reserva="+idReserva;
-        return BaseDeDatos.ejecutarActualizacionSQL(sql);
+    
+    public static boolean cancelarReserva(String idReserva) throws Exception{
+        String sql= "Update reserva set estado='Cancelada' where id_reserva = ?";
+         Object[] p = new Object[1];
+        p[0] = idReserva;
+        return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p);
     }
     
     

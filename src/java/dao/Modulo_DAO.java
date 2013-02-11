@@ -16,25 +16,18 @@ import util.BaseDeDatos;
  */
 public class Modulo_DAO {
     
-    public static ArrayList<Modulo_DTO> readAll(Rol_DTO rol){
-    
+    public static ArrayList<Modulo_DTO> readAll(Rol_DTO rol) throws Exception {
+
         String sql = "SELECT DISTINCT modulo.nombre FROM privilegio INNER JOIN comportamiento ON privilegio.id_comportamiento = comportamiento.id_comportamiento "
                 + "INNER JOIN modulo ON comportamiento.id_modulo = modulo.id_modulo WHERE privilegio.id_rol = 1";
-        
-        
-        ArrayList<Modulo_DTO> modulos = new ArrayList<Modulo_DTO>();
-        ResultSet rs = BaseDeDatos.ejecutarSQL(sql);
-        try{
-            while(rs.next()){
-                Modulo_DTO modulo = new Modulo_DTO(rs.getString(1));
-                modulo.setComportamientos(Privilegio_DAO.getPrivilegiosRol(modulo, rol));
-                modulos.add(modulo);
-            }
-        
-        }catch(Exception e){
-        e.printStackTrace();
+
+        ArrayList<Modulo_DTO> modulos = new ArrayList<>();
+        ResultSet rs = BaseDeDatos.getInstance().ejecutarSQL(sql, null);
+        while (rs.next()) {
+            Modulo_DTO modulo = new Modulo_DTO(rs.getString(1));
+            modulo.setComportamientos(Privilegio_DAO.getPrivilegiosRol(modulo, rol));
+            modulos.add(modulo);
         }
-        
         return modulos;
     }
     

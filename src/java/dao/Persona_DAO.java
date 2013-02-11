@@ -15,63 +15,93 @@ import util.BaseDeDatos;
  */
 public class Persona_DAO {
 
-    public static boolean create(Empleado_DTO persona) {
-        String sql = "insert into persona values('"+persona.getDocumento()+"','"+persona.getNombre()+"', '"+persona.getApellido()+
-                "','"+persona.getCorreo()+"','"+persona.getDireccion()+"','"+persona.getTelefono()+"','"+persona.getFechaInscripcion()+"','"+persona.getFechaNacimiento()+"')";
+    public static boolean create(Empleado_DTO persona) throws Exception{
         
-        if(BaseDeDatos.ejecutarActualizacionSQL(sql))
+        String sql = "insert into persona values(?,?,?,?,?,?,?,?)";
+        Object[] p = new Object[8];
+        p[0] = persona.getDocumento();
+        p[1] = persona.getNombre();
+        p[2] = persona.getApellido();
+        p[3] = persona.getCorreo();
+        p[4] = persona.getDireccion();
+        p[5] = persona.getTelefono();
+        p[6] = persona.getFechaInscripcion();
+        p[7] = persona.getFechaNacimiento();
+        
+        if(BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p))
             return Usuario_DAO.create(persona);
         return false;
     }
     
     
-    public static boolean create(Cliente_DTO persona) {
-        String sql = "insert into persona values('"+persona.getDocumento()+"','"+persona.getNombre()+"', '"+persona.getApellido()+
-                "','"+persona.getCorreo()+"','"+persona.getDireccion()+"','"+persona.getTelefono()+"','"+persona.getFechaInscripcion()+"','"+persona.getFechaNacimiento()+"')";
+    public static boolean create(Cliente_DTO persona) throws Exception{
+       
+       /* 
+        tal vez haya problema con guardar las fechas ... porque son string en java
+        pero en la base de datos son de tipo date
+        */ 
         
-        if(BaseDeDatos.ejecutarActualizacionSQL(sql))
+       String sql = "insert into persona values(?,?,?,?,?,?,?,?)";
+        Object[] p = new Object[8];
+        p[0] = persona.getDocumento();
+        p[1] = persona.getNombre();
+        p[2] = persona.getApellido();
+        p[3] = persona.getCorreo();
+        p[4] = persona.getDireccion();
+        p[5] = persona.getTelefono();
+        p[6] = persona.getFechaInscripcion();
+        p[7] = persona.getFechaNacimiento();
+        
+        if(BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p))
             return Usuario_DAO.create(persona);
-        
         return false;
     }
     
-    public static boolean editar(Cliente_DTO cliente){
-        String sql = "UPDATE persona SET correo='"+cliente.getCorreo()+"', direccion='"+cliente.getDireccion()+"', telefono='"+cliente.getTelefono()
-                +"' WHERE cedula="+cliente.getDocumento();    
     
+    public static boolean editar(Cliente_DTO cliente) throws Exception{
+       
+        String sql = "UPDATE persona SET correo = ?, direccion = ?, telefono = ? WHERE cedula = ?";    
+        Object[] p = new Object[4];
+        p[0] = cliente.getCorreo();
+        p[1] = cliente.getDireccion();
+        p[2] = cliente.getTelefono();
+        p[3] = cliente.getDocumento();
+        
         if(Cliente_DAO.editar(cliente))
-            return BaseDeDatos.ejecutarActualizacionSQL(sql);
-        
+            return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p);
         return false;
     }
     
-    public static boolean update(Empleado_DTO empleado){
     
-            String sql = "UPDATE persona SET correo='"+empleado.getCorreo()+"', direccion='"+empleado.getDireccion()+"', telefono='"+empleado.getTelefono()
-                       + "' WHERE cedula='"+empleado.getDocumento()+"'";
-            
-            return BaseDeDatos.ejecutarActualizacionSQL(sql);
+    public static boolean update(Empleado_DTO empleado) throws Exception{
+    
+        String sql = "UPDATE persona SET correo = ?, direccion = ?, telefono = ? WHERE cedula = ?";
+        Object[] p = new Object[4];
+        p[0] = empleado.getCorreo();
+        p[1] = empleado.getDireccion();
+        p[2] = empleado.getTelefono();
+        p[3] = empleado.getDocumento();
+        return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p);
     }
     
-    public static Cliente_DTO read(Cliente_DTO cliente){
     
-        String sql = "SELECT * FROM cliente INNER JOIN persona ON cliente.id_cliente = persona.cedula WHERE cliente.id_cliente = '"+cliente.getDocumento()+"'";
-        ResultSet rs = BaseDeDatos.ejecutarSQL(sql);
-        try {
-            if(rs.next()){
-               cliente.setEmpresa(rs.getString(2)); 
-               cliente.setNombre(rs.getString(4));
-               cliente.setApellido(rs.getString(5));
-               cliente.setCorreo(rs.getString(6));
-               cliente.setDireccion(rs.getString(7));
-               cliente.setTelefono(rs.getString(8));
-               cliente.setFechaNacimiento(rs.getString(9));
-               cliente.setFechaInscripcion(rs.getString(10));
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+    public static Cliente_DTO read(Cliente_DTO cliente) throws Exception {
+
+        String sql = "SELECT * FROM cliente INNER JOIN persona ON cliente.id_cliente = persona.cedula WHERE cliente.id_cliente = ?";
+        Object[] p = new Object[1];
+        p[0] = cliente.getDocumento();
+
+        ResultSet rs = BaseDeDatos.getInstance().ejecutarSQL(sql, p);
+        if (rs.next()) {
+            cliente.setEmpresa(rs.getString(2));
+            cliente.setNombre(rs.getString(4));
+            cliente.setApellido(rs.getString(5));
+            cliente.setCorreo(rs.getString(6));
+            cliente.setDireccion(rs.getString(7));
+            cliente.setTelefono(rs.getString(8));
+            cliente.setFechaNacimiento(rs.getString(9));
+            cliente.setFechaInscripcion(rs.getString(10));
         }
-        
         return cliente;
     }
     
