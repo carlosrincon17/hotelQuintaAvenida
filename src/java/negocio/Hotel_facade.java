@@ -943,11 +943,11 @@ public class Hotel_facade {
     public String getListaHabitacionesDisponibles(){
        ArrayList<Habitacion_DTO>  lista= Habitacion_negocio.listarDisponibles();
        String msj="";
-       msj+="<select name='habitacion'>";
+       
        for(Habitacion_DTO habitacion :lista){
            msj+="<option value='"+habitacion.getNumero()+"'>"+habitacion.getNumero()+"</option>";
        }
-       return msj+="</select>";
+       return msj;
        
     }
     
@@ -972,6 +972,24 @@ public class Hotel_facade {
             "<td>" + fecha + "</td>"+
             "<td><a href='#' title='ver reservas' name='terminarHospedaje.jsp?hospedaje="+hospedaje.getID()+""+
             "&habitacion="+hospedaje.getHabitacion().getNumero()+"' onclick=verReservas(this)><img src='../../imagen/edit.png' title='Editar Salon'/></a>"+
+             "</td></tr>";
+        }
+        return msj+="</tbody></table>";
+    }
+    
+    public String listarHospedajesHTML2(){
+        ArrayList<Hospedaje_DTO> hospedajes= negocio.Hospedaje_negocio.listar();
+        String msj="<table class='table table-hover'>";
+        msj+="<tr><thead><th>Hablitacion</th><th>Cliente</th><th>Fecha de Inicio</th><th>Opciones</th> </thead><tbody>";
+        for(Hospedaje_DTO hospedaje: hospedajes){
+            
+            String fecha= (hospedaje.getFechaInicio().getYear()+1900)+"-"+(hospedaje.getFechaInicio().getMonth()+1)+"-"+hospedaje.getFechaInicio().getDate();
+            msj+="<tr>"+
+            "<td>" + hospedaje.getHabitacion().getNumero() + "</td>"+
+            "<td>" + hospedaje.getHuesped().getDocumento() + "</td>"+
+            "<td>" + fecha + "</td>"+
+            "<td><a href='#' title='ver reservas' name='terminarHospedaje.jsp?hospedaje="+hospedaje.getID()+""+
+            "&habitacion="+hospedaje.getHabitacion().getNumero()+"' onclick=verReservas(this)><i class='icon-edit'></i></a>"+
              "</td></tr>";
         }
         return msj+="</tbody></table>";
