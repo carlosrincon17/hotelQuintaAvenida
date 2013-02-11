@@ -481,7 +481,7 @@ public class Hotel_facade {
     public String getListaMinibares(){
         ArrayList<Minibar_DTO> lista = Minibar_negocio.listar();
         String msj="";
-        msj+="<table>";
+        msj+="<table class='table table-hover'>";
             msj+="<thead>";
                 msj+="<tr>";
                     msj+="<th>No. de serie</th>";
@@ -496,8 +496,8 @@ public class Hotel_facade {
                     msj+="<td>"+x.getId()+"</td>";
                     msj+="<td>"+x.getMarca()+"</td>";
                     msj+="<td>"+x.getModelo()+"</td>";
-                    msj+="<td><a title='Agregar artículo' href='form_agregar_articulo_minibar.jsp?minibar="+x.getId()+"' ><img src='../../imagen/add.png' alt='agregar Articulos' /></a>&nbsp;&nbsp;&nbsp;"
-                            + "<a title='listar articulos del minibar' href='form_listar_articulo_minibar.jsp?id_minibar="+x.getId()+"' ><img src='../../imagen/explore.png' alt='agregar Articulos' /></a></td>";
+                    msj+="<td><a title='Agregar artículo' href='form_agregar_articulo_minibar.jsp?minibar="+x.getId()+"' ><i class='icon-plus'></i></a>&nbsp;&nbsp;&nbsp;"
+                            + "<a title='listar articulos del minibar' href='form_listar_articulo_minibar.jsp?id_minibar="+x.getId()+"' ><i class='icon-edit'><i></a></td>";
                    
                 msj+="</tr>";
             }
@@ -579,11 +579,11 @@ public class Hotel_facade {
     public String getListaHabitacionesOption(){
        ArrayList<Habitacion_DTO>  lista= Habitacion_negocio.listar();
        String msj="";
-       msj+="<select name='habitacion'>";
+       
        for(Habitacion_DTO habitacion :lista){
            msj+="<option value='"+habitacion.getNumero()+"'>"+habitacion.getNumero()+"</option>";
        }
-       return msj+="</select>";
+       return msj;
        
     }
     

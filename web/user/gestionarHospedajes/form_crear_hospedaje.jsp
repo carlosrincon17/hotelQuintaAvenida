@@ -78,7 +78,7 @@
                                 </div></div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="habitaciones">Rol: </label>
+                                    <label class="control-label" for="habitaciones">Habitaciones: </label>
                                 <div class="controls">
                                     <select name="habitaciones" id="habitaciones">
                                 <%=fachada.getListaHabitacionesDisponibles()%>
