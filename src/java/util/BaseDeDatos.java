@@ -17,7 +17,7 @@ public class BaseDeDatos {
     
     private static BaseDeDatos INSTANCE = new BaseDeDatos();
     
-    private String bd = "ufps_10";
+    private String bd = "ufps_41";
     private String login = "ufps_41";
     private String password = "ufps_ab";
     private String url = "jdbc:mysql://sandbox2.ufps.edu.co/"+bd+"?useServerPrepStmts=true";
