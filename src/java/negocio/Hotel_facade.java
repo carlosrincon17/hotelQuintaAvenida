@@ -672,16 +672,31 @@ public class Hotel_facade {
     public String editarSalonHTML(String nombre){
         String msj="";
         Salon_DTO salon= Salon_negocio.cargarSalon(nombre);
-        msj+="<form  action='editarSalon_1.jsp' name='form'>"+
-                "<p>Nombre <input type='text' name='nombre' value='"+salon.getNombre()+"'/></p>"+
-                "<p>Precio por Hora<input type='text' name='precio' value='"+salon.getPrecioHora()+"'/></p>"+
-                "<p>Capacidad <input type='text' name='capacidad' value='"+salon.getCapacidad()+"'/></p>"+
-                "<p>Estado <select name='estado'>"+
-                    "<option>Habilitado</option>"+
-                    "<option>Deshabilitado</option>"+
-                "</select></p>"+
+        msj+="<form  class='form-horizontal' action='editarSalon_1.jsp' name='form'>"+
+                "<div class='control-group'>"+
+                    "<label class='control-label' for='inputNombre'>Nombre: </label>"+
+                                "<div class='controls'>"+
+                                "<input type='text' id='inputNombre' name='nombre' value='"+salon.getNombre()+" required>"+
+                                "</div></div>"+
+                "<label class='control-label' for='precio'>Nombre: </label>"+
+                                "<div class='controls'>"+
+                                "<input type='text' id='precio' name='precio' value='"+salon.getPrecioHora()+" required>"+
+                                "</div></div>"+
+                "<label class='control-label' for='capacidad'>Nombre: </label>"+
+                                "<div class='controls'>"+
+                                "<input type='text' id='capacidad' name='capacidad' value='"+salon.getCapacidad()+" required>"+
+                                "</div></div>"+
+                "<label class='control-label' for='estado'>Estado: </label>"+
+                                "<div class='controls'>"+
+                                "<select id='estado' name='estado'>"+
+                                    "<option>Habilitado</option>"+
+                                    "<option>Deshabilitado</option>"+
+                                "</select>"+
+                                "</div></div>"+
                 
-                "<p><input type='submit' value='Guardar' onclick=verReservas(this) /></p>"+       
+                 "<div class='form-actions'>"+
+                            "<button type='submit' class='btn' >Registrar</button>"+
+                            "</div>"+       
                "</form>";
         return msj;
     }
@@ -1016,7 +1031,7 @@ public class Hotel_facade {
     
     public String listarReservasSalonesHTML(String nombreSalon){
         ArrayList<ReservaSalon_DTO> reservas= Reserva_Salon_negocio.listarReservas(nombreSalon);
-        String msj="<b>Salon: "+nombreSalon+ "</b>";
+        String msj="<h3>Salon: "+nombreSalon+ "</h3>";
         for(ReservaSalon_DTO reserva: reservas)
             msj+= this.imprimirReservaSalon(reserva);
         
@@ -1025,7 +1040,7 @@ public class Hotel_facade {
     
     private String imprimirReservaSalon(ReservaSalon_DTO reserva){
         String msj="";
-        msj+="<table>";
+        msj+="<table  class='table table-hover'>";
         msj+="<thead>Reserva: "+reserva.getId()+"</thead>"+
               "<tr><td>Cliente: </td><td>"+reserva.getCliente().getNombre()+" "+reserva.getCliente().getApellido()+"</td></tr>"+   
               "<tr><td>Cedula: </td><td>"+reserva.getCliente().getDocumento()+"</td></tr>"+  
@@ -1037,7 +1052,7 @@ public class Hotel_facade {
               "<tr><td>Abono: </td><td>"+reserva.getAbonoReserva()+"</td></tr>"+
               "<tr><td>Deuda: </td><td>"+(reserva.getTotal()-reserva.getAbonoReserva())+"</td></tr>"+  
               "<tr><td></td><td><a href='../gestionarReservas/cancelarReserva.jsp?reserva="+
-                    reserva.getId()+"' title='ver reservas' name=''><img src='../../imagen/cancel.png' title='Cancelar Reserva'/></a></td></tr>"; 
+                    reserva.getId()+"' title='ver reservas' name=''><i class='icon-remove'></i></a></td></tr>"; 
         msj+="</table><br>";
         return msj;
     }

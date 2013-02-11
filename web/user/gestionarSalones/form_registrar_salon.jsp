@@ -3,7 +3,7 @@
     Created on : 05-ago-2012, 14:56:38
     Author     : jorge
 --%>
-
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session='true'%>
 <!DOCTYPE html>
@@ -24,40 +24,87 @@
         
         %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="../../css/login.css" type="text/css">
+        
         <title>Registro de Salones - Hotel Quinta Avenida</title>
-        <script type="text/javascript" src="../../js/menu.js"></script>
-        <script type="text/javascript">
-            var menu1 = new Desplegable(<%= "'"+msj+"'" %>);
-        </script>
+        <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" type="text/css">
+        <script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script> 
+        <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>   
     </head>
-    <body onload="menu1.escribeacordeon('menu',22,5);">
-   
-        <div id="todo">  
-        <div class="cabecera">
+    <body>
+   <div class="container" >
+            <div class="page-header">
+                <h1>Hotel Quinta Avenida<small> aqui deberia ir un mensaje</small></h1>
+            </div>
             
-        </div>
-        <div class ="´principal">
-            <div class="menu" id="menu"> 
+                <%
+                ArrayList<String[]> menubt = (ArrayList<String[]>)sesion.getAttribute("modulos");
+                String supermenu = "";
                 
-            </div>
-            
-            <div class="contenido">
-                <div class="bloqueA">
-                    <div class="separador">Datos del nuevo Salon</div><br>
-                    <form action="registrar_salon.jsp" name="form">
-                <p>Nombre <input type="text" name="nombre" value="" required/></p>
-                <p>Precio por Hora<input type="text" name="precio" value="" required/></p>
-                <p>Capacidad <input type="text" name="capacidad" value="" required/></p>
-                <p>Estado <select name="estado">
-                    <option>Habilitado</option>
-                    <option>Deshabilitado</option>
-                </select></p>
-                <p><input type="submit" value="Guardar"/></p>       
+                supermenu+="<ul class= 'nav nav-pills'>";
+                    supermenu+="<li class='active'>";
+                        supermenu+="<a href='#'>Home</a>";
+                    supermenu+= "</li>";
+                    for(String[] modulo : menubt){
+                        supermenu+="<li class='dropdown'>";
+                            supermenu+="<a class='dropdown-toggle' id='menu"+modulo[0]+"' role='button' data-toggle='dropdown' data-target='#' href='#'>";
+                                supermenu+=modulo[0];
+                                supermenu+="<b class='caret'></b>";
+                            supermenu+="</a>";
+                        supermenu+="<ul class='dropdown-menu' role='menu' aria-labelledby='menu"+modulo[0]+"'>";
+                        for(int i = 1; i<modulo.length;i++){
+                            String[] sp = modulo[i].split("--");
+                            supermenu+="<li><a href='"+sp[1]+"'>"+sp[0]+"</a></li>";
+                        }
+                        supermenu+= "</ul>";
+                        supermenu+= "</li>";
+                    }
+                    
+                supermenu+= "</ul>";
+                %>
+                <%=supermenu%>
+                
+            <div class="container" >
+               <form class="form-horizontal" action="registrar_salon.jsp" name="form">
+                   <fieldset>
+                           <legend>Registrar salon</legend>
+                   
+                               
+                        
+                                <div class="control-group">
+                                    <label class="control-label" for="inputNombre">Nombre: </label>
+                                <div class="controls">
+                                <input type="text" id="inputNombre" name="nombre"  required>
+                                </div></div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="precio">Precio por Hora: </label>
+                                <div class="controls">
+                                <input type="text" id="precio" name="precio" required>
+                                </div></div>
+                            
+                               <div class="control-group">
+                                    <label class="control-label" for="capacidad">Capacidad:</label>
+                                <div class="controls">
+                                <input type="text" id="capacidad" name="capacidad" required>
+                                </div></div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="estado">E-mail: </label>
+                                <div class="controls">
+                                <select id="estado" name="estado">
+                                    <option>Habilitado</option>
+                                    <option>Deshabilitado</option>
+                                </select>
+                                </div></div>
+                            
+                            
+                            <div class="form-actions">
+                            <button type="submit" class="btn" >Registrar</button>
+                            </div>
+                    </fieldset>
                 </form>
-                </div>
             </div>
         </div>
-       </div>
+        
     </body>
 </html>

@@ -3,7 +3,7 @@
     Created on : 05-ago-2012, 15:24:37
     Author     : jorge
 --%>
-
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <jsp:useBean id="fachada" scope="session" class="negocio.Hotel_facade" />
@@ -22,19 +22,15 @@
         String id = (String)sesion.getAttribute("id");
         String msj = (String)sesion.getAttribute("htmlmenu"); 
         %>
-        <script type="text/javascript" src="../../js/jquery-1.4.4.min.js" ></script>  
-        <script type="text/javascript" src="../../js/dataTables.min.js" ></script>  
         <script type="text/javascript" src="../../js/ajax.js" ></script>  
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="../../css/login.css" type="text/css">
         
         <title>JSP Page</title>
-        <script type="text/javascript" src="../../js/menu.js"></script>
-        <script type="text/javascript">
-            var menu1 = new Desplegable(<%= "'"+msj+"'" %>);
-        </script>
+        <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" type="text/css">
+        <script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script> 
+        <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>   
     </head>
-    <body onload="menu1.escribeacordeon('menu',22,5);">
+    <body>
          
 
         
