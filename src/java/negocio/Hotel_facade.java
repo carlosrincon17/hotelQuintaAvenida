@@ -236,7 +236,7 @@ public class Hotel_facade {
     
     public String getRoles(){
     
-    String msj ="<select name='misroles' size='5' id='rol' >";
+    String msj =" < select name='misroles' size='5' id='rol' > ";
     ArrayList<Rol_DTO> roles = Rol_negocio.readAll();
     for(Rol_DTO rol: roles){
     
