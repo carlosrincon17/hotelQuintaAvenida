@@ -3,7 +3,7 @@
     Created on : 01-ago-2012, 0:00:00
     Author     : CONNORS
 --%>
-
+<%-- nueva interfaz en modulo roles--%>
 <%@page import="com.sun.xml.internal.bind.v2.model.core.ID"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
