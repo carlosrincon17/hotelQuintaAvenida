@@ -920,6 +920,7 @@ public class Hotel_facade {
     
     public String editarEmpleado(String cedula, String funcion, String telefono, String correo, String direccion, String seguro){
     
+        System.out.println("serguroo "+ seguro);
         boolean ok = Empleado_negocio.editarEmpleado(cedula,funcion,telefono,correo,direccion,seguro);
         String msj = "No se pudo Actualizar los datos del empleado";
         if(ok) msj = "Información actualizada exitosamente";

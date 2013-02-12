@@ -16,6 +16,11 @@ public class Empleado_DTO extends Persona_DTO{
     public Empleado_DTO() {
         super();
     }
+
+    @Override
+    public String toString() {
+        return "Empleado_DTO{" + "numeroSS=" + numeroSS + ", funcion=" + funcion + ", estado=" + estado + '}';
+    }
     
     public Empleado_DTO(String documento){
         super(documento);

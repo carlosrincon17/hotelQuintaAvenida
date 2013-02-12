@@ -117,7 +117,7 @@
                                 <div class="control-group">
                                     <label class="control-label" for="inputNumero_ss">No. Seguridad Social: </label>
                                 <div class="controls">
-                                <input type="text" id="inputNumero_ss" name="numero_ss" value="<%= seguro %>" required>
+                                <input type="text" id="inputNumero_ss" name="seguro" value="<%= seguro %>" required>
                                 </div></div>
 
                                 <div class="control-group">
