@@ -620,17 +620,17 @@ public class Hotel_facade {
     
     private String imprimirReservaHabitacion(ReservaHabitacion_DTO reserva){
         String msj="";
-        msj+="<table>";
+        msj+="<table  class='table table-hover'>";
         msj+="<thead>Reserva: "+reserva.getId()+"</thead>"+
               "<tr><td>Cliente: </td><td>"+reserva.getCliente().getNombre()+" "+reserva.getCliente().getApellido()+"</td></tr>"+   
               "<tr><td>Cedula: </td><td>"+reserva.getCliente().getDocumento()+"</td></tr>"+  
               "<tr><td>Fecha Reserva: </td><td>"+reserva.getFechareserva().toGMTString()+"</td></tr>"+
               "<tr><td>Habitacion Reservada: </td><td>"+reserva.getHabitacion().getNumero()+"</td></tr>"+
               "<tr><td></td><td><a href='cancelarReserva.jsp?reserva="+
-                    reserva.getId()+"' title='ver reservas' name=''> <img src='../../imagen/cancel.png' title='Cancelar Reserva'/></a></td></tr>"+
+                    reserva.getId()+"' title='ver reservas' name=''> <i class='icon-remove'></i></a></td></tr>"+
               "<tr><td></td><td><a href='../gestionarHospedajes/guardarHospedaje.jsp?habitacion="+
                     reserva.getHabitacion().getNumero()+"&cliente="+reserva.getCliente().getDocumento()+"' title='ver reservas' name=''>"+
-                " <img src='../../imagen/enable.gif' title='Confirmar Reserva - Hospedar'/></a></td></tr>";      
+                " <i class='icon-ok'></i></a></td></tr>";      
         msj+="</table>";
         msj+="<br>";
         return msj;        
