@@ -1,0 +1,41 @@
+/* 
+    Document   : fichaUsuario
+    Created on : 12-feb-2013, 15:27:50
+    Author     : CONNORS
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.page-header{
+    
+    color: white;
+    text-shadow: 3px 3px rgba(0,0,0,0.7);
+    -moz-box-shadow: -3px 3px 3px #4a4a4a;
+    -webkit-box-shadow: -3px 3px 3px #4a4a4a;
+    box-shadow: -3px 5px 5px #4a4a4a;
+    margin-top: -12px;
+    padding-top: 30px;
+    height: 75px;
+    width: 100%;
+    display: block;
+    line-height: 75px;
+    background-color: #0088cc;
+    float: left;
+}
+
+.page-header h1{
+    
+    margin-left: 30px;
+}
+
+.boton{
+    
+    top: 37px;
+    right: 30px;
+    position: absolute;
+    width: 100px;
+}

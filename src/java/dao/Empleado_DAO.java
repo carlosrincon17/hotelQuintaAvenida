@@ -88,6 +88,8 @@ public class Empleado_DAO {
     
     public static boolean update(Empleado_DTO empleado) throws Exception{
     
+        System.err.println("\n\n\npor aqui debe pasar becerrooooooo");
+        System.out.println(empleado.toString());
         String sql = "UPDATE empleado SET NumeroSS = ?, id_funcion = ? WHERE id_empleado = ?";
         Object[] p = new Object[3];
         p[0] = empleado.getNumeroSS();

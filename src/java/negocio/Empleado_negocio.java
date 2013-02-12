@@ -21,7 +21,7 @@ public class Empleado_negocio {
             ArrayList<String> funciones = Funcion_empleado_DAO.getFunciones();
             String msj = "";
             for(String m: funciones){
-                msj+="<option>"+m+"</option>";
+                msj+="<option value='"+Funcion_empleado_DAO.getIdPorNombre(m) +"'>"+m+"</option>";
                 System.out.println(m);
             }
             return msj;
