@@ -71,9 +71,11 @@
                            <legend>Editar Privilegios</legend>
                         
                                 <div class="control-group"> 
-                                    <label class="control-label" for="nombre">Seleccione un rol: </label>
+                                    <label class="control-label" for="rol">Seleccione un rol: </label>
                                 <div class="controls">
+                                    <select name='misroles' size='5' id='rol' >
                                 <%= fachada.getRoles() %>
+                                </select>
                                 </div></div>
 
                                 
@@ -85,7 +87,7 @@
                 </form>
             </div>
         </div>
-        </div>
+        
           
     </body>
 </html>
