@@ -411,7 +411,7 @@ public class Hotel_facade {
         ArrayList<Articulo_DTO> lista = Articulo_negocio.listar();
         String msj= "";
         
-        msj+="<table id='example' class='display'>";
+        msj+="<table class='table table-hover'>";
             msj+="<thead>";
                 msj+="<tr>";
                     msj+="<th>Nombre</th>";
@@ -426,12 +426,12 @@ public class Hotel_facade {
                     msj+="<td>"+x.getNombre()+"</td>";
                     msj+="<td>"+x.getPrecio()+"</td>";
                     msj+="<td>"+x.getCantidad()+"</td>";
-                    msj+="<td><a onclick='cambiarHabitacion(this)'title='Agregar cantidad' href='#' name='form_agregar_articulo.jsp?articulo="+x.getId()+"&nombre="+x.getNombre()+"' ><img src='../../imagen/add.png' alt='Agregar Cantidad' /></a></td>";
+                    msj+="<td><a onclick='cambiarHabitacion(this)'title='Agregar cantidad' href='#' name='form_agregar_articulo.jsp?articulo="+x.getId()+"&nombre="+x.getNombre()+"' ><i class='icon-plus'></i></a></td>";
                    
                 msj+="</tr>";
             }
             msj+="</tbody>";
-        msj+="</table><br><br>";
+        msj+="</table>";
         
         return msj;
     }
@@ -547,7 +547,7 @@ public class Hotel_facade {
     public String getListaServicios(){
         ArrayList<Servicio_DTO> lista = Servicio_negocio.listar();
         String msj="";
-        msj+="<table id='example' class='display'>";
+        msj+="<table class='table table-hover'>";
             msj+="<thead>";
                 msj+="<tr>";
                     msj+="<th>Servicio</th>";
@@ -560,7 +560,7 @@ public class Hotel_facade {
             msj+="<tr>";
                     msj+="<td>"+x.getTipo()+"</td>";
                     msj+="<td>"+x.getPrecio()+"</td>";
-                    msj+="<td><a href='#' onclick='cambiarHabitacion(this)' name='form_editar_servicio.jsp?tipo="+x.getTipo()+"&precio="+x.getPrecio()+"'><img src='../../imagen/edit.png' title='Modificar Servicio' /></a></td>";
+                    msj+="<td><a href='#' onclick='cambiarHabitacion(this)' name='form_editar_servicio.jsp?tipo="+x.getTipo()+"&precio="+x.getPrecio()+"'><i class='icon-edit'></i></a></td>";
                    
                 msj+="</tr>";
             }
