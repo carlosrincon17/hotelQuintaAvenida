@@ -85,6 +85,10 @@
                             </div>
                     </fieldset>
                 </form>
+                                
+                                <div id="bloqueB" class="bloqueB">
+                            
+                        </div>
             </div>
         </div>
         

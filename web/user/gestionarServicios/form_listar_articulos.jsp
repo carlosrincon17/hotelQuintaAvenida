@@ -68,6 +68,9 @@
           
                <h2>Lista de Articulos </h2>
               <%=fachada.getListaArticulos()%>
+              <div class="bloqueB" id="bloqueB">
+                    
+                </div>
          </div>
         </div>
      </body>
