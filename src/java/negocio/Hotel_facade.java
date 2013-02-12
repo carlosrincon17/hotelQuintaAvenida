@@ -176,7 +176,7 @@ public class Hotel_facade {
         ArrayList<Privilegio_DTO> comportamientos = Privilegio_negocio.readAll();
         for(Privilegio_DTO p: comportamientos ){
         
-            msj+="<label><input type='checkbox' name='privilegio' value='"+p.getId()+
+            msj+="<label class='checkbox inline'><input type='checkbox' name='privilegio' value='"+p.getId()+
                     "' />"+p.getNombre()+"</label>";
         }
         msj+="<br><br>";
@@ -236,7 +236,7 @@ public class Hotel_facade {
     
     public String getRoles(){
     
-    String msj ="<select name='misroles' size='5' id='rol'>";
+    String msj ="<select name='misroles' size='5' id='rol' >";
     ArrayList<Rol_DTO> roles = Rol_negocio.readAll();
     for(Rol_DTO rol: roles){
     

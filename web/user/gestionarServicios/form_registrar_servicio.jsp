@@ -69,7 +69,7 @@
                            <legend>Editar Servicio</legend>
                         
                                 <div class="control-group">
-                                    <label class="control-label" for"tipo">Tipo: </label>
+                                    <label class="control-label" for="tipo">Tipo: </label>
                                 <div class="controls">
                                 <input type="text" id="tipo" name="tipo" value="" required>
                                 </div></div>
