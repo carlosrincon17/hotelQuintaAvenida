@@ -158,7 +158,7 @@ public class ReservaSalon_DAO {
         ArrayList<ReservaSalon_DTO> reservas = new ArrayList<>();
         //String sql="select * from reserva where id_cliente='"+cliente.getDocumento()+"'";
         String sql = "select * from reserva inner join reserva_salon on reserva.id_reserva="
-                + "reserva_salon.id_reserva_salon where reserva.id_cliente = ? and estado'Espera'";
+                + "reserva_salon.id_reserva_salon where reserva.id_cliente = ? and reserva.activa='1'";
 
         Object[] p = new Object[1];
         p[0] = cliente.getDocumento();

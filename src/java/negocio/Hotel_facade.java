@@ -1060,7 +1060,9 @@ public class Hotel_facade {
     public String getReservaSalonesByID(String cedula){
         
     ArrayList<ReservaSalon_DTO> reservas= Reserva_Salon_negocio.getReservasByID(cedula);
-    if(reservas.isEmpty()) return "No Existen Salones Reservados para este cliente";
+    if(reservas.isEmpty()) {
+            return "No Existen Salones Reservados para este cliente";
+        }
         String msj="";
         for(ReservaSalon_DTO reserva:reservas){
             msj+=imprimirReservaSalon(reserva);
