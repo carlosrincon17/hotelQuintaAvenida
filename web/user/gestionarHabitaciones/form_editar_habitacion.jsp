@@ -11,11 +11,30 @@
         String habitacion = request.getParameter("habitacion");
 %>
                     <div class="separador"><p>Editar una habitación</p></div><br>
-                    <form action="editar_habitacion.jsp">
-                        <p>Habitacion: <input type="text" name="habitacion" value="<%=habitacion%>"  required/></p>
-                        <p>Tipo: <select name="tipo">
-                        <%=fachada.getTipoHabitacionListaHTML(habitacion)%>
-                         </select></p>
-                        <input type="submit" value="Guardar cambios" name="guardar" /><br><br>
-                    </form>
+                                   <form class="form-horizontal"name="roles" action="#">
+                   <fieldset>
+                           <legend>Editar una habitacion</legend>
+
+                            
+                            <div class="control-group">
+                                    <label class="control-label" for="estado">Habitacion: </label>
+                                <div class="controls">
+                                <input type="text" name="habitacion" value="<%=habitacion%>"  required/>
+                                </div></div>
+                        
+                                <div class="control-group">
+                                    <label class="control-label" for="estado">Habitacion: </label>
+                                <div class="controls">
+                                <select name="tipo">
+                                <%=fachada.getTipoHabitacionListaHTML(habitacion)%>
+                                </select>
+                                </div></div>
+
+                                
+
+                            <div class="form-actions">
+                            <button type="submit" name="guardar" class="btn" >Registrar</button>
+                            </div>
+                    </fieldset>
+                </form>
 

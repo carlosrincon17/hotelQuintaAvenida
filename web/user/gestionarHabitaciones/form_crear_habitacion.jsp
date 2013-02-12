@@ -45,7 +45,7 @@
                 
                 supermenu+="<ul class= 'nav nav-pills'>";
                     supermenu+="<li class='active'>";
-                        supermenu+="<a href='#'>Home</a>";
+                        supermenu+="<a href='../../user/usuario/fichaUsuario.jsp'>Home</a>";
                     supermenu+= "</li>";
                     for(String[] modulo : menubt){
                         supermenu+="<li class='dropdown'>";
