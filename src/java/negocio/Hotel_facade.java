@@ -1022,8 +1022,9 @@ public class Hotel_facade {
             "<td>" + fecha + "</td>"+
             "<td><a href='#' title='ver reservas' name='terminarHospedaje.jsp?hospedaje="+hospedaje.getID()+""+
             "&habitacion="+hospedaje.getHabitacion().getNumero()+"' onclick=verReservas(this)><i class='icon-edit'></i></a>"+
-              "</td><td><a href='#' title='ver reservas' name='agregarServicios.jsp?hospedaje="+hospedaje.getID()+"' onClick=verReservas(this)>"+     
-             "<i class='icon-edit'></i></a></td></tr>";
+              "<a href='#' title='ver reservas' name='agregarServicios.jsp?hospedaje="+hospedaje.getID()+"' onClick=verReservas(this)>"+     
+             "<i class='icon-th-list'></i></a><a href='#' title='ver reservas' name='agregarServicio.jsp?hospedaje="+hospedaje.getID()+"' onClick=verReservas(this)>"+     
+             "<i class=' icon-plus'></i></a></td></tr>";
         }
         return msj+="</tbody></table>";
     }
@@ -1134,4 +1135,17 @@ public class Hotel_facade {
         return Habitacion_negocio.cargarServicios(habitacion);
     }
     
+    public String getListaServiciosOption(){
+        ArrayList<Servicio_DTO> servicios= Servicio_negocio.listar();
+        String msj="<select name='servicio'>";
+        for(Servicio_DTO ser:servicios){
+            msj+="<option value='"+ser.getId()+"'>"+ser.getTipo()+"</option>";
+        }
+        return msj+="</select></p>";        
+        
+    }
+    
+    public String agregarServicio(String hospedaje, String servicio, String cantidad, Date fecha )throws Exception{
+        return ServicioHabitacion_negocio.agregarServicio(hospedaje, servicio, cantidad, fecha);
+    }
 }
