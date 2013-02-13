@@ -79,7 +79,7 @@
                                 <div class="control-group">
                                    <label class="control-label" for ="fecha">Fecha de reserva: </label>
                                <div class="controls">
-                                <input readonly="readonly" id="text" type="text" name="fecha"/>
+                                <input readonly="readonly" id="text" type="text" name="text"/>
         <img src="../../imagen/calendar.png" onclick="scwShow(scwID('text'),event);"/>
                                 </div></div>
                            
