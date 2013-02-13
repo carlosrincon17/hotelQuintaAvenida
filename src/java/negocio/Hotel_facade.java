@@ -1022,11 +1022,12 @@ public class Hotel_facade {
             "<td>" + fecha + "</td>"+
             "<td><a href='#' title='ver reservas' name='terminarHospedaje.jsp?hospedaje="+hospedaje.getID()+""+
             "&habitacion="+hospedaje.getHabitacion().getNumero()+"' onclick=verReservas(this)><i class='icon-edit'></i></a>"+
-              "</td><td><a href='#' title='ver reservas' name='agregarServicio.jsp=?hospedaje="+hospedaje.getID()+"' onClick='verReservas(this)'>"+     
+              "</td><td><a href='#' title='ver reservas' name='agregarServicios.jsp?hospedaje="+hospedaje.getID()+"' onClick=verReservas(this)>"+     
              "<i class='icon-edit'></i></a></td></tr>";
         }
         return msj+="</tbody></table>";
     }
+    
     public String terminarHospedaje(int hospedaje, int habitacion){
     
     String x=Hospedaje_negocio.terminarHospedaje(hospedaje, habitacion);    
