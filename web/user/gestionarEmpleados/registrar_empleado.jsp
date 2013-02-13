@@ -30,14 +30,14 @@
     </head>
     <body>
         <%
+                    String cedula = request.getParameter("cedula");
                     String nombre = request.getParameter("nombre");
                     String apellido = request.getParameter("apellido");
-                    String cedula = request.getParameter("cedula");
-                    String fecha_nto = request.getParameter("fecha_nto");
-                    String numero_ss = request.getParameter("numero_ss");
+                    String fecha_nto = request.getParameter("fechaNto");
+                    String correo = request.getParameter("correo");
                     String direccion = request.getParameter("direccion");
                     String telefono = request.getParameter("telefono");
-                    String correo = request.getParameter("correo");
+                    String numero_ss = request.getParameter("numero_ss");
                     String funcion = request.getParameter("funcion");
                     %>
 <div class="container" >

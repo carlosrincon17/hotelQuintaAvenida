@@ -25,11 +25,13 @@ public class Persona_DAO {
         p[3] = persona.getCorreo();
         p[4] = persona.getDireccion();
         p[5] = persona.getTelefono();
-        p[6] = persona.getFechaInscripcion();
-        p[7] = persona.getFechaNacimiento();
+        p[6] = persona.getFechaNacimiento();
+        p[7] = persona.getFechaInscripcion();
         
-        if(BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p))
-            return Usuario_DAO.create(persona);
+        System.err.println(persona.toString());
+        
+        if(BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p)){
+            return Usuario_DAO.create(persona);}
         return false;
     }
     
