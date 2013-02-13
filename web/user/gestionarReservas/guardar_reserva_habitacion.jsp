@@ -44,6 +44,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Reservar habitacion</title>
          <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" type="text/css">
+         <link rel="stylesheet" href="../../css/fichaUsuario.css" />
         <script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script> 
         <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>    
     </head>
@@ -71,7 +72,7 @@
         if(mes.equals("Septiembre")) return 9;
         if(mes.equals("Octubre")) return 10;
         if(mes.equals("Noviembre")) return 11;
-        if(mes.equals("Diciembre")) return 12;
+        if(mes.equals("Dicimbre")) return 12;
         return 0;
                }
     %>

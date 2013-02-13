@@ -26,6 +26,7 @@
         
         <title>Registrar MiniBar - Hotel Quinta Avenida</title>
         <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="../../css/fichaUsuario.css" />
         <script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script> 
         <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
     </head>
