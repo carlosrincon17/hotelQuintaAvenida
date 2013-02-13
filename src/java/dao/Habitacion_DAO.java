@@ -15,18 +15,17 @@ import util.BaseDeDatos;
  */
 public class Habitacion_DAO {
     
-    
     public static boolean create(Habitacion_DTO myHab) throws Exception{
         /*
           prubea de setear un null en la base de datos
          */
+        System.err.println(myHab.toString());
         int id_tipo = Tipo_habitacion_DAO.getIdPorNombre(myHab.getTipo());
         int id_estado = Estado_habitacion_DAO.getIdporNombre("libre");
-        String sql="INSERT INTO habitacion (id_habitacion ,id_tipo ,estado) VALUES (?, ? ,?)";
-        Object[] p = new Object[4];
+        String sql="INSERT INTO habitacion (id_habitacion ,id_tipo ,estado) VALUES (?, ? ,1)";
+        Object[] p = new Object[2];
         p[0] = myHab.getNumero();
         p[1] = id_tipo;
-        p[2] = id_estado;
         return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p);
     }
     
