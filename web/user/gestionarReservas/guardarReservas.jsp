@@ -21,18 +21,17 @@
         }
         String rol = (String)sesion.getAttribute("rol");
         String id = (String)sesion.getAttribute("id");
-        
-        
+        String msj = (String)sesion.getAttribute("htmlmenu"); 
+
         String idEmpleado=id;
         String idSalon=request.getParameter("salon");
-        String fechaReserva=hallarFecha(request.getParameter("fecha"));
+        String fechaReserva=hallarFecha(request.getParameter("text"));
         java.util.Date fechaActual=new Date();
         int abono=Integer.parseInt(request.getParameter("abono"));
         String idCliente=request.getParameter("cliente");
         int hora=Integer.parseInt(request.getParameter("hora"));
-        String msj = (String)sesion.getAttribute("htmlmenu"); 
         int duracion=Integer.parseInt(request.getParameter("duracion"));
-        String descripcion= request.getParameter("descripion");
+        String descripcion= request.getParameter("descripcion");
         String z="";
         
         
@@ -56,7 +55,6 @@
         
         <%!
         public String hallarFecha(String x){
-        System.err.print(x);
         String fechas[]= x.split(" ");
         return fechas[2]+"-"+hallarMes(fechas[1])+"-"+fechas[0];  
         }    
