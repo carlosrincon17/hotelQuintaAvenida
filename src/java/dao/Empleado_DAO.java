@@ -18,6 +18,9 @@ public class Empleado_DAO {
     
 
     public static boolean create(Empleado_DTO empleado) throws Exception {
+        
+        
+        //System.err.println("Datos del empleado -> " +empleado.toString());
 
         int id_funcion = Funcion_empleado_DAO.getIdPorNombre(empleado.getFuncion());
         String sql = "INSERT INTO empleado VALUES (?,?,?,?)";

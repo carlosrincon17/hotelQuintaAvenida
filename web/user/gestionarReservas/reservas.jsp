@@ -33,11 +33,11 @@
         <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>   
     </head>
     <body>
-<div class="container" >
+
             <div class="page-header">
                 <h1>Hotel Quinta Avenida</h1>
             </div>
-            
+            <div class="container" >
                 <%
                 ArrayList<String[]> menubt = (ArrayList<String[]>)sesion.getAttribute("modulos");
                 String supermenu = "";
@@ -79,7 +79,7 @@
                                 <div class="control-group">
                                    <label class="control-label" for ="fecha">Fecha de reserva: </label>
                                <div class="controls">
-                                <input readonly="readonly" id="text" type="text" name="fecha"/>
+                                <input readonly="readonly" id="text" type="text" name="text"/>
         <img src="../../imagen/calendar.png" onclick="scwShow(scwID('text'),event);"/>
                                 </div></div>
                            

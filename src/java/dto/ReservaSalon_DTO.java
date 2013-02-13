@@ -98,6 +98,11 @@ public class ReservaSalon_DTO extends Reserva_DTO {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    @Override
+    public String toString() {
+        return "ReservaSalon_DTO{" + "abonoReserva=" + abonoReserva + ", salon=" + salon + ", descripcion=" + descripcion + ", pago=" + pago + ", duracion=" + duracion + ", hora=" + hora + ", total=" + total + '}';
+    }
     
     
     

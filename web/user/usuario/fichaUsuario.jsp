@@ -71,8 +71,8 @@
                 <div class="centrao">       
          <%=supermenu%>
          </div>  
-                <h1>Esto es una plantilla de prueba</h1>
-                <h2>asi que no jodan!</h2>
+                <h1>Bienvenido</h1>
+                <h2>al Hotel Quinta Avenida</h2>
             </div>
     </body>
 </html>

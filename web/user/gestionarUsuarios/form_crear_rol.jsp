@@ -38,7 +38,7 @@
             <div class="page-header">
                 <h1>Hotel Quinta Avenida</h1>
             </div>
-            
+             <div class="container" >
                 <%
                 ArrayList<String[]> menubt = (ArrayList<String[]>)sesion.getAttribute("modulos");
                 String supermenu = "";
@@ -66,7 +66,7 @@
                 %>
                 <%=supermenu%>
                 
-            <div class="container" >
+           
                <form class="form-horizontal" name="creaRol.jsp" action="creaRol.jsp">
                    <fieldset>
                            <legend>Crear rol</legend>
@@ -86,7 +86,9 @@
                                 <div class="control-group">
                                     <label class="control-label" for="descripcion">Privilegios: </label>
                                 <div class="controls">
+                                <div class="row">
                                 <%=fachada.cargarComportamientos() %>
+                                </div>
                                 </div></div>
 
                             <div class="form-actions">

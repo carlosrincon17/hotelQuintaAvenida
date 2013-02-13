@@ -37,11 +37,11 @@
         String tipo = request.getParameter("tipo");
         String msg = fachada.editarHabitacion(habitacion,tipo);
 %>
-<div class="container" >
+
             <div class="page-header">
                 <h1>Hotel Quinta Avenida</h1>
             </div>
-            
+            <div class="container" >
                 <%
                 ArrayList<String[]> menubt = (ArrayList<String[]>)sesion.getAttribute("modulos");
                 String supermenu = "";

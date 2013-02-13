@@ -40,11 +40,11 @@
         String direccion = request.getParameter("direccion");
         String seguro = request.getParameter("seguro");  
 %>
-                <div class="container" >
+               
             <div class="page-header">
                 <h1>Hotel Quinta Avenida</h1>
             </div>
-            
+             <div class="container" >
                 <%
                 ArrayList<String[]> menubt = (ArrayList<String[]>)sesion.getAttribute("modulos");
                 String supermenu = "";

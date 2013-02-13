@@ -34,11 +34,11 @@
         <%
                     String id_minibar = request.getParameter("id_minibar");
                     %>
- <div class="container" >
+ 
             <div class="page-header">
                 <h1>Hotel Quinta Avenida<small> aqui deberia ir un mensaje</small></h1>
             </div>
-            
+            <div class="container" >
                 <%
                 ArrayList<String[]> menubt = (ArrayList<String[]>)sesion.getAttribute("modulos");
                 String supermenu = "";
