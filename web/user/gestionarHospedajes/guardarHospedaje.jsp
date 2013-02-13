@@ -35,11 +35,11 @@
    
     </head>
     <body >
-       <div class="container" >
+       
             <div class="page-header">
                 <h1>Hotel Quinta Avenida</h1>
             </div>
-            
+            <div class="container" >
                 <%
                 ArrayList<String[]> menubt = (ArrayList<String[]>)sesion.getAttribute("modulos");
                 String supermenu = "";
