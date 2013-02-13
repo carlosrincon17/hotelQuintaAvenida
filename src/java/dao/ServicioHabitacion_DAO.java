@@ -20,7 +20,7 @@ public class ServicioHabitacion_DAO {
 
     public static ArrayList<ServicioHabitacion_DTO> getServicios(Habitacion_DTO myHab) throws Exception {
         
-        String sql="Select fecha, total, cantidad, id_servicio from habitacion where id_habitacion=?";
+        String sql="Select fecha, total, cantidad, id_servicio from servicio_hospedaje where id_hospedaje=?";
         Object[] p = new Object[1];
         p[0] = myHab.getNumero();
         ResultSet rs= BaseDeDatos.getInstance().ejecutarSQL(sql,p);

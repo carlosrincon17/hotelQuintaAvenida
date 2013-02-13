@@ -19,6 +19,7 @@ public class ServicioHabitacion_negocio {
     public static ArrayList<ServicioHabitacion_DTO> getServicios(Habitacion_DTO myHab) throws Exception {
         
         ArrayList<ServicioHabitacion_DTO> myServicios= ServicioHabitacion_DAO.getServicios(myHab);
+        System.out.print("Aca funciona esta maricada");
         return myServicios;
         
         
