@@ -78,7 +78,7 @@
                 
                 supermenu+="<ul class= 'nav nav-pills'>";
                     supermenu+="<li class='active'>";
-                        supermenu+="<a href='#'>Home</a>";
+                        supermenu+="<a href='../../user/usuario/fichaUsuario.jsp'>Home</a>";
                     supermenu+= "</li>";
                     for(String[] modulo : menubt){
                         supermenu+="<li class='dropdown'>";
@@ -98,7 +98,7 @@
                 supermenu+= "</ul>";
                 %>
                 <%=supermenu%>
-                <h1>Informe de reservas de Salones</h1>
+                <h1>Grafica de hospedajes realizados el ultimo mes</h1>
                 <div id="chart_div"></div>
                 
         </div>
