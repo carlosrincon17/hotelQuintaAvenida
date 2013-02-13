@@ -21,7 +21,7 @@ public class Empleado_negocio {
             ArrayList<String> funciones = Funcion_empleado_DAO.getFunciones();
             String msj = "";
             for(String m: funciones){
-                msj+="<option value='"+Funcion_empleado_DAO.getIdPorNombre(m) +"'>"+m+"</option>";
+                msj+="<option>"+m+"</option>";
                 System.out.println(m);
             }
             return msj;
@@ -47,7 +47,7 @@ public class Empleado_negocio {
         try {
             return Empleado_DAO.create(new Empleado_DTO(nombre, apellido, cedula, direccion,  fecha_nto, telefono, correo,numero_ss, funcion));
         } catch (Exception ex) {
-            System.err.println("error, no se pudo registrar empleado");     
+            System.err.println("error, no se pudo registrar empleado");    
             Logger.getLogger(Empleado_negocio.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }

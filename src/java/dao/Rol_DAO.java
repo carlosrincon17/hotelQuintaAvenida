@@ -47,6 +47,7 @@ public class Rol_DAO {
         if (rs.next()) {
             i = rs.getInt(1);
         }
+        System.err.println("aqui estas hijo de puta");
         return i;
     }
     
@@ -80,9 +81,10 @@ public class Rol_DAO {
         
         boolean sePudo = true;
         if (BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, pa)) { 
+            
             sql = "DELETE FROM privilegio WHERE id_rol = ?";
             Object[] s = new Object[1];
-            s[0] = nuevo.getNombre();
+            s[0] = nuevo.getId();
             if (!BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, s)) {
                 sePudo = false;
             }
@@ -100,7 +102,7 @@ public class Rol_DAO {
     
     public static boolean crearRol(Rol_DTO nuevo) throws Exception{
      
-        String sql = "INSERT INTO rol VALUES (?, ?)";
+        String sql = "INSERT INTO rol (nombre,descripcion) VALUES (?,?)";
         Object[] x = new Object[2];
         x[0] = nuevo.getNombre();
         x[1] = nuevo.getDescripcion();
@@ -108,8 +110,8 @@ public class Rol_DAO {
         boolean sePudo = true;
         
         if(BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, x)){
-            Funcion_empleado_DAO.crear(nuevo);    
             nuevo.setId(Rol_DAO.getIdRol(nuevo));
+            Funcion_empleado_DAO.crear(nuevo);
 
             for(Privilegio_DTO p : nuevo.getPrivilegios()){
                 if(!asignarPrivilegioARol(p,nuevo))

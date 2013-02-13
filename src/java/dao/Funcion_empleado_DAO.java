@@ -93,9 +93,10 @@ public class Funcion_empleado_DAO {
     public static boolean crear(Rol_DTO rol) throws Exception{
     
         //String sql="INSERT INTO funcion_empleado (nombre) VALUES ( '"+rol.getNombre()+"')";
-        String sql = "INSERT INTO funcion_empleado (nombre) VALUES (?)";
-        Object[] p = new Object[1];
-        p[0] = rol.getNombre();
+        String sql = "INSERT INTO funcion_empleado VALUES (?,?)";
+        Object[] p = new Object[2];
+        p[0] = rol.getId();
+        p[1] = rol.getNombre();
         return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p);
     }
     
