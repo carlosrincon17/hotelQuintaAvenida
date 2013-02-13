@@ -571,7 +571,8 @@ public class Hotel_facade {
     
     public String crearSalon(int capacidad, float precio, String nombre, String estado){
         
-        if (Salon_negocio.registrar(nombre,precio,capacidad,estado)) return "Salon Registrado Exitosamente";  
+        if (Salon_negocio.registrar(nombre,precio,capacidad,estado)) 
+            return "Salon Registrado Exitosamente";  
  
         return "Error en el registro del Salon";
     }

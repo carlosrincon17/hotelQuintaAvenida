@@ -77,21 +77,26 @@
                                 </div></div>
 
                                 <div class="control-group">
-                                   <label class="control-label" for ="cliente">Fecha de reserva: </label>
+                                   <label class="control-label" for ="fecha">Fecha de reserva: </label>
                                <div class="controls">
                                 <input readonly="readonly" id="text" type="text" name="fecha"/>
         <img src="../../imagen/calendar.png" onclick="scwShow(scwID('text'),event);"/>
                                 </div></div>
                            
                            <div class="control-group">
-                                   <label class="control-label" for ="cliente">Seleccione Salon: </label>
+                                   <label class="control-label" for ="salon">Seleccione Salon: </label>
                                <div class="controls">
                                 <%=fachada.cargarListaSalones()%>
                                 </div></div>
                                 
+                                <div class="control-group">
+                                    <label class="control-label" for="abono">Abono: </label>
+                                <div class="controls">
+                                 <input type="text" id="abono" name="abono"/>
+                                </div></div>
 
                                 <div class="control-group">
-                                   <label class="control-label" for ="cliente">Hora de reserva: </label>
+                                   <label class="control-label" for ="hora">Hora de reserva: </label>
                                <div class="controls">
                                 <select name="hora">
         <option value="6"> 6 a.m </option>
@@ -114,9 +119,9 @@
                                 </div></div>
                             
                             <div class="control-group">
-                                   <label class="control-label" for ="cliente">Fecha de reserva: </label>
+                                   <label class="control-label" for ="duracion">Fecha de reserva: </label>
                                <div class="controls">
-                                <select name="hora">
+                                <select name="duracion">
       <option value="1">1 hora</option>
         <option value="2">2 horas</option>
         <option value="3">3 horas</option>
