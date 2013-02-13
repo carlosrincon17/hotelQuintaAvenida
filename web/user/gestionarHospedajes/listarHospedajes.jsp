@@ -74,11 +74,7 @@
             <div class="bloqueB"></div>
             </div>
             </div>
-            
-            <div id="bloqueB" class="container">
-                
         </div>
-</div>
     </body>
 </html>
 
