@@ -22,8 +22,8 @@ public class Reserva_DAO {
 
         /*
          este metodo me parece que tiene mal la consulta comentariada
-         
          */
+        
         java.util.Calendar algo;
         String fecha1 = fechaReserva;
         Date hoy = new Date();
@@ -87,7 +87,7 @@ public class Reserva_DAO {
 
     
     public static boolean cancelarReserva(String idReserva) throws Exception{
-        String sql= "Update reserva set estado='Cancelada' where id_reserva = ?";
+        String sql= "Update reserva set activa=0 where id_reserva = ?";
          Object[] p = new Object[1];
         p[0] = idReserva;
         return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p);

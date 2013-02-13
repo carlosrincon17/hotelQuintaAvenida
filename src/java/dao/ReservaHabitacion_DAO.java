@@ -81,7 +81,7 @@ public class ReservaHabitacion_DAO {
        Object[] p = new Object[3];
        p[0] = id;
        p[1] = reserva.getHabitacion().getNumero();
-       p[0] = reserva.getDescripcion();
+       p[2] = reserva.getDescripcion();
        return(BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p));
     }
 

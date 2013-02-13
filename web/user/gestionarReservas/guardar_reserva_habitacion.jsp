@@ -26,7 +26,7 @@
         
         
         String idHabitacion=request.getParameter("habitacion");
-        String fechaReserva=hallarFecha(request.getParameter("fecha"));
+        String fechaReserva=hallarFecha(request.getParameter("text"));
         java.util.Date fechaActual=new Date();
         String idCliente=request.getParameter("cliente");
         String idEmpleado=id;
