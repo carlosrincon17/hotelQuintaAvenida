@@ -10,6 +10,7 @@
 <jsp:useBean id="fachada" scope="page" class="negocio.Hotel_facade" />
     <html>
 <head> 
+    <%-- cambio algo--%>
 <%
         HttpSession sesion=request.getSession(); 
         
