@@ -27,14 +27,15 @@ public class Servicio_DAO {
     
     public static ArrayList<Servicio_DTO> getAll() throws Exception {
 
-        String sql = "select tipo,precio from servicio";
+        String sql = "select id_servicio, tipo,precio from servicio";
         ResultSet rs = BaseDeDatos.getInstance().ejecutarSQL(sql, null);
         ArrayList<Servicio_DTO> lista = new ArrayList<>();
 
         while (rs.next()) {
             Servicio_DTO nuevo = new Servicio_DTO();
-            nuevo.setTipo(rs.getString(1));
-            nuevo.setPrecio(rs.getFloat(2));
+            nuevo.setTipo(rs.getString(2));
+            nuevo.setPrecio(rs.getFloat(3));
+            nuevo.setId(rs.getString(1));
             lista.add(nuevo);
         }
 

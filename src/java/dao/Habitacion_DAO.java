@@ -147,23 +147,28 @@ public class Habitacion_DAO {
         //String sql= "Select precio from tipo_habitacion where id_tipo=(Select id_tipo from habitacion"
         //       +" where id_habitacion="+habitacion.getNumero()+")";
         String sql = "Select precio from tipo_habitacion where id_tipo=(Select id_tipo from habitacion"
-                + " where id_habitacion= ?";
+                + " where id_habitacion= ?)";
 
         Object[] p = new Object[1];
         p[0] = habitacion.getNumero();
         ResultSet rs = BaseDeDatos.getInstance().ejecutarSQL(sql, p);
-
+        try{
         if (rs.next()) {
             if (cambiar(habitacion.getNumero())) {
                 return rs.getInt(1);
             }
+        }
+        
+        }
+        catch(Exception e){
+           return -1; 
         }
         return -1;
     }
 
     
     private static boolean cambiar(String habitacion) throws Exception{
-        String Sql= "Update habitacion set id_estado=1 where id_habitacion = ?";
+        String Sql= "Update habitacion set estado=1 where id_habitacion = ?";
         Object[] p = new Object[1];
         p[0] = habitacion;
         return BaseDeDatos.getInstance().ejecutarActualizacionSQL(Sql, p);
