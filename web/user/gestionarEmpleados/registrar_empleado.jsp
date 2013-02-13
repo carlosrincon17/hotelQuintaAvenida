@@ -22,7 +22,7 @@
         String msj = (String)sesion.getAttribute("htmlmenu");       
 %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" type="text/css">
         <script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script> 
         <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
         <title>JSP Page</title>
@@ -30,19 +30,19 @@
     </head>
     <body>
         <%
+                    String cedula = request.getParameter("cedula");
                     String nombre = request.getParameter("nombre");
                     String apellido = request.getParameter("apellido");
-                    String cedula = request.getParameter("cedula");
-                    String fecha_nto = request.getParameter("fecha_nto");
-                    String numero_ss = request.getParameter("numero_ss");
+                    String fecha_nto = request.getParameter("fechaNto");
+                    String correo = request.getParameter("correo");
                     String direccion = request.getParameter("direccion");
                     String telefono = request.getParameter("telefono");
-                    String correo = request.getParameter("correo");
+                    String numero_ss = request.getParameter("numero_ss");
                     String funcion = request.getParameter("funcion");
                     %>
 <div class="container" >
             <div class="page-header">
-                <h1>Hotel Quinta Avenida<small> aqui deberia ir un mensaje</small></h1>
+                <h1>Hotel Quinta Avenida</h1>
             </div>
             
                 <%

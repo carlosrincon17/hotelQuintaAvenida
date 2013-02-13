@@ -16,6 +16,7 @@ public class Habitacion_DTO {
     private float precio;
     private String tipo;
     private Minibar_DTO minibar;
+    private ArrayList<ServicioHabitacion_DTO> myServicios;
 
     public Habitacion_DTO(String estado, String numero, float precio, String tipo) {
         this.estado = estado;
@@ -23,12 +24,15 @@ public class Habitacion_DTO {
         this.precio = precio;
         this.tipo = tipo;
         this.minibar= null;
+        this.myServicios= new ArrayList<>();
+        
 
     }
 
     public Habitacion_DTO(String numero, String tipo) {
         this.tipo = tipo;
         this.numero = numero;
+        this.myServicios= new ArrayList<>();
     }
 
     
@@ -36,9 +40,11 @@ public class Habitacion_DTO {
     
     public Habitacion_DTO(String habitacion){
         this.numero= habitacion;
+        this.myServicios= new ArrayList<>();
     }
 
     public Habitacion_DTO() {
+        this.myServicios= new ArrayList<>();
     }
 
     public String getEstado() {
@@ -47,6 +53,14 @@ public class Habitacion_DTO {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public ArrayList<ServicioHabitacion_DTO> getMyServicios() {
+        return myServicios;
+    }
+
+    public void setMyServicios(ArrayList<ServicioHabitacion_DTO> myServicios) {
+        this.myServicios = myServicios;
     }
 
     public String getNumero() {

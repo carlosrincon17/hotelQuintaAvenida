@@ -38,7 +38,7 @@
                 
             <div class="page-header">
                 
-                <h1>Hotel Quinta Avenida<small> aqui deberia ir un mensaje</small></h1>
+                <h1>Hotel Quinta Avenida</h1>
             </div>
                 <%
                 ArrayList<String[]> menubt = (ArrayList<String[]>)sesion.getAttribute("modulos");

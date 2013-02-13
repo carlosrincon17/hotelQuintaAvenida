@@ -10,8 +10,8 @@
 
         String habitacion = request.getParameter("habitacion");
 %>
-                    <div class="separador"><p>Editar una habitación</p></div><br>
-                                   <form class="form-horizontal"name="roles" action="#">
+                    
+                                   <form class="form-horizontal"name="roles" action="editar_habitacion.jsp">
                    <fieldset>
                            <legend>Editar una habitacion</legend>
 

@@ -23,9 +23,10 @@ public class ServicioHabitacion_DTO {
         this.fecha = fecha;
         this.importe = importe;
         this.servicio = servicio;
-        this.consumido = null;
         this.cantidad = cantidad;
     }
+
+    
 
     public ServicioHabitacion_DTO(Date fecha, int importe, ArticuloMinibar_DTO consumido, int cantidad) {
         this.fecha = fecha;

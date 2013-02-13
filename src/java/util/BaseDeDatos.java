@@ -83,7 +83,18 @@ public class BaseDeDatos {
         return (jdbc.ejecutarActualizacionSQL(sql, param));
         
     }
+/**
 
+ * 
+ *     public boolean ejecutarActualizacionSQL(String sql, Object[] param) throws Exception {
+
+        if (param == null) {
+            return (jdbc.ejecutarActualizacionSQL(sql));
+        } 
+        return (jdbc.ejecutarActualizacionSQL(sql, param));
+        
+    }
+ */
     /**
      * Metodo para ejecutar consultas parametrizadas en la base de datos
      * @param String sql con la con la consulta parametrizada
