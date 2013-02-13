@@ -70,7 +70,7 @@
                 <%=supermenu%>
                 
             <div class="container" >
-               <h2<%=fachada.crearSalon(capacidad, precio, nombre, estado)%></h2>
+                <h2><%=fachada.crearSalon(capacidad, precio, nombre, estado)%></h2>
             </div>
         </div>
 
