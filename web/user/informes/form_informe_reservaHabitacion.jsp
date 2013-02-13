@@ -4,6 +4,7 @@
     Author     : jorge
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session='true'%>
 <!DOCTYPE html>
@@ -20,31 +21,56 @@
         String msj = (String)sesion.getAttribute("htmlmenu");
 %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="../../css/login.css" title="estilo"> 
-        <script type="text/javascript" src="../../js/menu.js"></script>
+         
         <title>Informe de reserva de habitaciones por mes</title>
-        <script type="text/javascript">
-            var menu1 = new Desplegable(<%= "'"+msj+"'" %>);
-        </script>
+        <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" type="text/css">
+        <script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script> 
+        <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
     </head>
     
-    <body onload="menu1.escribeacordeon('menu',22,5);">
-        <div id="todo">
-            <div class="cabecera">
-                <h1>Hotel Quinta Avenida</h1>
+    <body >
+        <div class="container" >
+            <div class="page-header">
+                <h1>Hotel Quinta Avenida<small> aqui deberia ir un mensaje</small></h1>
             </div>
-            <div class="principal">
-                <div class="menu" id="menu">
-                </div>
-                <div class="contenido">
-                    <div class="bloqueC">
-                        <div class="separador">Informe mensual de reservas</div>
-                        <form action="informe_reservaHabitacion.jsp" name="registro">
-                            <table>
-                                <br><br>
-                            <tr>
-                                <td><label>Seleccione mes: </label></td>
-                                <td><select name="mes">
+            
+                <%
+                ArrayList<String[]> menubt = (ArrayList<String[]>)sesion.getAttribute("modulos");
+                String supermenu = "";
+                
+                supermenu+="<ul class= 'nav nav-pills'>";
+                    supermenu+="<li class='active'>";
+                        supermenu+="<a href='#'>Home</a>";
+                    supermenu+= "</li>";
+                    for(String[] modulo : menubt){
+                        supermenu+="<li class='dropdown'>";
+                            supermenu+="<a class='dropdown-toggle' id='menu"+modulo[0]+"' role='button' data-toggle='dropdown' data-target='#' href='#'>";
+                                supermenu+=modulo[0];
+                                supermenu+="<b class='caret'></b>";
+                            supermenu+="</a>";
+                        supermenu+="<ul class='dropdown-menu' role='menu' aria-labelledby='menu"+modulo[0]+"'>";
+                        for(int i = 1; i<modulo.length;i++){
+                            String[] sp = modulo[i].split("--");
+                            supermenu+="<li><a href='"+sp[1]+"'>"+sp[0]+"</a></li>";
+                        }
+                        supermenu+= "</ul>";
+                        supermenu+= "</li>";
+                    }
+                    
+                supermenu+= "</ul>";
+                %>
+                <%=supermenu%>
+                
+            <div class="container" >
+               <form class="form-horizontal"  action="informe_reservaHabitacion.jsp" name="registro">
+                   <fieldset>
+                           <legend>Informe mensual de reservas</legend>
+
+                            
+                            <div class="control-group">
+                                    <label class="control-label" for="estado">Seleccione mes: </label>
+                                <div class="controls">
+                                <select name="mes">
                                         <option value="01">Enero</option>
                                         <option value="02">Febrero</option>
                                         <option value="03">Marzo</option>
@@ -57,24 +83,30 @@
                                         <option value="10">Octubre</option>
                                         <option value="11">Noviembre</option>
                                         <option value ="12">Diciembre</option>
-                                    </select></td>
-                            </tr>
-                            <tr>
-                                <td><label>Seleccione Año: </label></td>
-                                <td><select name="agno">
+                                    </select>
+                                </div></div>
+                        
+                                <div class="control-group">
+                                    <label class="control-label" for="estado">Seleccione Año: </label>
+                                <div class="controls">
+                                <select name="agno">
                                         <option>2011</option>
                                         <option selected>2012</option>
-                                    </select></td>
-                            </tr>
-                        </table>
-                            <br>
-                            <input type="submit" value="Generar Tabla">
-                            <br><br>
-                        </form>
-                    </div>
-                </div>
+                                        <option>2013</option>
+                                    </select>
+                                </div></div>
+
+                                
+
+                            <div class="form-actions">
+                            <button type="submit" name="guardar" class="btn" >Registrar</button>
+                            </div>
+                    </fieldset>
+                </form>
             </div>
         </div>
+        </div>
+          
     </body>
     
 </html>

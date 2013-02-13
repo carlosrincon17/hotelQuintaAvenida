@@ -81,10 +81,16 @@
                                 <input readonly="readonly" id="text" type="text" name="fecha"/>
         <img src="../../imagen/calendar.png" onclick="scwShow(scwID('text'),event);"/>
                                 </div></div>
+                           
+                           <div class="control-group">
+                                   <label class="control-label" for ="cliente">Seleccione Salon: </label>
+                               <div class="controls">
+                                <%=fachada.cargarListaSalones()%>
+                                </div></div>
                                 
 
                                 <div class="control-group">
-                                   <label class="control-label" for ="cliente">Fecha de reserva: </label>
+                                   <label class="control-label" for ="cliente">Hora de reserva: </label>
                                <div class="controls">
                                 <select name="hora">
         <option value="6"> 6 a.m </option>
