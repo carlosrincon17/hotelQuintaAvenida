@@ -61,5 +61,23 @@ public class Servicio_DAO {
         p[0] = nombre;
         return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p);    
     }
+
+    public static Servicio_DTO getServicio(String servicio) throws Exception {
+        
+        String sql= "Select tipo, precio from servicio where id_servicio=?";
+        Object[] p = new Object[1];
+        p[0]= servicio;
+        ResultSet rs= BaseDeDatos.getInstance().ejecutarSQL(sql, p);
+        
+        try{
+            if(rs.next()){
+                    String tipo= rs.getString(1);
+                    Float precio= rs.getFloat(2);
+                    return new Servicio_DTO(precio, tipo, servicio);
+                    }
+        }
+        catch(Exception e){}
+        return null;
+    }
     
 }

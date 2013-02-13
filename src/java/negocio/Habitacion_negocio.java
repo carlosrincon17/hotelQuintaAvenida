@@ -7,6 +7,7 @@ import dao.Estado_habitacion_DAO;
 import dao.Habitacion_DAO;
 import dao.Tipo_habitacion_DAO;
 import dto.Habitacion_DTO;
+import dto.ServicioHabitacion_DTO;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -57,6 +58,29 @@ public class Habitacion_negocio{
             Logger.getLogger(Habitacion_negocio.class.getName()).log(Level.SEVERE, null, ex);
             return "";
         }
+    }
+
+    static String cargarServicios(String habitacion) throws Exception {
+        String msj="";
+        Habitacion_DTO myHab= new Habitacion_DTO();
+        myHab.setNumero(habitacion);
+        myHab.setMyServicios(ServicioHabitacion_negocio.getServicios(myHab));
+        msj="<br><h2> Listado de Servicio </h2>";
+        if(myHab.getMyServicios().isEmpty()){
+            msj+="<p>Aun no Exiten Servicios para esta habitación.</p>";
+        }
+        else{
+            msj+="<table class='table table-hover'>";
+            msj+="<th><td>Fecha</td><td>Servicio</td><td>Cantidad</td><td>Total</td></th>";
+            for(ServicioHabitacion_DTO myServicio:myHab.getMyServicios()){
+                msj+="<tr><td>"+myServicio.getFecha()+"</td><td>"+myServicio.getServicio().getTipo()+"</td>"+
+                        "<td>"+ myServicio.getCantidad()+"</td><td>"+myServicio.getImporte()+"</td></tr>";
+            }
+            msj+="</table>";
+        }
+        msj+="<br><br>";
+        return msj;
+        
     }
 
     
