@@ -38,17 +38,18 @@ public class Hotel_facadeTest {
         int result = instance.validarUsuario(id, pass);
         assertEquals(expResult, result);
     }
-
+/*
     @Test
     public void testGetMenuRol() {
         System.out.println("getMenuRol");
-        String rol = "";
+        String rol = "gerente";
         Hotel_facade instance = new Hotel_facade();
         String expResult = "";
         String result = instance.getMenuRol(rol);
         assertEquals(expResult, result);
     }
-/*
+
+    
     @Test
     public void testGetMenuRolXModulos() {
         System.out.println("getMenuRolXModulos");
@@ -71,6 +72,7 @@ public class Hotel_facadeTest {
         fail("The test case is a prototype.");
     }
 
+
     @Test
     public void testCrearRol() {
         System.out.println("crearRol");
@@ -83,7 +85,7 @@ public class Hotel_facadeTest {
         assertEquals(expResult, result);
         fail("The test case is a prototype.");
     }
-
+/*
     @Test
     public void testCargarComportamientos() {
         System.out.println("cargarComportamientos");
@@ -127,20 +129,19 @@ public class Hotel_facadeTest {
         assertEquals(expResult, result);
         fail("The test case is a prototype.");
     }
-
+*/
     @Test
     public void testCrear_habitacion() {
         System.out.println("crear_habitacion");
-        String piso = "";
-        String hab = "";
-        String tipo = "";
+        String piso = "4";
+        String hab = "06";
+        String tipo = "doble";
         Hotel_facade instance = new Hotel_facade();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.crear_habitacion(piso, hab, tipo);
         assertEquals(expResult, result);
-        fail("The test case is a prototype.");
     }
-
+/*
     @Test
     public void testGetListaHabitaciones() {
         System.out.println("getListaHabitaciones");
@@ -171,7 +172,7 @@ public class Hotel_facadeTest {
         assertEquals(expResult, result);
         fail("The test case is a prototype.");
     }
-
+*/
     @Test
     public void testGetEstadoHabitacionListaHTML() {
         System.out.println("getEstadoHabitacionListaHTML");
