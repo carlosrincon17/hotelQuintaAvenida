@@ -41,7 +41,7 @@
     <body >
         <div class="container" >
             <div class="page-header">
-                <h1>Hotel Quinta Avenida<small> aqui deberia ir un mensaje</small></h1>
+                <h1>Hotel Quinta Avenida</h1>
             </div>
             
                 <%
@@ -50,7 +50,7 @@
                 
                 supermenu+="<ul class= 'nav nav-pills'>";
                     supermenu+="<li class='active'>";
-                        supermenu+="<a href='#'>Home</a>";
+                        supermenu+="<a href='../../user/usuario/fichaUsuario.jsp'>Home</a>";
                     supermenu+= "</li>";
                     for(String[] modulo : menubt){
                         supermenu+="<li class='dropdown'>";

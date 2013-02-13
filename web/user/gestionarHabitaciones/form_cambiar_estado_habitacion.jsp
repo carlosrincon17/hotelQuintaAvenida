@@ -13,7 +13,7 @@
         String habitacion = request.getParameter("habitacion");
         %>
                    
-                         <form class="form-horizontal"name="roles" action="#">
+                         <form class="form-horizontal"name="roles" action="cambiar_estado_habitacion.jsp">
                    <fieldset>
                            <legend>Editar una habitacion</legend>
                         

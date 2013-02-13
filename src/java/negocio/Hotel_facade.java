@@ -649,7 +649,7 @@ public class Hotel_facade {
     
     public String listaSalonesHTML(){
         ArrayList<Salon_DTO> salones= Salon_negocio.cargarSalones();
-        String msj="<table id='ejemplo' class='ejemplo'><tr><thead><th>Nombre del Salon</th><th>Capacidad</th><th>Precio por hora</th><th>Estado</th><th>Opciones</th></thead></tr><tbody>";
+        String msj="<table id='ejemplo' class='table table-hover'><tr><thead><th>Nombre del Salon</th><th>Capacidad</th><th>Precio por hora</th><th>Estado</th><th>Opciones</th></thead></tr><tbody>";
         for (Iterator<Salon_DTO> it = salones.iterator(); it.hasNext();) {
             Salon_DTO salon = it.next();
             msj+="<tr><td>"+salon.getNombre()+"</td><td>"+salon.getCapacidad()+"</td><td>"+
@@ -657,9 +657,9 @@ public class Hotel_facade {
                     salon.getEstado()+"</td>"+
                     
                     "<td><a href='#' title='ver reservas' name='editarSalon.jsp?nombre="+
-                    salon.getNombre()+"' onclick=verReservas(this)><img src='../../imagen/edit.png' title='Editar Salon'/></a>"+
+                    salon.getNombre()+"' onclick=verReservas(this)><i class='icon-edit'></i></a>"+
                      "<a href='#' title='ver reservas' name='verReservas.jsp?nombre="+salon.getNombre()+
-                    "' onclick=verReservas(this)><img src='../../imagen/explore.png'/ title='Ver Reservas'>  </a></td></tr>";              
+                    "' onclick=verReservas(this)><i class='icon-folder-open'></i> </a></td></tr>";              
         }
         msj+="</tbody></table>";
      
@@ -676,16 +676,19 @@ public class Hotel_facade {
                 "<div class='control-group'>"+
                     "<label class='control-label' for='inputNombre'>Nombre: </label>"+
                                 "<div class='controls'>"+
-                                "<input type='text' id='inputNombre' name='nombre' value='"+salon.getNombre()+" required>"+
+                                "<input type='text' id='inputNombre' name='nombre' value='"+salon.getNombre()+"' required>"+
                                 "</div></div>"+
-                "<label class='control-label' for='precio'>Nombre: </label>"+
+                "<div class='control-group'>"+
+                "<label class='control-label' for='precio'>Precio hora: </label>"+
                                 "<div class='controls'>"+
-                                "<input type='text' id='precio' name='precio' value='"+salon.getPrecioHora()+" required>"+
+                                "<input type='text' id='precio' name='precio' value='"+salon.getPrecioHora()+"' required>"+
                                 "</div></div>"+
-                "<label class='control-label' for='capacidad'>Nombre: </label>"+
+                "<div class='control-group'>"+
+                "<label class='control-label' for='capacidad'>Capacidad: </label>"+
                                 "<div class='controls'>"+
-                                "<input type='text' id='capacidad' name='capacidad' value='"+salon.getCapacidad()+" required>"+
+                                "<input type='text' id='capacidad' name='capacidad' value='"+salon.getCapacidad()+"' required>"+
                                 "</div></div>"+
+                "<div class='control-group'>"+
                 "<label class='control-label' for='estado'>Estado: </label>"+
                                 "<div class='controls'>"+
                                 "<select id='estado' name='estado'>"+
@@ -774,7 +777,7 @@ public class Hotel_facade {
     public String getListaEmpleados2(){
         ArrayList<Empleado_DTO> lista = Empleado_negocio.listar();
         String msj="";
-        msj+="<table  class='table table-hover'>";
+    msj+="<table  class='table table-hover'>";
             msj+="<thead>";
                 msj+="<tr>";
                     msj+="<th>Nombre</th>";

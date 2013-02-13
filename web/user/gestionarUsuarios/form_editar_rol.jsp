@@ -27,15 +27,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script type="text/javascript" src="../../js/ajax.js" ></script>
         <title>Consultar Roles - Hotel Quinta Avenida</title>
-        <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" type="text/css">
         <script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script> 
         <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
         <jsp:useBean id="fachada" scope="session" class="negocio.Hotel_facade" />
-         <div class="container" >
+         
             <div class="page-header">
-                <h1>Hotel Quinta Avenida<small> aqui deberia ir un mensaje</small></h1>
+                <h1>Hotel Quinta Avenida</h1>
             </div>
             
                 <%
@@ -63,9 +63,10 @@
                     
                 supermenu+= "</ul>";
                 %>
+                <div class="container" >
                 <%=supermenu%>
                 
-            <div class="container" >
+
                <form class="form-horizontal"name="roles" action="#">
                    <fieldset>
                            <legend>Editar Privilegios</legend>
@@ -81,16 +82,15 @@
                                 
 
                             <div class="form-actions">
-                            <button onclick="sendRequest('getPrivilegiosRol.jsp')" type="submit" name="guardar" class="btn" >Registrar</button>
+                            <button onclick="sendRequest('getPrivilegiosRol.jsp')" type="submit" name="guardar" class="btn" >Editar</button>
                             </div>
                     </fieldset>
                 </form>
-                                
-                                <div id="bloqueB" class="bloqueB">
+                        <div id="bloqueB" class="bloqueB">
                             
                         </div>
             </div>
-        </div>
+        </div
         
           
     </body>

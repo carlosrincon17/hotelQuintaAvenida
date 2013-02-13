@@ -32,7 +32,7 @@ public class Reserva_negocio {
             else return "Error al Cancerla Reserva";
         } catch (Exception ex) {
             Logger.getLogger(Reserva_negocio.class.getName()).log(Level.SEVERE, null, ex);
-            return "";
+            return "No se pudo realizar la operacion";
         }
     }
 }
