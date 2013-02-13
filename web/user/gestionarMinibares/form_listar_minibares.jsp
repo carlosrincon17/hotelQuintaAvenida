@@ -29,11 +29,11 @@
         <script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script> 
         <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
     </head>
-        <div class="container" >
+        
             <div class="page-header">
                 <h1>Hotel Quinta Avenida<small> aqui deberia ir un mensaje</small></h1>
             </div>
-            
+            <div class="container" >
                 <%
                 ArrayList<String[]> menubt = (ArrayList<String[]>)sesion.getAttribute("modulos");
                 String supermenu = "";
