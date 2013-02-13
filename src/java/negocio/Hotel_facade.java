@@ -1013,7 +1013,7 @@ public class Hotel_facade {
     public String listarHospedajesHTML2(){
         ArrayList<Hospedaje_DTO> hospedajes= negocio.Hospedaje_negocio.listar();
         String msj="<table class='table table-hover'>";
-        msj+="<tr><thead><th>Hablitacion</th><th>Cliente</th><th>Fecha de Inicio</th><th>Opciones</th> </thead><tbody>";
+        msj+="<tr><thead><th>Hablitacion</th><th>Cliente</th><th>Fecha de Inicio</th><th>Opciones</th> </thead><tr><tbody>";
         for(Hospedaje_DTO hospedaje: hospedajes){
             
             String fecha= (hospedaje.getFechaInicio().getYear()+1900)+"-"+(hospedaje.getFechaInicio().getMonth()+1)+"-"+hospedaje.getFechaInicio().getDate();
@@ -1022,7 +1022,7 @@ public class Hotel_facade {
             "<td>" + hospedaje.getHuesped().getDocumento() + "</td>"+
             "<td>" + fecha + "</td>"+
             "<td><a href='#' title='ver reservas' name='terminarHospedaje.jsp?hospedaje="+hospedaje.getID()+""+
-            "&habitacion="+hospedaje.getHabitacion().getNumero()+"' onclick=verReservas(this)><i class='icon-edit'></i></a>"+
+            "&habitacion="+hospedaje.getHabitacion().getNumero()+"' onclick=verReservas(this)><i class=' icon-minus'></i></a>"+
               "<a href='#' title='ver reservas' name='agregarServicios.jsp?hospedaje="+hospedaje.getID()+"' onClick=verReservas(this)>"+     
              "<i class='icon-th-list'></i></a><a href='#' title='ver reservas' name='agregarServicio.jsp?hospedaje="+hospedaje.getID()+"' onClick=verReservas(this)>"+     
              "<i class=' icon-plus'></i></a></td></tr>";

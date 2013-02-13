@@ -69,9 +69,10 @@ public class Habitacion_negocio{
         if(myHab.getMyServicios().isEmpty()){
             msj+="<p>Aun no Exiten Servicios para esta habitación.</p>";
         }
+        
         else{
             msj+="<table class='table table-hover'>";
-            msj+="<th><td>Fecha</td><td>Servicio</td><td>Cantidad</td><td>Total</td></th>";
+            msj+="<tr><thead><th>Fecha</th><th>Servicio</th><th>Cantidad</th><th>Total</th></thead></tr>";
             for(ServicioHabitacion_DTO myServicio:myHab.getMyServicios()){
                 msj+="<tr><td>"+myServicio.getFecha()+"</td><td>"+myServicio.getServicio().getTipo()+"</td>"+
                         "<td>"+ myServicio.getCantidad()+"</td><td>"+myServicio.getImporte()+"</td></tr>";

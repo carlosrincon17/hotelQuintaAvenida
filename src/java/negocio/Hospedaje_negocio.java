@@ -27,7 +27,7 @@ class Hospedaje_negocio {
         nuevo.setFechaInicio(actual);
         try {
             if(Hospedaje_DAO.create(nuevo)){
-                Habitacion_negocio.cambiarEstado(hab.getNumero(), "ocupada");
+                Habitacion_negocio.cambiarEstado(hab.getNumero(), "1");
                 return "Se registro el hospedaje con exito";}
         } catch (Exception ex) {
             Logger.getLogger(Hospedaje_negocio.class.getName()).log(Level.SEVERE, null, ex);
@@ -99,7 +99,9 @@ class Hospedaje_negocio {
             return (precioHab*dias)+"";
         } catch (Exception ex) {
             Logger.getLogger(Hospedaje_negocio.class.getName()).log(Level.SEVERE, null, ex);
+            
             return "";
+            
         } 
     }
     
