@@ -175,9 +175,10 @@ public class Hotel_facade {
         
         ArrayList<Privilegio_DTO> comportamientos = Privilegio_negocio.readAll();
         for(Privilegio_DTO p: comportamientos ){
-        
+        msj+="<div class='span4'>";
             msj+="<label class='checkbox inline'><input type='checkbox' name='privilegio' value='"+p.getId()+
                     "' />"+p.getNombre()+"</label>";
+            msj+="</div>";
         }
         msj+="<br><br>";
         return msj;
