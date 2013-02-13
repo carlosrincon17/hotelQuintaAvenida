@@ -1019,7 +1019,8 @@ public class Hotel_facade {
             "<td>" + fecha + "</td>"+
             "<td><a href='#' title='ver reservas' name='terminarHospedaje.jsp?hospedaje="+hospedaje.getID()+""+
             "&habitacion="+hospedaje.getHabitacion().getNumero()+"' onclick=verReservas(this)><i class='icon-edit'></i></a>"+
-             "</td></tr>";
+              "</td><td><a href='#' title='ver reservas' name='agregarServicio.jsp=?hospedaje="+hospedaje.getID()+"' onClick='verReservas(this)'>"+     
+             "<i class='icon-edit'></i></a></td></tr>";
         }
         return msj+="</tbody></table>";
     }
@@ -1123,6 +1124,10 @@ public class Hotel_facade {
         * 
         */
         return est;
+    }
+    
+    public String cargarServicios(String habitacion) throws Exception{
+        return Habitacion_negocio.cargarServicios(habitacion);
     }
     
 }

@@ -78,7 +78,7 @@
                                 
                             
                             <div class="form-actions">
-                            <button type="submit" class="btn" >Registrar</button>
+                            <button type="submit" class="btn" >Consultar</button>
                             </div>
                     </fieldset>
                 </form>
