@@ -68,14 +68,16 @@
                 
             <div class="container" >
 
-               <h2>Hospedados actuales</h2>
-<%=fachada.listarHospedajesHTML2()%>
-
-            <div class="bloqueB"></div>
+            <h2>Hospedados actuales</h2>
+                    <%=fachada.listarHospedajesHTML2()%>
             </div>
+            <div class="container" id="bloqueB">
+                
             </div>
-        </div>
-    </body>
+            
+            </div>
+         
+      </body>
 </html>
 
 
