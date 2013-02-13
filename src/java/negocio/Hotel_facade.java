@@ -29,6 +29,7 @@ public class Hotel_facade {
 
     
     
+    
     //constructores
     public Hotel_facade() {
         try {
@@ -174,9 +175,10 @@ public class Hotel_facade {
         
         ArrayList<Privilegio_DTO> comportamientos = Privilegio_negocio.readAll();
         for(Privilegio_DTO p: comportamientos ){
-        
-            msj+="<label><input type='checkbox' name='privilegio' value='"+p.getId()+
+        msj+="<div class='span4'>";
+            msj+="<label class='checkbox inline'><input type='checkbox' name='privilegio' value='"+p.getId()+
                     "' />"+p.getNombre()+"</label>";
+            msj+="</div>";
         }
         msj+="<br><br>";
         return msj;
@@ -235,7 +237,7 @@ public class Hotel_facade {
     
     public String getRoles(){
     
-    String msj ="<select name='misroles' size='5' id='rol'>";
+    String msj ="";
     ArrayList<Rol_DTO> roles = Rol_negocio.readAll();
     for(Rol_DTO rol: roles){
     
@@ -243,7 +245,7 @@ public class Hotel_facade {
     
     }
     
-    msj+="</select>";
+    
     return msj;
     }
     
@@ -410,7 +412,7 @@ public class Hotel_facade {
         ArrayList<Articulo_DTO> lista = Articulo_negocio.listar();
         String msj= "";
         
-        msj+="<table id='example' class='display'>";
+        msj+="<table class='table table-hover'>";
             msj+="<thead>";
                 msj+="<tr>";
                     msj+="<th>Nombre</th>";
@@ -425,12 +427,12 @@ public class Hotel_facade {
                     msj+="<td>"+x.getNombre()+"</td>";
                     msj+="<td>"+x.getPrecio()+"</td>";
                     msj+="<td>"+x.getCantidad()+"</td>";
-                    msj+="<td><a onclick='cambiarHabitacion(this)'title='Agregar cantidad' href='#' name='form_agregar_articulo.jsp?articulo="+x.getId()+"&nombre="+x.getNombre()+"' ><img src='../../imagen/add.png' alt='Agregar Cantidad' /></a></td>";
+                    msj+="<td><a onclick='cambiarHabitacion(this)'title='Agregar cantidad' href='#' name='form_agregar_articulo.jsp?articulo="+x.getId()+"&nombre="+x.getNombre()+"' ><i class='icon-plus'></i></a></td>";
                    
                 msj+="</tr>";
             }
             msj+="</tbody>";
-        msj+="</table><br><br>";
+        msj+="</table>";
         
         return msj;
     }
@@ -480,7 +482,7 @@ public class Hotel_facade {
     public String getListaMinibares(){
         ArrayList<Minibar_DTO> lista = Minibar_negocio.listar();
         String msj="";
-        msj+="<table>";
+        msj+="<table class='table table-hover'>";
             msj+="<thead>";
                 msj+="<tr>";
                     msj+="<th>No. de serie</th>";
@@ -495,8 +497,8 @@ public class Hotel_facade {
                     msj+="<td>"+x.getId()+"</td>";
                     msj+="<td>"+x.getMarca()+"</td>";
                     msj+="<td>"+x.getModelo()+"</td>";
-                    msj+="<td><a title='Agregar artículo' href='form_agregar_articulo_minibar.jsp?minibar="+x.getId()+"' ><img src='../../imagen/add.png' alt='agregar Articulos' /></a>&nbsp;&nbsp;&nbsp;"
-                            + "<a title='listar articulos del minibar' href='form_listar_articulo_minibar.jsp?id_minibar="+x.getId()+"' ><img src='../../imagen/explore.png' alt='agregar Articulos' /></a></td>";
+                    msj+="<td><a title='Agregar artículo' href='form_agregar_articulo_minibar.jsp?minibar="+x.getId()+"' ><i class='icon-plus'></i></a>&nbsp;&nbsp;&nbsp;"
+                            + "<a title='listar articulos del minibar' href='form_listar_articulo_minibar.jsp?id_minibar="+x.getId()+"' ><i class='icon-edit'><i></a></td>";
                    
                 msj+="</tr>";
             }
@@ -546,7 +548,7 @@ public class Hotel_facade {
     public String getListaServicios(){
         ArrayList<Servicio_DTO> lista = Servicio_negocio.listar();
         String msj="";
-        msj+="<table id='example' class='display'>";
+        msj+="<table class='table table-hover'>";
             msj+="<thead>";
                 msj+="<tr>";
                     msj+="<th>Servicio</th>";
@@ -559,7 +561,7 @@ public class Hotel_facade {
             msj+="<tr>";
                     msj+="<td>"+x.getTipo()+"</td>";
                     msj+="<td>"+x.getPrecio()+"</td>";
-                    msj+="<td><a href='#' onclick='cambiarHabitacion(this)' name='form_editar_servicio.jsp?tipo="+x.getTipo()+"&precio="+x.getPrecio()+"'><img src='../../imagen/edit.png' title='Modificar Servicio' /></a></td>";
+                    msj+="<td><a href='#' onclick='cambiarHabitacion(this)' name='form_editar_servicio.jsp?tipo="+x.getTipo()+"&precio="+x.getPrecio()+"'><i class='icon-edit'></i></a></td>";
                    
                 msj+="</tr>";
             }
@@ -570,7 +572,8 @@ public class Hotel_facade {
     
     public String crearSalon(int capacidad, float precio, String nombre, String estado){
         
-        if (Salon_negocio.registrar(nombre,precio,capacidad,estado)) return "Salon Registrado Exitosamente";  
+        if (Salon_negocio.registrar(nombre,precio,capacidad,estado)) 
+            return "Salon Registrado Exitosamente";  
  
         return "Error en el registro del Salon";
     }
@@ -578,11 +581,11 @@ public class Hotel_facade {
     public String getListaHabitacionesOption(){
        ArrayList<Habitacion_DTO>  lista= Habitacion_negocio.listar();
        String msj="";
-       msj+="<select name='habitacion'>";
+       
        for(Habitacion_DTO habitacion :lista){
            msj+="<option value='"+habitacion.getNumero()+"'>"+habitacion.getNumero()+"</option>";
        }
-       return msj+="</select>";
+       return msj;
        
     }
     
@@ -619,17 +622,17 @@ public class Hotel_facade {
     
     private String imprimirReservaHabitacion(ReservaHabitacion_DTO reserva){
         String msj="";
-        msj+="<table>";
+        msj+="<table  class='table table-hover'>";
         msj+="<thead>Reserva: "+reserva.getId()+"</thead>"+
               "<tr><td>Cliente: </td><td>"+reserva.getCliente().getNombre()+" "+reserva.getCliente().getApellido()+"</td></tr>"+   
               "<tr><td>Cedula: </td><td>"+reserva.getCliente().getDocumento()+"</td></tr>"+  
               "<tr><td>Fecha Reserva: </td><td>"+reserva.getFechareserva().toGMTString()+"</td></tr>"+
               "<tr><td>Habitacion Reservada: </td><td>"+reserva.getHabitacion().getNumero()+"</td></tr>"+
               "<tr><td></td><td><a href='cancelarReserva.jsp?reserva="+
-                    reserva.getId()+"' title='ver reservas' name=''> <img src='../../imagen/cancel.png' title='Cancelar Reserva'/></a></td></tr>"+
+                    reserva.getId()+"' title='ver reservas' name=''> <i class='icon-remove'></i></a></td></tr>"+
               "<tr><td></td><td><a href='../gestionarHospedajes/guardarHospedaje.jsp?habitacion="+
                     reserva.getHabitacion().getNumero()+"&cliente="+reserva.getCliente().getDocumento()+"' title='ver reservas' name=''>"+
-                " <img src='../../imagen/enable.gif' title='Confirmar Reserva - Hospedar'/></a></td></tr>";      
+                " <i class='icon-ok'></i></a></td></tr>";      
         msj+="</table>";
         msj+="<br>";
         return msj;        
@@ -648,7 +651,7 @@ public class Hotel_facade {
     
     public String listaSalonesHTML(){
         ArrayList<Salon_DTO> salones= Salon_negocio.cargarSalones();
-        String msj="<table id='ejemplo' class='ejemplo'><tr><thead><th>Nombre del Salon</th><th>Capacidad</th><th>Precio por hora</th><th>Estado</th><th>Opciones</th></thead></tr><tbody>";
+        String msj="<table id='ejemplo' class='table table-hover'><tr><thead><th>Nombre del Salon</th><th>Capacidad</th><th>Precio por hora</th><th>Estado</th><th>Opciones</th></thead></tr><tbody>";
         for (Iterator<Salon_DTO> it = salones.iterator(); it.hasNext();) {
             Salon_DTO salon = it.next();
             msj+="<tr><td>"+salon.getNombre()+"</td><td>"+salon.getCapacidad()+"</td><td>"+
@@ -656,9 +659,9 @@ public class Hotel_facade {
                     salon.getEstado()+"</td>"+
                     
                     "<td><a href='#' title='ver reservas' name='editarSalon.jsp?nombre="+
-                    salon.getNombre()+"' onclick=verReservas(this)><img src='../../imagen/edit.png' title='Editar Salon'/></a>"+
+                    salon.getNombre()+"' onclick=verReservas(this)><i class='icon-edit'></i></a>"+
                      "<a href='#' title='ver reservas' name='verReservas.jsp?nombre="+salon.getNombre()+
-                    "' onclick=verReservas(this)><img src='../../imagen/explore.png'/ title='Ver Reservas'>  </a></td></tr>";              
+                    "' onclick=verReservas(this)><i class='icon-folder-open'></i> </a></td></tr>";              
         }
         msj+="</tbody></table>";
      
@@ -671,16 +674,34 @@ public class Hotel_facade {
     public String editarSalonHTML(String nombre){
         String msj="";
         Salon_DTO salon= Salon_negocio.cargarSalon(nombre);
-        msj+="<form  action='editarSalon_1.jsp' name='form'>"+
-                "<p>Nombre <input type='text' name='nombre' value='"+salon.getNombre()+"'/></p>"+
-                "<p>Precio por Hora<input type='text' name='precio' value='"+salon.getPrecioHora()+"'/></p>"+
-                "<p>Capacidad <input type='text' name='capacidad' value='"+salon.getCapacidad()+"'/></p>"+
-                "<p>Estado <select name='estado'>"+
-                    "<option>Habilitado</option>"+
-                    "<option>Deshabilitado</option>"+
-                "</select></p>"+
+        msj+="<form  class='form-horizontal' action='editarSalon_1.jsp' name='form'>"+
+                "<div class='control-group'>"+
+                    "<label class='control-label' for='inputNombre'>Nombre: </label>"+
+                                "<div class='controls'>"+
+                                "<input type='text' id='inputNombre' name='nombre' value='"+salon.getNombre()+"' required>"+
+                                "</div></div>"+
+                "<div class='control-group'>"+
+                "<label class='control-label' for='precio'>Precio hora: </label>"+
+                                "<div class='controls'>"+
+                                "<input type='text' id='precio' name='precio' value='"+salon.getPrecioHora()+"' required>"+
+                                "</div></div>"+
+                "<div class='control-group'>"+
+                "<label class='control-label' for='capacidad'>Capacidad: </label>"+
+                                "<div class='controls'>"+
+                                "<input type='text' id='capacidad' name='capacidad' value='"+salon.getCapacidad()+"' required>"+
+                                "</div></div>"+
+                "<div class='control-group'>"+
+                "<label class='control-label' for='estado'>Estado: </label>"+
+                                "<div class='controls'>"+
+                                "<select id='estado' name='estado'>"+
+                                    "<option>Habilitado</option>"+
+                                    "<option>Deshabilitado</option>"+
+                                "</select>"+
+                                "</div></div>"+
                 
-                "<p><input type='submit' value='Guardar' onclick=verReservas(this) /></p>"+       
+                 "<div class='form-actions'>"+
+                            "<button type='submit' class='btn' >Registrar</button>"+
+                            "</div>"+       
                "</form>";
         return msj;
     }
@@ -758,7 +779,7 @@ public class Hotel_facade {
     public String getListaEmpleados2(){
         ArrayList<Empleado_DTO> lista = Empleado_negocio.listar();
         String msj="";
-        msj+="<table  class='table table-hover'>";
+    msj+="<table  class='table table-hover'>";
             msj+="<thead>";
                 msj+="<tr>";
                     msj+="<th>Nombre</th>";
@@ -904,6 +925,7 @@ public class Hotel_facade {
     
     public String editarEmpleado(String cedula, String funcion, String telefono, String correo, String direccion, String seguro){
     
+        System.out.println("serguroo "+ seguro);
         boolean ok = Empleado_negocio.editarEmpleado(cedula,funcion,telefono,correo,direccion,seguro);
         String msj = "No se pudo Actualizar los datos del empleado";
         if(ok) msj = "Información actualizada exitosamente";
@@ -955,11 +977,11 @@ public class Hotel_facade {
     public String getListaHabitacionesDisponibles(){
        ArrayList<Habitacion_DTO>  lista= Habitacion_negocio.listarDisponibles();
        String msj="";
-       msj+="<select name='habitacion'>";
+       
        for(Habitacion_DTO habitacion :lista){
            msj+="<option value='"+habitacion.getNumero()+"'>"+habitacion.getNumero()+"</option>";
        }
-       return msj+="</select>";
+       return msj;
        
     }
     
@@ -988,6 +1010,26 @@ public class Hotel_facade {
         }
         return msj+="</tbody></table>";
     }
+    
+    public String listarHospedajesHTML2(){
+        ArrayList<Hospedaje_DTO> hospedajes= negocio.Hospedaje_negocio.listar();
+        String msj="<table class='table table-hover'>";
+        msj+="<tr><thead><th>Hablitacion</th><th>Cliente</th><th>Fecha de Inicio</th><th>Opciones</th> </thead><tbody>";
+        for(Hospedaje_DTO hospedaje: hospedajes){
+            
+            String fecha= (hospedaje.getFechaInicio().getYear()+1900)+"-"+(hospedaje.getFechaInicio().getMonth()+1)+"-"+hospedaje.getFechaInicio().getDate();
+            msj+="<tr>"+
+            "<td>" + hospedaje.getHabitacion().getNumero() + "</td>"+
+            "<td>" + hospedaje.getHuesped().getDocumento() + "</td>"+
+            "<td>" + fecha + "</td>"+
+            "<td><a href='#' title='ver reservas' name='terminarHospedaje.jsp?hospedaje="+hospedaje.getID()+""+
+            "&habitacion="+hospedaje.getHabitacion().getNumero()+"' onclick=verReservas(this)><i class='icon-edit'></i></a>"+
+              "</td><td><a href='#' title='ver reservas' name='agregarServicios.jsp?hospedaje="+hospedaje.getID()+"' onClick=verReservas(this)>"+     
+             "<i class='icon-edit'></i></a></td></tr>";
+        }
+        return msj+="</tbody></table>";
+    }
+    
     public String terminarHospedaje(int hospedaje, int habitacion){
     
     String x=Hospedaje_negocio.terminarHospedaje(hospedaje, habitacion);    
@@ -997,7 +1039,7 @@ public class Hotel_facade {
     
     public String listarReservasSalonesHTML(String nombreSalon){
         ArrayList<ReservaSalon_DTO> reservas= Reserva_Salon_negocio.listarReservas(nombreSalon);
-        String msj="<b>Salon: "+nombreSalon+ "</b>";
+        String msj="<h3>Salon: "+nombreSalon+ "</h3>";
         for(ReservaSalon_DTO reserva: reservas)
             msj+= this.imprimirReservaSalon(reserva);
         
@@ -1006,7 +1048,7 @@ public class Hotel_facade {
     
     private String imprimirReservaSalon(ReservaSalon_DTO reserva){
         String msj="";
-        msj+="<table>";
+        msj+="<table  class='table table-hover'>";
         msj+="<thead>Reserva: "+reserva.getId()+"</thead>"+
               "<tr><td>Cliente: </td><td>"+reserva.getCliente().getNombre()+" "+reserva.getCliente().getApellido()+"</td></tr>"+   
               "<tr><td>Cedula: </td><td>"+reserva.getCliente().getDocumento()+"</td></tr>"+  
@@ -1018,7 +1060,7 @@ public class Hotel_facade {
               "<tr><td>Abono: </td><td>"+reserva.getAbonoReserva()+"</td></tr>"+
               "<tr><td>Deuda: </td><td>"+(reserva.getTotal()-reserva.getAbonoReserva())+"</td></tr>"+  
               "<tr><td></td><td><a href='../gestionarReservas/cancelarReserva.jsp?reserva="+
-                    reserva.getId()+"' title='ver reservas' name=''><img src='../../imagen/cancel.png' title='Cancelar Reserva'/></a></td></tr>"; 
+                    reserva.getId()+"' title='ver reservas' name=''><i class='icon-remove'></i></a></td></tr>"; 
         msj+="</table><br>";
         return msj;
     }
@@ -1026,7 +1068,9 @@ public class Hotel_facade {
     public String getReservaSalonesByID(String cedula){
         
     ArrayList<ReservaSalon_DTO> reservas= Reserva_Salon_negocio.getReservasByID(cedula);
-    if(reservas.isEmpty()) return "No Existen Salones Reservados para este cliente";
+    if(reservas.isEmpty()) {
+            return "No Existen Salones Reservados para este cliente";
+        }
         String msj="";
         for(ReservaSalon_DTO reserva:reservas){
             msj+=imprimirReservaSalon(reserva);
@@ -1086,6 +1130,10 @@ public class Hotel_facade {
         * 
         */
         return est;
+    }
+    
+    public String cargarServicios(String habitacion) throws Exception{
+        return Habitacion_negocio.cargarServicios(habitacion);
     }
     
 }

@@ -1,4 +1,3 @@
-
         <jsp:useBean id="fachada" scope="page" class="negocio.Hotel_facade" />
         <%
         HttpSession sesion=request.getSession(); 

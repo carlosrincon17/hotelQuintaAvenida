@@ -232,7 +232,7 @@ public class JDBCMiddler {
         } 
         return false;
     }
-    
+
     /**
      * Ejecuta una sentencia SQL y regresa como resultado un objeto ResultSet
      * @param String consultaSQL Cadena que contiene una sentencia de consulta SQL

@@ -22,22 +22,21 @@ public class Reserva_DAO {
 
         /*
          este metodo me parece que tiene mal la consulta comentariada
-         
          */
+        
         java.util.Calendar algo;
         String fecha1 = fechaReserva;
         Date hoy = new Date();
         String fecha2 = (hoy.getYear() + 1900) + "-" + (hoy.getMonth() + 1) + "-" + Calendar.DAY_OF_MONTH;
-        System.out.print(fecha1 + "\n");
-        System.out.print(fecha2 + "\n");
         //String sql = "INSERT INTO reserva (fecha_reserva, fecha_solicitud, id_cliente, estado)"+
         //       "VALUES ('"+fecha1+"','"+fecha2+"',"+"'"+idCliente+"','Espera')";
-        String sql = "INSERT INTO reserva (fecha_reserva, fecha_solicitud, id_cliente, activa) VALUES (?,?,?,'1')";
-        Object[] p = new Object[3];
-        p[0] = fecha1;
-        p[1] = fecha2;
-        p[2] = idCliente;
-
+        String sql = "INSERT INTO reserva (id_cliente, fecha_solicitud, fecha_reserva, activa) VALUES (?,?,?,?)";
+        Object[] p = new Object[4];
+        
+        p[0] = idCliente;
+        p[1] = fecha1;
+        p[2] = fecha2;
+        p[3] = 1;
         if (BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p)) {
             return getUltimo();
         }
@@ -87,7 +86,7 @@ public class Reserva_DAO {
 
     
     public static boolean cancelarReserva(String idReserva) throws Exception{
-        String sql= "Update reserva set estado='Cancelada' where id_reserva = ?";
+        String sql= "Update reserva set activa=0 where id_reserva = ?";
          Object[] p = new Object[1];
         p[0] = idReserva;
         return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p);

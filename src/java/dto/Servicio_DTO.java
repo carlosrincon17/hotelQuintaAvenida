@@ -12,14 +12,29 @@ package dto;
 public class Servicio_DTO {
     private float precio;
     private String tipo;
+    private String id;
 
     public Servicio_DTO() {
     }
 
-    public Servicio_DTO( float precio,String tipo) {
+    public Servicio_DTO( float precio,String tipo, String id) {
         
         this.precio = precio;
         this.tipo=tipo;
+        this.id=id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Servicio_DTO(float precio, String tipo) {
+        this.precio = precio;
+        this.tipo = tipo;
     }
 
     

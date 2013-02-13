@@ -1,6 +1,6 @@
 <html>
 <jsp:useBean id="fachada" scope="session" class="negocio.Hotel_facade" />     
-
+<%@page import="java.util.ArrayList"%>
 <% 
         HttpSession sesion=request.getSession(); 
         
@@ -13,12 +13,35 @@
         String nombre = request.getParameter("nombre");
         
         %>
-        
-        <div class="separador"><p>Editar una habitación</p></div><br>
-                    <form action="agregar_articulo.jsp">
-                        <p>Nombre del artículo: <input type="text" name="nombre" value="<%= nombre %>"  required/></p>
-                        <p>Cantidad a añadir: <input type="text" name="cantidad"  required/></p>
-                        <p><input type="hidden" name="idArticulo" value="<%= idArticulo %>"  /></p>
-                        <input type="submit" value="Guardar cambios" name="guardar" /><br><br>
-                    </form>
+
+                
+            <div class="container" >
+               <form class="form-horizontal" action="agregar_articulo.jsp" name="form">
+                   <fieldset>
+                           <legend>Agregar nuevo articulo</legend>
+                   
+                               
+                        
+                                <div class="control-group">
+                                    <label class="control-label" for="inputNombre">Nombre: </label>
+                                <div class="controls">
+                                <input type="text" id="inputNombre" name="nombre" value="<%= nombre %>" required>
+                                </div></div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="cantidad">Cantidad a añadir: </label>
+                                <div class="controls">
+                                <input type="text" id="cantidad" name="cantidad" required>
+                                </div></div>
+
+                                <input type="hidden" name="idArticulo" value="<%= idArticulo %>">
+                            
+                            
+                            <div class="form-actions">
+                            <button type="submit" name="guardar" class="btn" >Registrar</button>
+                            </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
     </html>    

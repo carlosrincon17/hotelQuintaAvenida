@@ -3,7 +3,7 @@
     Created on : 05-ago-2012, 15:24:37
     Author     : jorge
 --%>
-
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
  <jsp:useBean id="fachada" scope="session" class="negocio.Hotel_facade" />
@@ -25,45 +25,73 @@
         %>
         <script type="text/javascript" src="../js/ajax.js" ></script>  
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="../../css/login.css" type="text/css">
-        <title>JSP Page</title>
-        <script type="text/javascript" src="../../js/menu.js"></script>
-        <script type="text/javascript">
-            var menu1 = new Desplegable(<%= "'"+msj+"'" %>);
-        </script>
-    </head>
-    <body onload="menu1.escribeacordeon('menu',22,5);">
-        <div id="todo">  
-        <div class="cabecera">
         
-        </div>
-        <div class ="´principal">
-            <div class="menu" id="menu"> 
-          
+        <title>Consultando reservas</title>
+        <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" type="text/css">
+        <script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script> 
+        <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>   
+    </head>
+    <body>
+
+            <div class="page-header">
+                <h1>Hotel Quinta Avenida</h1>
             </div>
-            
-            <div class="contenido">
-                <div class="bloqueA">
-                    <div class="separador"><p>Consultar Reservas de habitaciones</p></div><br>
-                    <script type='text/javascript' src='../../js/calendar.js'></script> 
-                    <table><tr><td>   
-                    <form action="consultarReserva_Cliente.jsp">
-                        <p>Cedula Cliente   <input type="text" name="cedula" value="">
-                        <input type=image src="../../imagen/ver.png" /></p>
-                    </form></td>
+                    <div class="container" >
+                <%
+                ArrayList<String[]> menubt = (ArrayList<String[]>)sesion.getAttribute("modulos");
+                String supermenu = "";
+                
+                supermenu+="<ul class= 'nav nav-pills'>";
+                    supermenu+="<li class='active'>";
+                        supermenu+="<a href='../../user/usuario/fichaUsuario.jsp'>Home</a>";  
+                    supermenu+= "</li>";
+                    for(String[] modulo : menubt){
+                        supermenu+="<li class='dropdown'>";
+                            supermenu+="<a class='dropdown-toggle' id='menu"+modulo[0]+"' role='button' data-toggle='dropdown' data-target='#' href='#'>";
+                                supermenu+=modulo[0];
+                                supermenu+="<b class='caret'></b>";
+                            supermenu+="</a>";
+                        supermenu+="<ul class='dropdown-menu' role='menu' aria-labelledby='menu"+modulo[0]+"'>";
+                        for(int i = 1; i<modulo.length;i++){
+                            String[] sp = modulo[i].split("--");
+                            supermenu+="<li><a href='"+sp[1]+"'>"+sp[0]+"</a></li>";
+                        }
+                        supermenu+= "</ul>";
+                        supermenu+= "</li>";
+                    }
                     
-                        </tr></table>  
-                    <div class="separador">Reservas de habitaciones</div><br>
-                    <%=fachada.getReservasHabitacionByID(nombre)%>  
-                    <div class="separador">Reservas de Salones</div><br>
-                    <%=fachada.getReservaSalonesByID(nombre)%>  
-                </div>
-                <div class="bloqueB" id="bloqueB">
+                supermenu+= "</ul>";
+                %>
+                <%=supermenu%>
+                
+            <div class="container" >
+               <form class="form-horizontal" action="consultarReserva_Cliente.jsp" name="reservas">
+                   <fieldset>
+                           <legend>Consultar reservas</legend>
+                   
+                               <div class="control-group">
+                                   <label class="control-label" for ="cedula">Cliente: </label>
+                               <div class="controls">
+                                <input type="text" name="cedula" id="cedula" value=""  />
+                                </div></div>
+
+                                
+                            
+                            <div class="form-actions">
+                            <button type="submit" class="btn" >Consultar</button>
+                            </div>
+                    </fieldset>
+                </form>
+
                     
-                </div>
+                        <%=fachada.getReservasHabitacionByID(nombre)%>  
+                    
+<br>
+                    
+                        <%=fachada.getReservaSalonesByID(nombre)%>  
+                    
             </div>
         </div>
-       </div>
     </body>
 </html>
 

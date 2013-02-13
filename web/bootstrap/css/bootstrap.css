@@ -288,7 +288,7 @@ a:hover {
 .navbar-static-top .container,
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
-  width: 940px;
+  width: 1000px;
 }
 
 .span12 {
@@ -784,11 +784,13 @@ h3 small {
 h4 small {
   font-size: 14px;
 }
-
 .page-header {
-  padding-bottom: 9px;
-  margin: 20px 0 30px;
-  border-bottom: 1px solid #eeeeee;
+    padding-bottom: 9px;
+    margin: 20px 0px 30px;
+    border-bottom: 1px solid rgb(238, 238, 238);
+    padding-top: 4px;
+    background: rgb(0,136,204);
+
 }
 
 ul,
@@ -3992,9 +3994,9 @@ input[type="submit"].btn.btn-mini {
 
 .nav-tabs > li > a,
 .nav-pills > li > a {
-  padding-right: 12px;
-  padding-left: 12px;
-  margin-right: 2px;
+  padding-right: 8px;
+  padding-left: 8px;
+  margin-right: 0px;
   line-height: 14px;
 }
 

@@ -47,7 +47,7 @@ public class Empleado_negocio {
         try {
             return Empleado_DAO.create(new Empleado_DTO(nombre, apellido, cedula, direccion,  fecha_nto, telefono, correo,numero_ss, funcion));
         } catch (Exception ex) {
-            System.err.println("error, no se pudo registrar empleado");     
+            System.err.println("error, no se pudo registrar empleado");    
             Logger.getLogger(Empleado_negocio.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }

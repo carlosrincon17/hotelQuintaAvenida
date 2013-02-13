@@ -81,7 +81,7 @@ public class ReservaHabitacion_DAO {
        Object[] p = new Object[3];
        p[0] = id;
        p[1] = reserva.getHabitacion().getNumero();
-       p[0] = reserva.getDescripcion();
+       p[2] = reserva.getDescripcion();
        return(BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p));
     }
 
@@ -90,7 +90,7 @@ public class ReservaHabitacion_DAO {
 
         ArrayList<ReservaHabitacion_DTO> reserva = new ArrayList<>();
         //String sql="select * from reserva where id_cliente='"+cliente.getDocumento()+"'";
-        String sql = "select * from reserva inner join reserva_habitacion on reserva.id_reserva=reserva_habitacion.id_reserva_habitacion where reserva.id_cliente = ? AND estado='Espera'";
+        String sql = "select * from reserva inner join reserva_habitacion on reserva.id_reserva=reserva_habitacion.id_reserva_habitacion where reserva.id_cliente = ? AND reserva.activa='1'";
         Object[] p = new Object[1];
         p[0] = cliente.getDocumento();
         ResultSet rs = BaseDeDatos.getInstance().ejecutarSQL(sql, p);

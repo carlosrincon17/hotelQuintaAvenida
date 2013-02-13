@@ -30,7 +30,7 @@ public class Empleado_DAO {
         p[2] = id_funcion;
         p[3] = 1;
 
-        if (Persona_DAO.create(empleado)) {
+        if (Persona_DAO.create(empleado)){
             return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p);
         }
         return false;
@@ -91,10 +91,11 @@ public class Empleado_DAO {
     
     public static boolean update(Empleado_DTO empleado) throws Exception{
     
+        int id_funcion = Funcion_empleado_DAO.getIdPorNombre(empleado.getFuncion());
         String sql = "UPDATE empleado SET NumeroSS = ?, id_funcion = ? WHERE id_empleado = ?";
         Object[] p = new Object[3];
         p[0] = empleado.getNumeroSS();
-        p[1] = empleado.getFuncion();
+        p[1] = id_funcion;
         p[2] = empleado.getDocumento();
         if(Persona_DAO.update(empleado))
             return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p);    

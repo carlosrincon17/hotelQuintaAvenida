@@ -4,6 +4,7 @@
     Author     : jorge
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session='true'%>
 <!DOCTYPE html>
@@ -26,12 +27,11 @@
                         int[] mostrar = fachada.getEstadisticasReservaHabitacionMes(mes, agno);
 %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="../../css/login.css" title="estilo"> 
-        <script type="text/javascript" src="../../js/menu.js"></script>
+        
         <title>Informe de reserva de habitaciones por mes</title>
-        <script type="text/javascript">
-            var menu1 = new Desplegable(<%= "'"+msj+"'" %>);
-        </script>
+        <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" type="text/css">
+        <script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script> 
+        <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
         
         <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -71,25 +71,41 @@
         
     </head>
     
-    <body onload="menu1.escribeacordeon('menu',22,5);">
+    <body >
         
-        <div id="todo">
-            <div class="cabecera">
+        
+            <div class="page-header">
                 <h1>Hotel Quinta Avenida</h1>
             </div>
-            <div class="principal">
-                <div class="menu" id="menu">
-                </div>
-                <div class="contenido">
-                    <div class="bloqueC">
-                        <div class="separador">Informe de reserva de Habitaciones del mes</div>
-                        
-                        <div id="chart_div"></div>
-                        
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
+            <div class="container" >
+                <%
+                ArrayList<String[]> menubt = (ArrayList<String[]>)sesion.getAttribute("modulos");
+                String supermenu = "";
+                
+                supermenu+="<ul class= 'nav nav-pills'>";
+                    supermenu+="<li class='active'>";
+                        supermenu+="<a href='../../user/usuario/fichaUsuario.jsp'>Home</a>";
+                    supermenu+= "</li>";
+                    for(String[] modulo : menubt){
+                        supermenu+="<li class='dropdown'>";
+                            supermenu+="<a class='dropdown-toggle' id='menu"+modulo[0]+"' role='button' data-toggle='dropdown' data-target='#' href='#'>";
+                                supermenu+=modulo[0];
+                                supermenu+="<b class='caret'></b>";
+                            supermenu+="</a>";
+                        supermenu+="<ul class='dropdown-menu' role='menu' aria-labelledby='menu"+modulo[0]+"'>";
+                        for(int i = 1; i<modulo.length;i++){
+                            String[] sp = modulo[i].split("--");
+                            supermenu+="<li><a href='"+sp[1]+"'>"+sp[0]+"</a></li>";
+                        }
+                        supermenu+= "</ul>";
+                        supermenu+= "</li>";
+                    }
+                    
+                supermenu+= "</ul>";
+                %>
+                <%=supermenu%>
+                <h1>Grafica de reservas de habitaciones realizados</h1>
+                <div id="chart_div"></div>
+                
     </body>
 </html>

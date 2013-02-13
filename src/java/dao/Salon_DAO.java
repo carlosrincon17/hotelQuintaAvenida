@@ -19,7 +19,7 @@ public class Salon_DAO {
     
     public static boolean registrarSalon(Salon_DTO salon) throws Exception{
        
-       String sql = "INSERT INTO salon VALUES (?,?,?,?)";
+       String sql = "INSERT INTO salon (nombre, capacidad, precio_hora, estado) VALUES (?,?,?,?)";
        Object[] p = new Object[4];
        p[0] = salon.getNombre();
        p[1] = salon.getCapacidad();
