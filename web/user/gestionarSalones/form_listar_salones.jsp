@@ -28,14 +28,17 @@
         <title>Listar salones</title>
         <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" type="text/css">
         <script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script> 
+        <link rel="stylesheet" href="../../css/fichaUsuario.css" />
         <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>   
     </head>
     <body>
          
-<div class="container" >
-            <div class="page-header">
+
+        <div class="page-header">
                 <h1>Hotel Quinta Avenida</h1>
             </div>
+        <div class="container" >
+            
             
                 <%
                 ArrayList<String[]> menubt = (ArrayList<String[]>)sesion.getAttribute("modulos");
