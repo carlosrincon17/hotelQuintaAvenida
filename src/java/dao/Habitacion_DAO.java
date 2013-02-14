@@ -15,18 +15,17 @@ import util.BaseDeDatos;
  */
 public class Habitacion_DAO {
     
-    
     public static boolean create(Habitacion_DTO myHab) throws Exception{
         /*
           prubea de setear un null en la base de datos
          */
+        System.err.println(myHab.toString());
         int id_tipo = Tipo_habitacion_DAO.getIdPorNombre(myHab.getTipo());
         int id_estado = Estado_habitacion_DAO.getIdporNombre("libre");
-        String sql="INSERT INTO habitacion (id_habitacion ,id_tipo ,estado) VALUES (?, ? ,?)";
-        Object[] p = new Object[4];
+        String sql="INSERT INTO habitacion (id_habitacion ,id_tipo ,estado) VALUES (?, ? ,1)";
+        Object[] p = new Object[2];
         p[0] = myHab.getNumero();
         p[1] = id_tipo;
-        p[2] = id_estado;
         return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p);
     }
     
@@ -147,23 +146,28 @@ public class Habitacion_DAO {
         //String sql= "Select precio from tipo_habitacion where id_tipo=(Select id_tipo from habitacion"
         //       +" where id_habitacion="+habitacion.getNumero()+")";
         String sql = "Select precio from tipo_habitacion where id_tipo=(Select id_tipo from habitacion"
-                + " where id_habitacion= ?";
+                + " where id_habitacion= ?)";
 
         Object[] p = new Object[1];
         p[0] = habitacion.getNumero();
         ResultSet rs = BaseDeDatos.getInstance().ejecutarSQL(sql, p);
-
+        try{
         if (rs.next()) {
             if (cambiar(habitacion.getNumero())) {
                 return rs.getInt(1);
             }
+        }
+        
+        }
+        catch(Exception e){
+           return -1; 
         }
         return -1;
     }
 
     
     private static boolean cambiar(String habitacion) throws Exception{
-        String Sql= "Update habitacion set id_estado=1 where id_habitacion = ?";
+        String Sql= "Update habitacion set estado=1 where id_habitacion = ?";
         Object[] p = new Object[1];
         p[0] = habitacion;
         return BaseDeDatos.getInstance().ejecutarActualizacionSQL(Sql, p);

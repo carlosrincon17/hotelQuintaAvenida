@@ -25,6 +25,7 @@
         <title>Lista de Empleados - Hotel Quinta Avenida</title>
         <script type="text/javascript" src="../../js/ajax.js" ></script>
         <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" type="text/css">
+        <link rel="stylesheet" href="../../css/fichaUsuario.css" />
         <script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script> 
         <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
 

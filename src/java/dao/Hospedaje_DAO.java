@@ -30,8 +30,9 @@ public class Hospedaje_DAO {
         String sql = "insert into hospedaje (id_habitacion, id_cliente, fecha_inicio) values (?,?,?)";
         Object[] p = new Object[3];
         p[0] = nuevo.getHabitacion().getNumero(); 
-        p[0] = nuevo.getHuesped().getDocumento();
-        p[0] = fecha;
+        p[1] = nuevo.getHuesped().getDocumento();
+        p[2] = fecha;
+        System.out.print(p[0]+" - " +p[1]+" - "+ p[2]);
         return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p);
     }
 
@@ -50,7 +51,7 @@ public class Hospedaje_DAO {
     public static ArrayList<Hospedaje_DTO> getAll() throws Exception{
         
         ArrayList<Hospedaje_DTO> lista= new ArrayList<>();
-        String sql = "select id_hospedaje,id_habitacion,cedula,fecha_inicio from hospedaje inner join persona on hospedaje.id_cliente=persona.cedula where fecha_fin is null";
+        String sql = "select id_hospedaje,id_habitacion,cedula,fecha_inicio from hospedaje inner join persona on hospedaje.id_cliente=persona.cedula where fecha_fin is null ";
         ResultSet rs = BaseDeDatos.getInstance().ejecutarSQL(sql, null);
 
         while (rs.next()) {
@@ -97,13 +98,13 @@ public class Hospedaje_DAO {
 
     
     public static int terminarHospedaje(Hospedaje_DTO hospedaje) throws Exception {
-
+        System.out.print(hospedaje.getID());
         Date hoy = new Date();
         String fecha = (hoy.getYear() + 1900) + "-" + (hoy.getMonth() + 1) + "-" + hoy.getDate();
         String sql = "Select fecha_inicio from hospedaje where id_hospedaje= ?";
         Object[] p = new Object[1];
         p[0] = hospedaje.getID();
-
+        System.out.print("aca va bien!!!");
         ResultSet rs = BaseDeDatos.getInstance().ejecutarSQL(sql, p);
         if (rs.next()) {
             Date fin = rs.getDate(1);
@@ -115,7 +116,7 @@ public class Hospedaje_DAO {
 
     
     private static boolean terminar(Hospedaje_DTO hospedaje, String fecha) throws Exception{
-        String Sql= "Update hopedaje set fecha_fin = ? where id_hospedaje = ?";
+        String Sql= "Update hospedaje set fecha_fin = ? where id_hospedaje = ?";
         Object[] p = new Object[2];
         p[0] = fecha;
         p[1] = hospedaje.getID();
