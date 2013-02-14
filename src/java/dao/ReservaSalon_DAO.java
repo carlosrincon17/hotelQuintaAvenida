@@ -136,19 +136,16 @@ public class ReservaSalon_DAO {
         //              ","+reserva.getHora()+","+reserva.getAbonoReserva()+", "+reserva.getSalon().getID()+",'"+
         //             reserva.getDescripcion()+"',"+id+","+total+" )";   
 
-        String sql = "Insert into reserva_salon (id_empleado, hora_fin, hora_inicio, abono, id_salon, descripcion, id_reserva_salon, total)"
-                + "values (?,?,?,?,?,?,?,?,?)";
+        String sql = "Insert into reserva_salon values (?,?,?,?,?,?,0)";
 
-        Object[] p = new Object[9];
-        p[0] = reserva.getEmpleado().getDocumento();
-        p[1] = reserva.getHora();
-        p[2] = reserva.getDuracion();
+        Object[] p = new Object[7];
+        p[0] = reserva.getSalon().getID();
+        p[1] = reserva.getDescripcion();
+        p[2] = reserva.getAbonoReserva();
         p[3] = reserva.getHora();
-        p[4] = reserva.getAbonoReserva();
-        p[5] = reserva.getSalon().getID();
-        p[6] = reserva.getDescripcion();
-        p[7] = id;
-        p[8] = total;
+        p[4] = reserva.getHora() + reserva.getDuracion();  // hora fin
+        p[5] = total;
+        p[6] = id;
         return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p);
     }
 

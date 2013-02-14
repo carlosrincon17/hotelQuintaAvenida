@@ -28,8 +28,7 @@ public class Reserva_DAO {
         String fecha1 = fechaReserva;
         Date hoy = new Date();
         String fecha2 = (hoy.getYear() + 1900) + "-" + (hoy.getMonth() + 1) + "-" + Calendar.DAY_OF_MONTH;
-        //String sql = "INSERT INTO reserva (fecha_reserva, fecha_solicitud, id_cliente, estado)"+
-        //       "VALUES ('"+fecha1+"','"+fecha2+"',"+"'"+idCliente+"','Espera')";
+        
         String sql = "INSERT INTO reserva (id_cliente, fecha_solicitud, fecha_reserva, activa) VALUES (?,?,?,1)";
         Object[] p = new Object[3];
         
