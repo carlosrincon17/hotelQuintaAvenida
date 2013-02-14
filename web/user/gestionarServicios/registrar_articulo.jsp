@@ -30,6 +30,7 @@
         <title>Registrar Artículos - Hotel Quinta Avenida</title>
         <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" type="text/css">
         <script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script> 
+        <link rel="stylesheet" href="../../css/fichaUsuario.css" />
         <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>

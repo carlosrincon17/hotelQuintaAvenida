@@ -27,6 +27,7 @@
         <title>Registrar Artículos - Hotel Quinta Avenida</title>
         <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" type="text/css">
         <script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script> 
+        <link rel="stylesheet" href="../../css/fichaUsuario.css" />
         <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
@@ -77,7 +78,7 @@
                                     <label class="control-label" for="cantidad">Cantidad: </label>
                                 <div class="controls">
                                     <input type="text" id="cantidad" name="cantidad"  value="" required>
-i                                </div></div>
+                                </div></div>
 
                                 <div class="control-group">
                                     <label class="control-label" for="precio">Precio: </label>

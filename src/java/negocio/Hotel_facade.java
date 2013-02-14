@@ -427,7 +427,7 @@ public class Hotel_facade {
                     msj+="<td>"+x.getNombre()+"</td>";
                     msj+="<td>"+x.getPrecio()+"</td>";
                     msj+="<td>"+x.getCantidad()+"</td>";
-                    msj+="<td><a onclick='cambiarHabitacion(this)'title='Agregar cantidad' href='#' name='form_agregar_articulo.jsp?articulo="+x.getId()+"&nombre="+x.getNombre()+"' ><i class='icon-plus'></i></a></td>";
+                    msj+="<td><a onclick='cambiarHabitacion(this)' title='Agregar cantidad' href='#' name='form_agregar_articulo.jsp?articulo="+x.getId()+"&nombre="+x.getNombre()+"' ><i class='icon-plus'></i></a></td>";
                    
                 msj+="</tr>";
             }

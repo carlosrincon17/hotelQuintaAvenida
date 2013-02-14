@@ -54,7 +54,8 @@ function cambiarEstado(algo){
     http.onreadystatechange = function(){
 	if(http.readyState == 4 && http.status == 200){
 	var response = http.responseText;
-        document.getElementById("bloqueB").innerHTML = "<div class='separador'><p>Información</p></div><br>"+response;
+        document.getElementById("bloqueB").innerHTML = " ";
+        alert(response);
 	}
     
 	else
@@ -178,3 +179,13 @@ function getEmpleado(){
 	http.onreadystatechange = useHttpResponse; // Acá se indica la función de respuesta, 
 	http.send=(null); // Se envía la petición al servidor
 }
+
+function godown() {
+   $('#final').click(function () {
+       $('html, body').animate({
+           scrollTop: $(document).height()
+       },
+       1500);
+       return false;
+   });
+   } 
