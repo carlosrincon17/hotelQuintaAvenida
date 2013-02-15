@@ -19,10 +19,14 @@ import java.util.logging.Logger;
 class Hospedaje_negocio {
 
     public static String registrar(String id_cliente, String id_habitacion) {
+        System.out.print(id_cliente + "- " + id_habitacion +"\n" );
         java.util.Date actual = new Date();
         Hospedaje_DTO nuevo = new Hospedaje_DTO();
         nuevo.setHuesped(new Cliente_DTO(id_cliente));
         Habitacion_DTO hab = new Habitacion_DTO(id_habitacion);
+        System.out.print(id_cliente + "- " + id_habitacion +"\n" );
+        nuevo.setHabitacion(hab);
+        System.out.print(nuevo.getHuesped().getDocumento() + "  - "+nuevo.getHabitacion().getNumero()+" \n");
         nuevo.setHabitacion(hab);
         nuevo.setFechaInicio(actual);
         try {
@@ -53,7 +57,14 @@ class Hospedaje_negocio {
         return "No se pudo registrar el hospedaje";
         
     }
-    
+    public static ArrayList<Hospedaje_DTO> listarDisponibles(){
+        try {
+            return Hospedaje_DAO.getAll();
+        } catch (Exception ex) {
+            Logger.getLogger(Hospedaje_negocio.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
     
     public static ArrayList<Hospedaje_DTO> listar(){
         try {
@@ -88,15 +99,25 @@ class Hospedaje_negocio {
     }
 
     
-    public static String terminarHospedaje(int hospedaje, int habitacion) {
-        
+    public static String terminarHospedaje(int hospedaje, int habitacion) throws Exception {
+        Habitacion_DTO myHab=new Habitacion_DTO(String.valueOf(habitacion));
+        ArrayList<ServicioHabitacion_DTO> myServicios = ServicioHabitacion_negocio.getServicios(myHab);
+        String msj= Habitacion_negocio.cargarServicios(String.valueOf(hospedaje));
+        msj+="<br><br><br>";
+        int total= sumarTotalServicios(myServicios);
         Hospedaje_DTO hosp= new Hospedaje_DTO(hospedaje);
         Habitacion_DTO hab= new Habitacion_DTO(String.valueOf(habitacion));
         int precioHab;
         try {
+            msj+= "<table class='table table-hover'><thead><th>Total Servicios</th><th>"
+                    + "Dias Hospedaje</th> <th>Total Hospedaje</th> <th>Precio a Pagar</th></thead>";
             precioHab = Habitacion_DAO.cambiarEstado2(hab);
             int dias = Hospedaje_DAO.terminarHospedaje(hosp);
-            return (precioHab*dias)+"";
+            int precioFinal= precioHab*dias;
+            int totalisimo= precioFinal + total;
+            msj+="<tr><td>"+total+"</td><td>"+dias+"</td><td>"+precioFinal+"</td><td>"+totalisimo+"</td></tr>";
+            
+            return msj+="</table>";
         } catch (Exception ex) {
             Logger.getLogger(Hospedaje_negocio.class.getName()).log(Level.SEVERE, null, ex);
             
@@ -138,5 +159,15 @@ class Hospedaje_negocio {
             return null;
         }
     }
+
+    private static int sumarTotalServicios(ArrayList<ServicioHabitacion_DTO> myServicios) {
+        int suma=0;
+        for(ServicioHabitacion_DTO myser: myServicios){
+            suma+=myser.getImporte();
+        }
+        return suma;
+    }
+
+    
     
 }

@@ -17,7 +17,7 @@ public class Servicio_DAO {
 
     public static boolean create(Servicio_DTO servicio) throws Exception{
         
-        String sql = "insert into servicio values(?,?)";
+        String sql = "insert into servicio (tipo, precio) values(?,?)";
         Object[] p = new Object[2];
         p[0] = servicio.getTipo();
         p[1] = servicio.getPrecio();

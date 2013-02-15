@@ -200,7 +200,7 @@ public class Hotel_facade {
             + "<td><p>Nombre: </p></td>"
             + "<td><input type='text' name='nombre' value='"+nombre+"' /></td>"
             + "</tr><tr>"
-            + "<td><p>Descripcion: </p></td>"
+            + "<td><p>Descripcion del rol: </p></td>"
             + "<td><input type='text' name='descripcion' value='"+nuevo.getDescripcion()+"' /></td>"
             + "</tr>"
             + "</table>";
@@ -217,7 +217,7 @@ public class Hotel_facade {
         
         msj+=p.getNombre()+"</label>";
         }
-        msj+="<br><br><br><br><br><br><br><input type='submit' value='Guardar Cambios' />"
+        msj+="<br /><input type='submit' value='Guardar Cambios' />"
                 + "</form>";
     
         return msj;
@@ -427,7 +427,7 @@ public class Hotel_facade {
                     msj+="<td>"+x.getNombre()+"</td>";
                     msj+="<td>"+x.getPrecio()+"</td>";
                     msj+="<td>"+x.getCantidad()+"</td>";
-                    msj+="<td><a onclick='cambiarHabitacion(this)'title='Agregar cantidad' href='#' name='form_agregar_articulo.jsp?articulo="+x.getId()+"&nombre="+x.getNombre()+"' ><i class='icon-plus'></i></a></td>";
+                    msj+="<td><a onclick='cambiarHabitacion(this)' title='Agregar cantidad' href='#' name='form_agregar_articulo.jsp?articulo="+x.getId()+"&nombre="+x.getNombre()+"' ><i class='icon-plus'></i></a></td>";
                    
                 msj+="</tr>";
             }
@@ -1031,7 +1031,7 @@ public class Hotel_facade {
         return msj+="</tbody></table>";
     }
     
-    public String terminarHospedaje(int hospedaje, int habitacion){
+    public String terminarHospedaje(int hospedaje, int habitacion) throws Exception{
     
     String x=Hospedaje_negocio.terminarHospedaje(hospedaje, habitacion);    
     System.out.println(x);

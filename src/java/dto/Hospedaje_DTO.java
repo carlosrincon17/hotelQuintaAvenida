@@ -49,6 +49,8 @@ public class Hospedaje_DTO {
     
 
     public Hospedaje_DTO() {
+        this.huesped=null;
+        this.habitacion=null;
     }
 
     public Date getFechaInicio() {

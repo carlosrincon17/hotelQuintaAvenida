@@ -31,6 +31,7 @@
         <title>Informe de reserva de habitaciones por mes</title>
         <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css" type="text/css">
         <script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script> 
+        <link rel="stylesheet" href="../../css/fichaUsuario.css" />
         <script type="text/javascript" src="../../bootstrap/js/bootstrap.min.js"></script>
         
         <!--Load the AJAX API-->
@@ -106,6 +107,6 @@
                 <%=supermenu%>
                 <h1>Grafica de reservas de habitaciones realizados</h1>
                 <div id="chart_div"></div>
-                
+            </div>
     </body>
 </html>
