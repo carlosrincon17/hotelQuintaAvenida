@@ -1,10 +1,10 @@
 <%@page import="java.util.ArrayList"%>
+<!DOCTYPE html>
 <html>
 <head>
 <jsp:useBean id="fachada" scope="session" class="negocio.Hotel_facade" />
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session='true'%>
-<!DOCTYPE html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
 
@@ -58,9 +58,9 @@
           
         <%
         
-        String piso = request.getParameter("piso");
-        String hab = request.getParameter("habitacion");
-        String tipo = request.getParameter("tipo_habitacion");
+        String piso = request.getParameter("pisos");
+        String hab = request.getParameter("habitaciones");
+        String tipo = request.getParameter("tipos");
         
         if(fachada.crear_habitacion(piso,hab,tipo))
             out.println("<h1>Habitación creada con éxito</h1>");//se pudo crear la habitacion
