@@ -747,5 +747,5 @@ public class Hotel_facadeTest {
         assertArrayEquals(expResult, result);
         fail("The test case is a prototype.");
     }
-    */
+    
 }
