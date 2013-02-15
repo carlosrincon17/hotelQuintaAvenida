@@ -32,7 +32,7 @@
         }
         else
         {
-            response.sendRedirect("iniciarSesion.jsp?error=Datos incorrectos");
+            response.sendRedirect("index.jsp?error=Datos incorrectos");
         }    
         %>
     </body>
