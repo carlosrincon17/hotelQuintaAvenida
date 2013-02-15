@@ -25,7 +25,6 @@ public class Hospedaje_DAO {
     */
 
     public static boolean create(Hospedaje_DTO nuevo) throws Exception{
-        
         String fecha= (nuevo.getFechaInicio().getYear()+1900)+"-"+(nuevo.getFechaInicio().getMonth()+1)+"-"+nuevo.getFechaInicio().getDate();
         String sql = "insert into hospedaje (id_habitacion, id_cliente, fecha_inicio) values (?,?,?)";
         Object[] p = new Object[3];
@@ -137,6 +136,8 @@ public class Hospedaje_DAO {
         }
         return n;
     }
+
+   
     
     
     

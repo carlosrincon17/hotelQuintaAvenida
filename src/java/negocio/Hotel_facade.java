@@ -1031,7 +1031,7 @@ public class Hotel_facade {
         return msj+="</tbody></table>";
     }
     
-    public String terminarHospedaje(int hospedaje, int habitacion){
+    public String terminarHospedaje(int hospedaje, int habitacion) throws Exception{
     
     String x=Hospedaje_negocio.terminarHospedaje(hospedaje, habitacion);    
     System.out.println(x);

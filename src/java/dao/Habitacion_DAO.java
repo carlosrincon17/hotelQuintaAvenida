@@ -105,7 +105,7 @@ public class Habitacion_DAO {
         //String sql = "UPDATE habitacion SET estado="+id_estado+" WHERE id_habitacion="+myHab.getNumero();
         String sql = "UPDATE habitacion SET estado = ? WHERE id_habitacion = ?";
         Object[] p = new Object[2];
-        p[0] = id_estado;
+        p[0] = 1;
         p[1] = myHab.getNumero();
         return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p);
     }
@@ -114,7 +114,7 @@ public class Habitacion_DAO {
     public static ArrayList<Habitacion_DTO> getDisponibles() throws Exception {
 
         ArrayList<Habitacion_DTO> l = new ArrayList<>();
-        String sql = "SELECT id_habitacion FROM habitacion where estado = 1";
+        String sql = "SELECT id_habitacion FROM habitacion where estado = 0";
         ResultSet rs = BaseDeDatos.getInstance().ejecutarSQL(sql, null);
         while (rs.next()) {
             Habitacion_DTO n = new Habitacion_DTO();
