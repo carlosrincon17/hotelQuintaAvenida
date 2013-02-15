@@ -62,7 +62,6 @@ public class Empleado_DAO {
             nuevo.setFuncion(rs.getString(14));
             lista.add(nuevo);
         }
-        System.err.println("hay  " + lista.size());
         return lista;
     }
     

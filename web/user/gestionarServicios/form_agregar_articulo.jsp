@@ -18,7 +18,7 @@
             <div class="container" >
                <form class="form-horizontal" action="agregar_articulo.jsp" name="form">
                    <fieldset>
-                           <legend>Agregar nuevo articulo</legend>
+                           <legend>Agregar cantidad de un articulo</legend>
                    
                                
                         

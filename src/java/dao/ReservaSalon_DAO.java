@@ -64,10 +64,10 @@ public class ReservaSalon_DAO {
 
        
     private static boolean buscarReservas(int id, ReservaSalon_DTO reserva) throws Exception {
-
+        
         int horafin = reserva.getHora() + reserva.getDuracion();
         String sql = "Select * from reserva_salon where id_reserva_salon = ? "
-                + "and ((hora_inicio < ? and hora_fin > ?) or (hora_inicio < ? and hora_fin > ?";
+                + "and ((hora_inicio < ? and hora_fin > ?) or (hora_inicio < ? and hora_fin > ?))";
 
         Object[] p = new Object[5];
         p[0] = id;
@@ -75,8 +75,9 @@ public class ReservaSalon_DAO {
         p[2] = reserva.getHora();
         p[3] = horafin;
         p[4] = horafin;
-
+        
         ResultSet rs = BaseDeDatos.getInstance().ejecutarSQL(sql, p);
+        
         if (rs.next())
             return true;
         return false;
@@ -136,19 +137,18 @@ public class ReservaSalon_DAO {
         //              ","+reserva.getHora()+","+reserva.getAbonoReserva()+", "+reserva.getSalon().getID()+",'"+
         //             reserva.getDescripcion()+"',"+id+","+total+" )";   
 
-        String sql = "Insert into reserva_salon (id_empleado, hora_fin, hora_inicio, abono, id_salon, descripcion, id_reserva_salon, total)"
-                + "values (?,?,?,?,?,?,?,?,?)";
+        String sql = "Insert into reserva_salon values (?,?,?,?,?,?,?,?,0)";
 
-        Object[] p = new Object[9];
-        p[0] = reserva.getEmpleado().getDocumento();
-        p[1] = reserva.getHora();
-        p[2] = reserva.getDuracion();
-        p[3] = reserva.getHora();
-        p[4] = reserva.getAbonoReserva();
-        p[5] = reserva.getSalon().getID();
-        p[6] = reserva.getDescripcion();
-        p[7] = id;
-        p[8] = total;
+        Object[] p = new Object[8];
+        p[0] = id;
+        p[1] = reserva.getSalon().getID();
+        p[2] = reserva.getDescripcion();
+        p[3] = reserva.getAbonoReserva();
+        p[4] = reserva.getHora();
+        p[5] = reserva.getDuracion()+ reserva.getHora();
+        p[6] = total;
+        p[7] = reserva.getEmpleado().getDocumento();
+        
         return BaseDeDatos.getInstance().ejecutarActualizacionSQL(sql, p);
     }
 
