@@ -70,7 +70,7 @@
            
                <form class="form-horizontal" name="creaRol.jsp" action="creaRol.jsp">
                    <fieldset>
-                           <legend>Crear rol</legend>
+                           <legend>Crear un nuevo rol en el sistema</legend>
                         
                                 <div class="control-group">
                                     <label class="control-label" for="nombre">Nombre: </label>
@@ -79,13 +79,13 @@
                                 </div></div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="descripcion">Descripcion: </label>
+                                    <label class="control-label" for="descripcion">Descripción del rol: </label>
                                 <div class="controls">
                                 <input type="text" id="descripcion" name="descripcion"  value="" required>
                                 </div></div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="descripcion">Privilegios: </label>
+                                    <p style="text-align: center"><label class="control-label" for="descripcion">Privilegios del nuevo rol:</label></p>
                                 <div class="controls">
                                 <div class="row">
                                 <%=fachada.cargarComportamientos() %>

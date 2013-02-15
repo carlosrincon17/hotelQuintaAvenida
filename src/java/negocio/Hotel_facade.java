@@ -200,7 +200,7 @@ public class Hotel_facade {
             + "<td><p>Nombre: </p></td>"
             + "<td><input type='text' name='nombre' value='"+nombre+"' /></td>"
             + "</tr><tr>"
-            + "<td><p>Descripcion: </p></td>"
+            + "<td><p>Descripcion del rol: </p></td>"
             + "<td><input type='text' name='descripcion' value='"+nuevo.getDescripcion()+"' /></td>"
             + "</tr>"
             + "</table>";
@@ -217,7 +217,7 @@ public class Hotel_facade {
         
         msj+=p.getNombre()+"</label>";
         }
-        msj+="<br><br><br><br><br><br><br><input type='submit' value='Guardar Cambios' />"
+        msj+="<br /><input type='submit' value='Guardar Cambios' />"
                 + "</form>";
     
         return msj;
