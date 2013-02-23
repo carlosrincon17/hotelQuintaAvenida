@@ -6,7 +6,10 @@ package dao;
 
 import dto.Salon_DTO;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import util.BaseDeDatos;
 
 /**
@@ -124,6 +127,29 @@ public class Salon_DAO {
         }
         return null;
 
+    }
+    
+    public static ArrayList<Salon_DTO> listarMovil() throws Exception {
+        ArrayList<Salon_DTO> salones= new ArrayList<>();
+        String sql="Select * from salon ";
+        ResultSet rs= BaseDeDatos.getInstance().ejecutarSQL(sql,null);
+        try {
+            while(rs.next()){
+                Salon_DTO nuevo = new Salon_DTO();
+                nuevo.setNombre(rs.getString(2));
+                nuevo.setCapacidad(rs.getInt(3));
+                nuevo.setPrecioHora(rs.getFloat(4));
+                nuevo.setEstado(rs.getString(5));
+                nuevo.setDescripcion(rs.getString(6));
+                nuevo.setImagen(rs.getString(7));
+                salones.add(nuevo);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Salon_DAO.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+        return salones;
+        
     }
    
 }

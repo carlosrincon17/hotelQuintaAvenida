@@ -53,4 +53,39 @@ public class Salon_negocio {
             return null;
         }
     }
+    static String cargarSalonesMovil() throws Exception{
+       String msj="<div  data-role='collapsible-set' data-theme='b' data-content-theme='b'>";
+         
+          ArrayList<Salon_DTO> listaSalones = Salon_DAO.listarMovil();
+          for(Salon_DTO mySalon : listaSalones){
+             
+              msj+="<div data-role='collapsible'> <h3>"+mySalon.getNombre()+"</h3>" 
+              + "<p style='text-align:left;' ><img src='"+mySalon.getImagen()+"' alt='descripción' style='margin:5px 18px 10px 0; width:100%;'/><br><br>"+mySalon.getDescripcion()+"<br><br><b>Precio por Hora:  </b> $ "+mySalon.getPrecioHora()+"</p>"
+              + "</div> \n";
+          }
+          
+          return msj+="</div>";
+    }
+
+    @SuppressWarnings("empty-statement")
+    
+    static String cargarOptionMovil() throws Exception {
+        
+     	
+     	  String msj="<fieldset data-role=\"controlgroup\">\n" +
+                    "<legend>Selecciones el salón a Reservar:</legend>";
+         
+          ArrayList<Salon_DTO> listaSalones = Salon_DAO.listarMovil();
+          int i=1;
+          for(Salon_DTO mySalon : listaSalones){
+             
+              msj+="<input type='radio' name='radio-choice' id='radio-choice-"+i+"' "
+                      + "value='"+mySalon.getNombre()+"' />\n" +
+"               <label for='radio-choice-"+i+"'>"+mySalon.getNombre()+"</label>\n";
+              i++;
+          
+          } 
+         
+          return msj+="</fieldset>";
+    }
 }

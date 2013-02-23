@@ -6,6 +6,7 @@ package dao;
 
 import dto.Cliente_DTO;
 import dto.Empleado_DTO;
+import dto.Persona_DTO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import util.BaseDeDatos;
@@ -106,5 +107,31 @@ public class Persona_DAO {
         }
         return cliente;
     }
+    public static Persona_DTO getPersona(String usuario) throws Exception {
+        String sql = "Select nombre, apellido , correo, direccion, fecha_nto, fecha_inscripcion, telefono from persona "
+                + "where cedula='"+usuario+"'";
+        Object[] para= new Object[1];
+        para[0]=usuario;
+        ResultSet rs = BaseDeDatos.getInstance().ejecutarSQL(sql, null);
+        Cliente_DTO myCliente = new Cliente_DTO();
+        try{
+            if(rs.next()){
+                myCliente.setNombre(rs.getString(1));
+                myCliente.setApellido(rs.getString(2));
+                myCliente.setCorreo(rs.getString(3));
+                myCliente.setDireccion(rs.getString(4));
+                myCliente.setFechaNacimiento(rs.getString(5));
+                myCliente.setFechaInscripcion(rs.getString(6));
+                myCliente.setTelefono(rs.getString(7));
+                myCliente.setDocumento(usuario);
+             
+                return myCliente;
+            }
+            return null;
+        }
+        catch (Exception e){
+            return null;
+        }   
     
+}
 }

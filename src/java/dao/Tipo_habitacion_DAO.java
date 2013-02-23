@@ -4,6 +4,7 @@
  */
 package dao;
 
+import dto.TipoHabitacion_DTO;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import util.BaseDeDatos;
@@ -42,5 +43,19 @@ public class Tipo_habitacion_DAO {
         }
         return l;
     }
+    public static ArrayList<TipoHabitacion_DTO> listarMovil() throws Exception{
+    String sql= "select nombre, precio, descripcion, imagen from tipo_habitacion";
+    ResultSet rs= BaseDeDatos.getInstance().ejecutarSQL(sql, null);
+    ArrayList<TipoHabitacion_DTO> listaHabitaciones= new ArrayList<>();
+    try{
+        while(rs.next()){
+            listaHabitaciones.add(new TipoHabitacion_DTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+        }
+    }
+    catch(Exception e){
+        System.out.println("Error");
+    }
+    return listaHabitaciones;     
+}
     
 }

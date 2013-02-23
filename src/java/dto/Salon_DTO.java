@@ -15,6 +15,8 @@ public class Salon_DTO {
     private int capacidad;
     private String estado;
     private String ID;
+    private String descripcion;
+    private String imagen;
     
     public Salon_DTO() {
     }
@@ -51,6 +53,22 @@ public class Salon_DTO {
 
     public void setID(String ID) {
         this.ID = ID;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
 
