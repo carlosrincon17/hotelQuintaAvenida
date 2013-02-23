@@ -116,7 +116,7 @@ public class Persona_DAO {
         Cliente_DTO myCliente = new Cliente_DTO();
         try{
             if(rs.next()){
-                myCliente.setNombre(rs.getString(1));
+                myCliente.setNombre(rs.getString(1) ); 
                 myCliente.setApellido(rs.getString(2));
                 myCliente.setCorreo(rs.getString(3));
                 myCliente.setDireccion(rs.getString(4));
@@ -125,6 +125,7 @@ public class Persona_DAO {
                 myCliente.setTelefono(rs.getString(7));
                 myCliente.setDocumento(usuario);
              
+                
                 return myCliente;
             }
             return null;
