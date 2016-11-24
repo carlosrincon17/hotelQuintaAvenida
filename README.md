@@ -1,4 +1,4 @@
 hotelQuintaAvenida
 ==================
 
-Aplicación demasiado compleja
+Aplicación para entrega final Software III
